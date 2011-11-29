@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
-    <title>Panada PHP Framework 1.0.0 Documentation - MongoDB Library</title>
+    <title>Panada PHP Framework 1.0.0 Documentation - MongoDB</title>
     <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen" />
 </head>
 <body>
@@ -92,7 +92,7 @@
                 <h2>MongoDB</h2>
                 <p>MongoDB adalah scalable, high-performance, open source database NoSQL yang berorientasikan dokumen. Dengan MongoDB memungkinkan penyimpanan data dilakukan tanpa perlu diawali dengan pembuatan skema database. Setiap data disimpan berformat herarki, di mana setiap record bisa memiliki herarki yang berbeda dengan record lainnya dalam satu collection/tabel yang sama.</p>
                 <p>Lebih lanjut mengenai MongoDB bisa dilihat di <a href="http://www.mongodb.org" target="_blank">http://www.mongodb.org</a>.</p>
-                <p><strong>Untuk menggunakan Library ini, pastikan PHP Anda telah terinstall ekstensi Mongo</strong>.</p>
+                <p><strong>Untuk menggunakan Driver ini, pastikan PHP Anda telah terinstall ekstensi Mongo</strong>.</p>
                 <p>Driver MongoDB Panada merupakan inheritance dari class Mongo yang telah tersedia secara natif oleh ekstensi Mongo. Hal ini berarti, semua resources yang ada pada class Mongo, bisa juga langsung digunakan pada Driver MongoDB.</p>
                 <p>Di bawah adalah beberapa contoh dari method-method yang paling sering digunakan.</p>
                 <p>Informasi lebih lanjut mengenai MongoDB API's silahkan lihat <a target="_blank" href="http://www.mongodb.org/display/DOCS/Tutorial">http://www.mongodb.org/display/DOCS/Tutorial</a></p>
@@ -101,28 +101,30 @@
             <div class="main">
                 <h3>Konfigurasi</h3>
 		
-                <p>Konfigurasi dilakukan di file <strong>apps/config.php</strong></p>
+                <p>Konfigurasi dilakukan di file <strong>app/config/database.php</strong></p>
                 <p>Berikut adalah contohnya:</p>
-<textarea rows="10" cols="50" class="textarea">
-$CONFIG['db']['default']['driver']      = 'mongodb';
-$CONFIG['db']['default']['host']        = 'localhost'; 
-$CONFIG['db']['default']['user']        = ''; 
-$CONFIG['db']['default']['password']    = ''; 
-$CONFIG['db']['default']['database']    = 'my_database';
-$CONFIG['db']['default']['charset']     = '';
-$CONFIG['db']['default']['collate']     = '';
-$CONFIG['db']['default']['persistent']  = false;
-$CONFIG['db']['default']['options']     = array();
+<textarea rows="12" cols="50" class="textarea">
+'default' => array(
+    'driver' => 'mongodb',
+    'host' => 'localhost',
+    'user' => '',
+    'password' => '',
+    'database' => 'my_database',
+    'charset' => '',
+    'collate' => '',
+    'persistent' => false,
+    'options' => array(),
+)
 </textarea>
-                <p>Jika ingin menambahkan opsi tambahan pada connection option, bisa dilakukan pada bagian <b>$CONFIG['db']['default']['options']</b></p>
+                <p>Jika ingin menambahkan opsi tambahan pada connection option, bisa dilakukan pada bagian <b>options</b></p>
                 <p>Lebih lanjut mengenai connection option, silahkan lihat di <a href="http://www.php.net/manual/en/mongo.construct.php" target="_blank">http://www.php.net/manual/en/mongo.construct.php</a></p>
                 <p>Berikut adalah contoh connection option replica set dengan setting auto-connect false:</p>
                 <code>
-                    $CONFIG['db']['default']['options'] = array('replicaSet' => true, 'connect' => false);
+                    'options' => array('replicaSet' => true, 'connect' => false),
                 </code>
 		<p>Jika koneksi ke server MongoDB lebih dari satu (misalnya pada penggunaan <strong>Replica Set</strong>), berikut adalah contohnya:</p>
 		<code>
-                    $CONFIG['db']['default']['host'] = 'localhost, 192.168.10.20, 192.168.10.21';
+                    'host' => 'localhost, 192.168.10.20, 192.168.10.21',
                 </code>
             </div>
             
@@ -130,11 +132,11 @@ $CONFIG['db']['default']['options']     = array();
                 <h3 id="init">Inisialisasi</h3>
                 <p>Jika MongoDB digunakan sebagai database default, inisialisasinya sama seperti database yang lainnya.</p>
                 <code>
-                    $this->db = new Library_db();
+                    $this->db = new Resources\Database;
                 </code>
 		<p>Atau jika MongoDB terletak pada <a href="index.html#config">setting koneksi</a> dengan nama koneksi <strong>mongodb</strong>, maka contoh inisalisasinya:</p>
 		<code>
-                    $this->mongodb = new Library_db('mongodb');
+                    $this->mongodb = new Resources\Database('mongodb');
                 </code>
 		
             </div>
@@ -187,11 +189,11 @@ $CONFIG['db']['default']['options']     = array();
             </div>
 	    
 	    <div class="main">
-                <h3 id="cursor_results">Cursor_results</h3>
-                <p>Secara default, output data yang diberikan oleh Mongo berformat array. Untuk menampilkan data yang diambil dari method <b>find</b> dengan format object, Panada menyediakan method <b>cursor_results</b>:</p>
+                <h3 id="cursor_results">CursorResults</h3>
+                <p>Secara default, output data yang diberikan oleh Mongo berformat array. Untuk menampilkan data yang diambil dari method <b>find</b> dengan format object, Panada menyediakan method <b>cursorResults</b>:</p>
                 <code>
                     $cursor = $this->mongodb->collection('users')->find()->limit(3);<br />
-		    $data = $this->mongodb-><b>cursor_results</b>($cursor);
+		    $data = $this->mongodb-><b>cursorResults</b>($cursor);
                 </code>
                 
             </div>
