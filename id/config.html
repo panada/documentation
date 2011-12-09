@@ -95,8 +95,13 @@
                     <li>
                         <h4>Apache</h4>
                         <p>Tambahkan file <strong>.htaccess</strong> di root aplikasi yang isinya:</p>
-<textarea rows="5" cols="50" class="textarea">
+<textarea rows="10" cols="50" class="textarea">
 RewriteEngine on
+
+# Sesuaikan nilai parameter
+# di bawah dengan lokasi folder aplikasi
+RewriteBase /
+
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
@@ -105,7 +110,7 @@ RewriteRule ^(.*)$ index.php/$1 [L]
                     <li>
                         <h4>Nginx</h4>
                         <p>Untuk webserver Nginx, gunakan konfigurasi berikut:</p>
-<textarea rows="17" cols="50" class="textarea">
+<textarea rows="18" cols="50" class="textarea">
 location / {
 
     root /www/var/your_site;
@@ -124,16 +129,7 @@ location ~ \.php(.*)$ {
     include fastcgi_params;
 }
 </textarea>
-			<p>Restart service Nginx.</p>
-                        <div class="notice">
-                            <strong>Catatan</strong>: Jika Anda menggunakan Nginx, konfigurasi di atas harus dilakukan. Jika tidak, aplikasi tidak akan ter-<em>routing</em> dengan benar.<br />Anda juga harus menghapus comment yang ada pada file <strong>panada/library/uri.php</strong> pada method <strong>extract_uri_string()</strong> sehingga menjadi seperti berikut:
-                        </div>
-<textarea rows="6" cols="50" class="textarea">
-$path = str_replace($this->config->base_url, '', ($this->is_https())?'https://':'http://' . $_SERVER['SERVER_NAME']. $_SERVER['REQUEST_URI']);
-$path = $this->remove_query($path);
-if (trim($path, '/') != '' && trim($path, '/') != 'index.php')
-    return '/'.$path;
-</textarea>
+			<p>Pastikan selalu melakukan reload/restart service Nginx setelah melakukan perubahan.</p>
                     </li>
 		    <li>
 			<h4>Lighttpd</h4>
