@@ -87,6 +87,61 @@
                     app/config/
                 </code>
             </div>
+	    
+	    <div id="additional_config" class="main">
+                <h3>Konfigurasi Tambahan</h3>
+		<p>Berikut adalah tahapan dalam membuat konfigurasi tambahan pada aplikasi Anda:</p>
+		<ul>
+		    <li>Buat sebuah file baru di dalam folder <strong>app/config/</strong> dan beri nama sesuai dengan nama konfigurasi, misalnya <strong>example.php</strong>.</li>
+		    <li>
+			Isikan dengan data array seperti contoh berikut:
+<textarea rows="15" cols="50" class="textarea">&lt;?php
+return array(
+    
+    'myArg1' => 'hello',
+    
+    'myArg2' => 'world',
+    
+    'myArg3' => array(
+	
+	'say' => 'hello world'    
+    
+    ),
+);
+</textarea>
+		    </li>
+		    <li>
+			Saat mendeklarasikan variable config di dalam componen, gunakan nama file config Anda sebagai nama method static config seperti contoh berikut:
+			<code>
+			    $this->myConfig = Resources/Config::<strong>example()</strong>;
+			</code>
+		</ul>
+                
+                <p>Berikut adalah contoh untuk mendapatkan nilai config Anda di dalam file controller:</p>
+<textarea rows="21" cols="50" class="textarea">
+namespace Controllers;
+use Resources;
+
+&lt;?php
+class Home extends Resources/Controller {
+    
+    public function __construct(){
+        
+        parent::__construct();
+	
+	$this->myConfig = Resources/Config::example();
+    }
+    
+    public function index(){
+        
+        echo $this-&gt;myConfig['myArg1'];
+        echo $this-&gt;myConfig['myArg2'];
+	echo $this-&gt;myConfig['myArg3']['say'];
+    }
+}
+</textarea>
+
+            </div>
             
             <div id="webserver" class="main">
                 <h3>Webserver</h3>
