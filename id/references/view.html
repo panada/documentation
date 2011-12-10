@@ -89,7 +89,7 @@
                 <h3>Membuat View</h3>
                 <p>Folder view terletak pada:</p>
 				<code>
-					apps/view/
+					app/views/
 				</code>
 				<p>Untuk membuat file view, tambahkan file baru di dalama folder ini, misalnya <strong>helloworld.php</strong>.</p>
 <textarea rows="9" cols="50" class="textarea">
@@ -102,9 +102,12 @@
 &lt;/html&gt;
 </textarea>
 			<p>Untuk bisa digunakan di dalam aplikasi, file view harus di-load di dalam method controller. Berikut adalah contoh me-load file view di dalam method index pada controller home.</p>
-<textarea rows="14" cols="50" class="textarea">
+<textarea rows="17" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources;
+
+class Home extends Resources/Controller {
     
     public function __construct(){
         
@@ -113,37 +116,19 @@ class Controller_home extends Panada {
     
     public function index(){
         
-        $this->view_helloworld();
+        $this->output('helloworld');
     }
 }
 </textarea>
-				
-				<p>Untuk me-load file view, panggil method dengan prefix <b>$this->view_</b> yang kemudian diikuti <b>nama_file()</b>. Anda tidak perlu lagi menyertakan ekstensi <b>.php</b> pada bagian ini.</p>
-				<code>
-				    $this->view_<b>nama_file</b>();
-				</code>
-				<p>Jika Anda membuat folder baru di dalam folder <b>view</b>, dimana file view akan Anda letakkan pada folder ini, maka cara penggunaan method view-nya adalah:</p>
-				<code>
-				    $this->view_<b>namafolder_</b>nama_file();
-				</code>
-				<p>Contohnya, jika path file Anda:</p>
-				<code>
-				    apps/view/sidebar/menu.php
-				</code>
-				<p>Maka memanggil method view-nya:</p>
-				<code>
-				    $this->view_sidebar_menu();
-				</code>
-				<div class="notice">
-				    <p><strong>Catatan</strong>: Penamaan file mengikuti aturan penamaan fungsi php (<a target="_blank" href="http://www.php.net/manual/en/functions.user-defined.php">http://www.php.net/manual/en/functions.user-defined.php</a>), yaitu hanya karakter <strong>[a-zA-Z0-9_]</strong> yang diperbolehkan. Untuk membedakan dengan nama file, nama folder tidak boleh ada karakter <em>underscore</em> (_).</p>
-				    <p>Namun demikian, jika menginginkan penggunaan nama file dan nama folder yang lebih fleksibel, Anda bisa menggunakan method <a href="#output">output()</a> untuk mem-<em>passing</em> data ke file view.</p>
-				</div>
 
 				<p>Untuk menampilkan data <strong>output</strong> dari controller ke view, maka masing-masing data tersebut harus di isikan ke sebuah variable array. Nilai yang diisikan bisa data apapun, array, object, string, integer, boolean dll.</p>
 				<p>Berikut adalah contoh untuk meneruskan data yang diproduksi di controller dan menampilkannya di view:</p>
-<textarea rows="19" cols="50" class="textarea">
+<textarea rows="22" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Models;
+use Resources;
+
+class Home extends Resources/Controller {
     
     public function __construct(){
         
@@ -157,11 +142,11 @@ class Controller_home extends Panada {
             'content' => 'Hello World!'
         );
 	
-        $this->view_helloworld($data);
+        $this->output('helloworld', $data);
     }
 }
 </textarea>
-				<p>Dan berikut adalah isi file <strong>apps/view/helloworld.php</strong>:</p>
+				<p>Dan berikut adalah isi file <strong>app/views/helloworld.php</strong>:</p>
 <textarea rows="9" cols="50" class="textarea">
 &lt;html&gt;
 	&lt;head&gt;
@@ -172,16 +157,20 @@ class Controller_home extends Panada {
 	&lt;/body&gt;
 &lt;/html&gt;
 </textarea>
-		<h4 id="output">Method Output</h4>
-		<p>Selain cara di atas, untuk mengirimkan data dari controller ke file view juga bisa menggunakan method <strong>output</strong>.</p>
+		<p>Dan jika filenya terletak di dalam folder:</p>
 		<code>
-		    <strong>void</strong> $this->output( <strong>string</strong> 'nama_file_view', <strong>array</strong> $data = array() );
+		    $this->output( 'subfolder/helloworld', $data );
 		</code>
-		<p>Berikut adalah contoh penggunaanya:</p>
-
-<textarea rows="19" cols="50" class="textarea">
+            </div>
+	    <div id="outputJSON" class="main">
+                <h3>OutputJSON</h3>
+		<p>Jika Anda ingin menampilkan data berformat JSON, maka method <strong>$this-&gt;outputJSON()</strong> bisa Anda gunakan.</p>
+<textarea rows="22" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Models;
+use Resources;
+
+class Home extends Resources/Controller {
     
     public function __construct(){
         
@@ -195,15 +184,34 @@ class Controller_home extends Panada {
             'content' => 'Hello World!'
         );
 	
-        $this->output( 'helloworld', $data );
+        $this->outputJSON($data);
     }
 }
 </textarea>
-		<p>Dan jika filenya terletak di dalam folder:</p>
+		<p>Maka di browser akan menampilkan:</p>
+<textarea rows="5" cols="50" class="textarea">
+{
+    "title":"Hello World Page!",
+    "content":"Hello World!"
+}
+</textarea>
+		<p>Argument kedua pada method ini bisa Anda isikan dengan status reponse header.</p>
 		<code>
-		    $this->output( 'subfolder/helloworld', $data );
+		    $this-&gt;outputJSON($data, 500);
 		</code>
-            </div>
+		<p>Jika data tidak ingin ditampilkan, tetapi diolah kedalam suatu variable, isikan argument ketiga dengan nilai <strong>true</strong></p>
+		<code>
+		    $myData = $this-&gt;outputJSON($data, 200, true);<br />
+		    echo $myData;
+		</code>
+	    </div>
+	    <div id="outputXML" class="main">
+                <h3>OutputXML</h3>
+		<p>Cara yang sama juga bisa digunakan untuk menampilkan data xml, yaitu dengan menggunakan method <strong>$this-&gt;outputXML()</strong></p>
+		<code>
+		    $this-&gt;outputXML($data);
+		</code>
+	    </div>
 	    <div id="discussion" class="main">
 		<h3>Diskusi</h3>
 		<div id="disqus_thread"></div>

@@ -82,12 +82,14 @@
             
             <div class="main">
                 <h3>Membuat Model</h3>
-                <p>Untuk membuat sebuah class model, tambahkan file baru dan letakan di dalam folder <strong>apps/model/</strong>, misalnya <strong>users.php</strong>.</p>
-                <p>Buat class users di dalam file ini dengan diawali prefix <strong>"Model_"</strong>, contohnya:</p>
+                <p>Untuk membuat sebuah class model, tambahkan file baru dan letakan di dalam folder <strong>app/Models/</strong>, misalnya <strong>Users.php</strong>.</p>
+                <p>Buat class users di dalam file ini dengan diberi namespace <strong>"Models"</strong>, contohnya:</p>
 
-<textarea rows="8" cols="50" class="textarea">
+<textarea rows="12" cols="50" class="textarea">
 &lt;?php
-class Model_users {
+namespace Models;
+
+class Users {
     
     public function __construct(){
         
@@ -104,28 +106,34 @@ class Model_users {
 		method <b>__construct</b>. Namun, jika resource hanya ingin digunakan pada salah satu method saja, maka inisialisasi dan pemanggilan bisa
 		dilakukan di dalam method yang bersangkutan.</p>
 		
-                <p>Salah satu hal yang paling umum dilakukan di dalam sebuah class model adalah me-load library database. Untuk melakukan ini berikut adalah contohnya:</p>
+                <p>Salah satu hal yang paling umum dilakukan di dalam sebuah class model adalah me-load resource database. Untuk melakukan ini berikut adalah contohnya:</p>
 		
-<textarea rows="9" cols="50" class="textarea">
+<textarea rows="12" cols="50" class="textarea">
 &lt;?php
-class Model_users {
+namespace Models;
+use Resources;
+
+class Users {
     
     public function __construct(){
         
-        $this->db = new Library_db();
+        $this->db = new Resources\Database;
     }
 }
 </textarea>
                 
 		
 		<p>Berikutnya, properti <strong>"$this->db"</strong> bisa digunakan di semua method yang ada di dalam class tersebut. Berikut adalah contoh untuk mendapatkan 5 record dari database:</p>
-<textarea rows="14" cols="50" class="textarea">
+<textarea rows="18" cols="50" class="textarea">
 &lt;?php
-class Model_users {
+namespace Models;
+use Resources;
+
+class Users {
     
     public function __construct(){
         
-        $this->db = new Library_db();
+        $this->db = new Resources\Database;
     }
     
     public function users(){
@@ -134,10 +142,7 @@ class Model_users {
     }
 }
 </textarea>
-                <div class="notice"><strong>Catatan:</strong> Selain dengan cara ini, ada dua cara lainnya untuk me-load class baik itu library
-ataupun model, yaitu dengan <a href="autoloader.html">auto loader</a> dan load di dalam <a href="controller.html">controller</a>. Apabila sebuah class sudah dideklarasikan, baik itu pada auto_loader
-, di dalam model ataupun di dalam controller, maka tidak perlu lagi dideklarasikan pada class lainnya.
-Instance dari class tersebut secara otomatis sudah bisa langsung digunakan pada class lain, selama pendeklarasiannya dilakukan pada method <b>__construct</b>.</div>
+                <div class="notice"><strong>Catatan:</strong> Selain dengan cara ini, pemanggilan bisa dilakukan dengan cara lain yaitu dengan <a href="autoloader.html">auto loader</a>.</div>
                
             </div>
 	    <div id="discussion" class="main">
