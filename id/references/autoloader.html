@@ -81,17 +81,47 @@
         <div class="content">
             <div class="lead">
                 <h2>Auto Loader</h2>
-                <p><em>Feature</em> auto loader memungkinkan Anda untuk me-load class, baik itu library ataupun model secara otomatis tanpa perlu mendeklarasikannya di dalam controller ataupun model.</p>
+                <p><em>Feature</em> auto loader memungkinkan Anda untuk me-load class, baik itu resources, library ataupun model secara otomatis tanpa perlu mendeklarasikannya terlebih dahulu.</p>
             </div>
             
             <div class="main">
-                <h3>Konfigurasi</h3>
+                <h3>Penggunaan</h3>
 		
-		<p>Konfigurasi auto loader terletak pada file <strong>apps/config.php</strong> di bagian <strong>auto_loader</strong>.</p>
-		<p>Untuk menggunakannya, isikan masing-masing nama class yang akan di-<em>autoload</em>-kan ke dalam nilai array seperti contoh berikut.</p>
+		<p>Untuk memanfaatkan fasilitas ini, Anda hanya cukup memanggil property <strong>$this-&gt;resource</strong>, <strong>$this-&gt;library</strong>, ataupun <strong>$this-&gt;model</strong> kemudian diikuti dengan nama class yang hendak dipanggil. Berikut adalah contoh-contohnya.</p>
+		
+		<p>Me-load method stripNumeric() dari class resource validation:</p>
 		<code>
-		    $CONFIG['auto_loader'] = array('Library_session' ,'Library_db', 'Model_user');
+		    $this-&gt;resource-&gt;validation()-&gtstripNumeric(12345678);
 		</code>
+		
+		<p>Me-load method getValue() dari class resource session:</p>
+		<code>
+		    $this-&gt;resource-&gt;session()-&gt;getValue('mySessionID');
+		</code>
+		
+		<p>Me-load method dateNow dari sebuah class library dengan nama Time:</p>
+		<code>
+		    $this-&gt;library-&gt;time()-&gt;dateNow();
+		</code>
+		
+		<p>Me-load method getEmailByID dari sebuah class model dengan nama ActivatedUsers:</p>
+		<code>
+		    $this-&gt;model-&gt;activatedUsers()-&gt;getEmailByID(10);
+		</code>
+		
+		<h4>Passing Nilai Constructor</h4>
+		<p>Jika class yang hendak Anda load membutuhkan nilai tertentu pada constructor, silahkan isikan pada bagian method nama class. Berikut adalah contohnya:</p>
+		<code>
+		    $this-&gt;resource-&gt;<strong>cache('apc')</strong>-&gt;getValue('myKey');
+		</code>
+		<code>
+		    $this-&gt;library-&gt;<strong>time('arg1', 'arg2')</strong>-&gt;dateNow();
+		</code>
+		
+		<div class="notice">
+		    <p><strong>Catatan</strong>: Di dalam sebuah class library ataupun model pemanggilan dengan cara di atas tidak bisa dilakukan di dalam method constructor.</p>
+		</div>
+		    
             </div>
 	    <div id="discussion" class="main">
 		<h3>Diskusi</h3>
