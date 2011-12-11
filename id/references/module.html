@@ -61,6 +61,7 @@
                                     <li><a href="#discussion">Diskusi</a></li>
                                 </ul>
                             </li>
+			    <li><a href="vendor.html">Vendor</a></li>
 			    <li><a href="upgrade.html">Upgrade</a></li>
                         </ul>
                             
@@ -94,53 +95,17 @@
                 <p>Resource sebuah module bisa langsung diakses dari dalam controller utama. Module ini akan memberikan output resource melalui interface controller module. Resource sebuah module juga dimungkinkan untuk diakses melalui URL routing. Sebuah module juga dapat mengakses resource dari module lain.</p>
                 <p>Hierarki interaksi dari sebuah controller utama ke dalam controller module, ataupun dari sebuah controller module kepada controller module lainnya sering juga disebut Hierarchical Model View Controller(HMVC). Lebih jauh mengenai ini silahkan lihat <a target="_blank" href="http://en.wikipedia.org/wiki/Presentation-abstraction-control">Presentation Abstraction Control (PAC)</a>.</p>
             </div>
-            
-            <div class="main">
-                <h3 id="create_module">Membuat Module</h3>
-                <p>Buat sebuah folder dan beri nama sesuai dengan nama module yang ingin dibuat. Letakkan folder ini di dalam direktori:</p>
-                <code>
-                    panada/module/<strong>nama_module</strong>
-                </code>
-                <p>Sebuah module setidaknya harus terdiri dari:</p>
-<textarea rows="5" cols="50" class="textarea">
-nama_module/
-    config.php
-    controller/
-        home.php
-</textarea>
-                <p>Namun demikian sebaiknya digunakan struktur secara lengkap seperti berikut ini:</p>
-<textarea rows="15" cols="50" class="textarea">
-nama_module/
-    config.php
-    controller/
-        home.php
-        controller1.php
-        controller2.php
-        ...
-        controllerN.php
-    model/
-        model_class.php
-    library/
-        library_class.php
-    view/
-        index.php
-</textarea>
-            </div>
-            
-        
-            <div class="main">
+	    
+	    <div class="main">
                 <h3 id="config_module">Konfigurasi Module</h3>
-		<p>Konfigurasi module dilakukan di dalam file <strong>config.php</strong> yang ada di setiap masing-masing folder module.</p>
+		<p>Konfigurasi module dilakukan di dalam file <strong>app/config/main.php</strong>.</p>
 		
-<textarea rows="9" cols="50" class="textarea">
-&lt;?php
-$CONFIG = array(
+<textarea rows="6" cols="50" class="textarea">
+'module' => array(
 
-    'allow_url_routing' => true,
-     
-    'alias_controller' => array(),
+    'path' => GEAR,
     
-);
+),
 </textarea>
                 <h4>Penjelasan:</h4>
 		<table>
@@ -152,44 +117,79 @@ $CONFIG = array(
 		</thead>
 		<tbody>
 		<tr>
-                    <td>allow_url_routing</td>
+                    <td>path</td>
                     <td>
-                        <p>Menentukan apakah sebagian atau seluruh controller di dalam module bisa diakses melalui URL atau tidak. Untuk membatasi seluruh akses controller silahkan beri nilai <strong>false</strong>.</p>
-                        <p>Jika hanya beberapa controller saja yang diizinkan, silahkan daftarkan nama controller ke dalam array seperti contoh berikut:</p>
-                        <p><strong>array('home', 'login', 'logout')</strong></p>
-                        <p>Alamat URL untuk mengakses module adalah: <strong>http://website.com/nama_module/nama_controller</strong></p>
-                        <p>Secara default jika tidak ada argument nama controller yang diisikan, maka controller yang diakses adalah <strong>home</strong>.</p>
+                        <p>Konfigurasi ini menentukan di mana lokasi folder module diletakan. Secara default, lokasi folder module ada di dalam folder <strong>panada</strong>.</p>
                     </td>
 		</tr>
-		<tr class="odd">
-                    <td>alias_controller</td>
-                    <td>
-                        <p>Jika controller alias ingin diaktifkan silahkan definisikan nama controller dan nama method pada bagian ini. Cara penggunaan controller alias pada module sama seperti <a href="controller.html#alias_controller">Alias Controller</a> di aplikasi utama.</p>
-                        <p>Alias controller pada module alamat URL-nya akan seperti: <strong>http://website.com/module_name/dynamic_arguments</strong></p>
-                    </td>
-		</tr>
-		
 		</tbody>
 		</table>
                 
             </div>
+            
+            
+            <div class="main">
+                <h3 id="create_module">Membuat Module</h3>
+                <p>Buat sebuah folder dan beri nama sesuai dengan nama module yang ingin dibuat. Letakkan folder ini di dalam direktori <strong>Modules</strong>:</p>
+                <code>
+                    panada/Modules/<strong>NamaModule</strong>
+                </code>
+                <p>Sebuah module setidaknya harus terdiri dari:</p>
+<textarea rows="5" cols="50" class="textarea">
+NamaModule/
+    Controllers/
+        home.php
+</textarea>
+                <p>Namun demikian sebaiknya digunakan struktur secara lengkap seperti berikut ini:</p>
+<textarea rows="15" cols="50" class="textarea">
+NamaModule/
+    Controllers/
+        Home.php
+        Controller1.php
+        Controller2.php
+        ...
+        ControllerN.php
+    Models/
+        ModelClass.php
+    Libraries/
+        LibraryClass.php
+    views/
+        index.php
+</textarea>
+            </div>
+            
+        
             <div class="main">
                 <h3 id="controller_module">Controller Module</h3>
-                <p>Membuat sebuah controller di dalam module sama seperti membuat <a href="controller.html#create_controller">controller</a> pada aplikasi utama. Yang membedakannya adalah nama class diawali dengan nama module.</p>
-                <p>Jika misalnya Anda memiliki module dengan nama <strong>user</strong> dan sebuah controller <strong>home</strong>, maka nama classnya adalah <strong>User_controller_home</strong>. Contoh lainnya jika controller yang akan dibuat bernama <strong>login</strong> maka nama classnya menjadi <strong>User_controller_login</strong>.</p>
-                <p>Controller harus di extend ke class <strong>Panada_module</strong> seperti contoh berikut:</p>
-<textarea rows="27" cols="50" class="textarea">
+                <p>Membuat sebuah controller di dalam module sama seperti membuat <a href="controller.html#create_controller">controller</a> pada aplikasi utama. Yang membedakannya adalah penggunaan namespace yang dilengkapi nama module.</p>
+		<code>
+		    namespace Modules\<strong>NamaModule</strong>\Controllers;
+		</code>
+                <p>Jika misalnya Anda memiliki module dengan nama <strong>User</strong> dan sebuah controller <strong>Home</strong>, maka nama namespace-nya adalah:</p>
+		<code>
+		    namespace Modules\<strong>User</strong>\Controllers;
+		</code>
+		
+                <p>Berikut adalah contoh kodenya:</p>
+<textarea rows="37" cols="50" class="textarea">
 &lt;?php
+namespace Modules\User\Controllers;
+use Resources,  Modules\User;
 
-class User_controller_home extends Panada_module {
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
         
-        $this->test     = new User_library_test;
-        $this->dummy    = new User_model_dummy;
-        $this->request  = new Library_request;
+	// Load library dari module User
+        $this->test = new User\Libraries\Test;
+	
+	// Load model dari module User
+        $this->dummy = new User\Models\ModelDummy;
+	
+	// Load dari resource natif
+        $this->request = new Resources\Request;
     }
     
     public function index(){
@@ -197,36 +197,39 @@ class User_controller_home extends Panada_module {
         $this->output(
             'index',
             array(
-                'module_name' => self::$_module_name,
-                'library_string' => $this->test->str(),
-                'model_string' => $this->dummy->str(),
-                'main_lib' => $this->request->get('name')
+                'moduleName' => self::__METHOD__,
+                'libraryString' => $this->test->str(),
+                'modelString' => $this->dummy->str(),
+                'mainLib' => $this->request->get('name')
             )
         );
     }
 }
 </textarea>
-                <p>Penggunaan prefix <strong>Namamodule_</strong> juga berlaku untuk memanggil komponen library atau model yang ada di dalam module. Sebagaimana yang ada pada contoh di atas.</p>
+                <p>Penggunaan namespace <strong>Modules\NamaModule\</strong> juga berlaku untuk memanggil komponen library atau model yang ada di dalam module. Sebagaimana yang ada pada contoh di atas.</p>
                 <p>Contoh memanggil sebuah model:</p>
                 <code>
-                    $this->dummy = new User_model_dummy;
+                    $this->dummy = new Models\ModelDummy;
                 </code>
                 <p>Contoh memanggil sebuah library:</p>
                 <code>
-                    $this->test = new User_library_test;
+                    $this->test = new Libraries\Test;
                 </code>
-                <p>Untuk memanggil library yang berada di aplikasi utama cara pemanggilannya tidak berubah:</p>
+                <p>Untuk memanggil resource natif panada:</p>
                 <code>
-                    $this->request = new Library_request;
+                    $this->request = new Resources\Request;
                 </code>
-                <p>Dengan pola seperti ini, Anda juga bisa langsung memanggil library atau model yang ada pada module lain.</p>
+                <p>Dengan pola seperti ini, Anda juga bisa langsung memanggil library atau model yang ada pada module lain. Terlebih dahulu deklarasikan <strong>use</strong> dari module lain yang akan digunakan.</p>
+		<code>
+		    use Modules\<strong>ModuleLain</strong>;
+		</code>
                 <p>Contoh memanggil sebuah model dari module lain:</p>
                 <code>
-                    $this->dummy = new Other_model_dummy;
+                    $this->dummy2 = new ModuleLain\Models\Dummy;
                 </code>
                 <p>Contoh memanggil sebuah library dari module lain:</p>
                 <code>
-                    $this->test = new Other_library_test;
+                    $this->test2 = new ModuleLain\Libraries\Test;
                 </code>
                 <p><a href="controller.html#alias_method">Alias Method</a> juga tetap bisa diimplementasikan pada controller yang berada di dalam module. Nama method alias yang ada di dalam controller module mengikuti nama yang didefenisikan pada konfigurasi aplikasi utama.</p>
             </div>
@@ -237,11 +240,12 @@ class User_controller_home extends Panada_module {
             </div>
             <div class="main">
                 <h3>Model Module</h3>
-                <p>Sama seperti controller, pembuatan nama class untuk sebuah model di dalam module harus diawali dengen prefix <strong>Namamodule_model</strong> kemudian diikuti dengan nama model.</p>
-<textarea rows="10" cols="50" class="textarea">
+                <p>Sama seperti controller, pembuatan nama class untuk sebuah model di dalam module harus diawali dengen namespace <strong>Modules\NamaModule\Models</strong> kemudian diikuti dengan nama model.</p>
+<textarea rows="13" cols="50" class="textarea">
 &lt;?php
+namespace Modules\User\Models;
 
-class User_model_dummy {
+class Dummy {
     
     public function str(){
         
@@ -253,12 +257,13 @@ class User_model_dummy {
             </div>
             <div class="main">
                 <h3 id="library_module">Library Module</h3>
-                <p>Demikian juga hal yang sama berlaku pada nama class untuk library. Prefix nama classnya adalah <strong>Namamodule_library</strong>.</p>
+                <p>Demikian juga hal yang sama berlaku pada nama class untuk library. Namespace-nya adalah <strong>Modules\NamaModule\Libraries</strong>.</p>
 
-<textarea rows="10" cols="50" class="textarea">
+<textarea rows="13" cols="50" class="textarea">
 &lt;?php
+namespace Modules\NamaModule\Libraries;
 
-class User_library_test {
+class Test {
     
     public function str(){
         
@@ -273,28 +278,25 @@ class User_library_test {
                 <p>Pemanggilan sebuah module bisa dilakukan dengan tiga cara yaitu melalui <strong>controller utama</strong>, <strong>controller module lain</strong> dan <strong>URL</strong>.</p>
                 
                 <h4>Controller Utama</h4>
-                <p>Untuk memanggil sebuah module dari dalam controller aplikasi utama, caranya adalah dengan menggunakan bantuan class <strong>Library_module</strong>.</p>
-                <p>Kitika menginisialisasi class Library_module harus diberikan nama module sebagai nilai argument.</p>
-                <code>
-                    $this-><strong>nama_module</strong> = new Library_module('<strong>nama_module</strong>');
-                </code>
-                <p>Secara default controller module yang akan diakses adalah <strong>home</strong>. Jika ingin mengakses controller lain gunakan cara berikut:</p>
-                <code>
-                    $this-><strong>nama_module</strong> = new Library_module( array('name' => '<strong>nama_module</strong>', 'controller' => '<strong>nama_controller</strong>' ) );
-                </code>
-                <p>Misalnya module <strong>user</strong> ingin dipanggil dari controller utama <strong>home</strong> seperti contoh berikut:</p>
+                <p>Untuk memanggil sebuah module dari dalam controller aplikasi utama, caranya adalah dengan menggunakan:</p>
+		<code>
+		    use Modules\NamaModule;
+		</code>
+                <p>Misalnya module <strong>User</strong> ingin dipanggil dari controller utama <strong>Home</strong> seperti contoh berikut:</p>
 
-<textarea rows="19" cols="50" class="textarea">
+<textarea rows="22" cols="50" class="textarea">
 &lt;?php
+namespace Controllers;
+use Resources, Modules\User;
 
-class Controller_home extends Panada {
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
         
-        $this->user = new Library_module('user');
-        $this->auth = new Library_module( array('name' => 'auth', 'controller' => 'login' ) );
+        $this->user = new User\Controllers\Home;
+        $this->auth = new User\Controllers\Login;
     }
     
     public function index(){
@@ -307,16 +309,18 @@ class Controller_home extends Panada {
                 
                 <h4>Controller Module</h4>
                 <p>Cara yang sama jika kita ingin memanggil sebuah module dari dalam controller module lain.</p>
-<textarea rows="17" cols="50" class="textarea">
+<textarea rows="20" cols="50" class="textarea">
 &lt;?php
+namespace Modules\MyModule\Controllers;
+use Resources, Modules\User;
 
-class User_controller_home extends Panada_module {
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
         
-        $this->auth = new Library_module('auth');
+        $this->auth = new User\Controllers\Login;
     }
     
     public function index(){
@@ -326,17 +330,17 @@ class User_controller_home extends Panada_module {
 }
 </textarea>
                 <h4>URL</h4>
-                <P>Jika pada <a href="#config_module">konfigurasi module</a> seluruh atau sebagian controller diizinkan untuk diakses secara langsung melalui URL, maka alamat aksesnya adalah:</P>
+                <P>Berikut adalah segment pemanggilan module di dalam URL:</P>
                 <code>
-                    http://website.com/index.php/<strong>nama_module</strong>/<strong>nama_controller</strong>/<strong>nama_method</strong>/<strong>argument</strong>
+                    http://website.com/index.php/<strong>NamaModule</strong>/<strong>NamaController</strong>/<strong>namaMethod</strong>/<strong>argument</strong>
                 </code>
                 <p>Atau jika mode_rewite telah diaktifkan:</p>
                 <code>
-                    http://website.com/<strong>nama_module</strong>/<strong>nama_controller</strong>/<strong>nama_method</strong>/<strong>argument</strong>
+                    http://website.com/<strong>NamaModule</strong>/<strong>NamaController</strong>/<strong>namaMethod</strong>/<strong>argument</strong>
                 </code>
-                <p>Sebagai contoh jika ingin mengakses module <strong>user</strong> dengan controller <strong>home</strong> dan method <strong>index</strong>, maka URL-nya adalah:</p>
+                <p>Sebagai contoh jika ingin mengakses module <strong>User</strong> dengan controller <strong>Home</strong> dan method <strong>index</strong>, maka URL-nya adalah:</p>
                 <code>
-                    http://website.com/<strong>user</strong>
+                    http://website.com/<strong>User</strong>
                 </code>
             </div>
             
