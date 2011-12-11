@@ -51,6 +51,7 @@
                             <li><a href="autoloader.html">Auto Loader</a></li>
                             <li><a href="global_method.html">Global Method dan Properties</a></li>
 			    <li><a href="module.html">Module</a></li>
+			    <li><a href="vendor.html">Vendor</a></li>
 			    <li><a href="upgrade.html">Upgrade</a></li>
                         </ul>
                             
@@ -82,24 +83,26 @@
             <div class="lead">
                 <h2>Library</h2>
                 <p>Library adalah sebuah class yang memiliki tugas spesifik yang fungsinya bisa digunakan oleh controller, model ataupun library lainnya.</p>
-		<p>Panada telah menyertakan beberapa library yang umumnya paling sering digunakan. Library natif ini terletak pada folder:</p>
+		<p>Panada telah menyertakan beberapa library yang umumnya paling sering digunakan. Library natif yang disediakan oleh Panada disebut <strong>resource</strong>. Library natif ini terletak pada folder:</p>
                 <code>
-                    panada/library/
+                    panada/Resources/
                 </code>
                 <p>Untuk mengetahui fungsi masing-masing library ini dan cara penggunaanya, silahkan lihat di bagian <a href="../class.html">Resources</a>.</p>
             </div>
             
             <div class="main">
                 <h3>Membuat Library</h3>
-                <p>Anda juga bisa membuat library sendiri. Library tersebut bisa disimpan di folder:</p>
+                <p>Untuk membantu pembuatan aplikasi, Anda juga bisa membuat library sendiri. Library tersebut bisa disimpan di folder:</p>
                 <code>
-                    apps/library/
+                    app/Libraries/
                 </code>
-                <p>Yang harus diperhatikan dalam membuat library adalah, setiap nama class harus diawali dengan prefix <strong>"Library_"</strong>.</p>
+                <p>Yang harus diperhatikan dalam membuat library adalah, setiap nama class harus diawali dengan namespace <strong>"Libraries"</strong>.</p>
                 
-<textarea rows="8" cols="50" class="textarea">
+<textarea rows="11" cols="50" class="textarea">
 &lt;?php
-class Library_register {
+namespace Libraries;
+
+class ValidationForm {
     
     public function __construct(){
         
