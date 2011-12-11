@@ -61,6 +61,7 @@
                                     <li><a href="#discussion">Diskusi</a></li>
                                 </ul>
                             </li>
+			    <li><a href="vendor.html">Vendor</a></li>
                             <li class="active"><a href="upgrade.html">Upgrade</a></li>
                         </ul>
                             
@@ -89,67 +90,35 @@
         <div class="content">
             <div class="lead">
                 <h2>Upgrade</h2>
-                <p>Berikut adalah panduan untuk melakukan proses upgrade dari versi sebelumnya ke versi terbaru.</p>
-                <p>Pastikan Anda sudah membackup data dan aplikasi sebelum melakukan proses backup.</p>
+		<p>Panada versi 1.0.0 adalah versi mayor yang hampir setiap file system-nya dibuat dan ditulis ulang dari awal. Terdapat perubahan aturan yang cukup mendasar bila dibandingkan dengan versi sebelumnya. Oleh karena itu, sangat disarankan untuk kembali membaca dokumentasi untuk versi yang terbaru ini.</p>
+                <p>Berikut adalah panduan untuk melakukan proses upgrade dari versi sebelumnya ke versi terbaru. Pastikan Anda sudah membackup data dan aplikasi sebelum melakukan proses backup.</p>
             </div>
             
             <div class="main">
-                <h3>Versi 0.2.1 ke Versi 0.3.1</h3>
-               <p>Siapkan folder temporer dan download versi 0.3.1 di <a href="https://github.com/k4ndar/Panada/archives/master">http://github.com/k4ndar/Panada/archives/master</a> kemudian simpan ke folder temporer.</p>
-                <p>Buat folder baru pada path berikut di aplikasi Panada yang akan diupgrade:</p>
+                <h3>Versi 0.3.1 ke Versi 1.0.0</h3>
+		<ul>
+		    <li>Siapkan folder temporer dan download versi 1.0.0 di <a href="https://github.com/k4ndar/Panada/archives/master">http://github.com/k4ndar/Panada/archives/master</a> kemudian simpan ke folder temporer.</li>
+		    <li>Pindahkan setiap file controller yang ada di folder aplikasi Anda <strong>apps/controller/</strong> ke folder <strong>app/Controllers/</strong> yang ada di folder temporer.</li>
+		    <li>Rename setiap file yang dipindahkan sehingga setiap nama diawali dengan huruf kapital.</li>
+		    <li>
+			Tambahkan namespace dan use seprti di bawah ini disetiap awal file setelah tag pembuka PHP (&lt;?php):
+			<code>
+			    namespace Controllers;<br />
+			    use Resources;
+			</code>
+		    </li>
+		    <li>
+			Hilangkan pengecekan di bawah ini jika ada pada setiap file aplikasi Anda:
+			<code>
+			    defined('THISPATH') or die('Can\'t access directly!');
+			</code>
+		    </li>
+		    <li>Hilangkan prefix <strong>controller_</strong> sehingga yang ada hanya nama classnya saja. Setiap nama class juga harus diawali dengan hurup kapital.</li>
+		    <li>Ubah semua method pemanggilan view yang lama dan gunakan method <strong>$this->output();</strong> untuk menampilkan file view.</li>
+		    <li>Ulangi cara yang sama untuk class-class model, library dan module.</li>
+		    <li>Buka file-file yang ada di <strong>app/config/</strong> dan sesuaikan dengan kebutuhan aplikasi Anda.</li>
+		</ul>
                 
-<textarea rows="4" cols="50" class="textarea">
-panada/
-    drivers/
-    module/
-</textarea>
-                <p>Jika Anda melakukan perubahan pada file-file di bawah ini, silahkan sesuaikan dengan file versi terbaru.</p>
-                <ul>
-                    <li>Copy semua file dan folder yang ada di <strong>panada/drivers/</strong></li>
-                    <li>Copy semua file dan folder yang ada di <strong>panada/module/</strong></li>
-                    <li>Copy file <strong>panada/library/active_record.php</strong></li>
-                    <li>Copy file <strong>panada/library/cache.php</strong></li>
-                    <li>Copy file <strong>panada/library/module.php</strong></li>
-                    <li>Replace file <strong>panada/library/db.php</strong></li>
-                    <li>Replace file <strong>panada/library/session.php</strong></li>
-                    <li>Replace file <strong>panada/library/tools.php</strong></li>
-                    <li>Replace file <strong>panada/library/uri.php</strong></li>
-                    <li>Replace file <strong>panada/gear.php</strong></li>
-                </ul>
-                
-                <p>Perubahan pada file <strong>apps/config.php</strong>.</p>
-                <p>Tambahkan bagian berikut di bagian konfigurasi <strong>database</strong>:</p>
-                <code>
-                    $CONFIG['db']['default']['driver'] = 'mysql';
-                </code>
-                <p>Sesuaikan dengan nama koneksi dan tipe driver yang Anda gunakan.</p>
-                <p>Tambahkan setting untuk <strong>cache</strong>:</p>
-                <code>
-                    $CONFIG['cache']['default']['driver'] = 'default';
-                </code>
-                <p>Tambahkan setting untuk <strong>secret key</strong>:</p>
-                <code>
-                    $CONFIG['secret_key'] = '_put_your_random_string_here_';
-                </code>
-                
-                <p>Sesuaikan konfigurasi session menjadi seperti berikut:</p>
-<textarea rows="10" cols="50" class="textarea">
-$CONFIG['session']['expiration'] = 7200; /* 2 hour. */
-$CONFIG['session']['name'] = 'PAN_SID';
-$CONFIG['session']['cookie_expire'] = 0;
-$CONFIG['session']['cookie_path'] = '/';
-$CONFIG['session']['cookie_secure'] = false;
-$CONFIG['session']['cookie_domain'] = '';
-$CONFIG['session']['driver'] = 'native'; /* The option is 'native', 'cookie', cache or 'database' */
-$CONFIG['session']['driver_connection'] = 'default'; /* Connection name for the driver. */
-$CONFIG['session']['storage_name'] = 'sessions';
-</textarea>
-                
-                <p>Method-method berikut masih bisa digunakan, namun disarankan untuk menggunakan method yang lebih baru:</p>
-                <ul>
-                    <li>Library_db::get_results => Library_db::find_all</li>
-                    <li>Library_db::get_row => Library_db::find_one</li>
-                </ul>
             </div>
             
         
