@@ -90,19 +90,26 @@
         <div class="content">
             <div class="lead">
                 <h2>Database</h2>
-                <p>Sebelum menggunakan library database, terlebih dahulu harus dilakukan konfigurasi. Bagian konfigurasi database terletak pada file <strong>apps/config.php</strong>.</p>
+                <p>Sebelum menggunakan resource database, terlebih dahulu harus dilakukan konfigurasi. Bagian konfigurasi database terletak pada file <strong>app/config/database.php</strong>.</p>
             </div>
             
             <div class="main">
                 <h3 id="config">Konfigurasi</h3>
                 
 		<p>Bagian-bagian yang harus dilengkapi adalah host, user, password dan nama database.</p>
-<textarea rows="6" cols="50" class="textarea">
-$CONFIG['db']['default']['driver'] = '';
-$CONFIG['db']['default']['host'] = ''; 
-$CONFIG['db']['default']['user'] = ''; 
-$CONFIG['db']['default']['password'] = ''; 
-$CONFIG['db']['default']['database'] = '';
+<textarea rows="13" cols="50" class="textarea">
+'default' => array(
+    'driver' => 'mysql',
+    'host' => 'localhost',
+    'port' => 3306,
+    'user' => 'root',
+    'password' => '',
+    'database' => '',
+    'tablePrefix' => '',
+    'charset' => 'utf8',
+    'collate' => 'utf8_general_ci',
+    'persistent' => false,
+),
 </textarea>
 		
 		<h4>Keterangan</h4>
@@ -116,27 +123,27 @@ $CONFIG['db']['default']['database'] = '';
 		    </thead>
 		<tbody>
 		    <tr>
-			<td>$CONFIG['db']['default']['driver']</td>
+			<td>driver</td>
 			<td>string</td>
-			<td>Pilihan driver database yang akan digunakan. Pilihannya adalah: <strong>mysql</strong>, <strong>postgresql</strong>, <strong>sqlite</strong> atau <strong>mongodb</strong></td>
+			<td>Pilihan driver database yang akan digunakan. Pilihannya adalah: <strong>mysql</strong>, <strong>postgresql</strong>, <strong>sqlite</strong>, <strong>cubrid</strong> atau <strong>mongodb</strong></td>
 		    </tr>
 		    <tr class="odd">
-			<td>$CONFIG['db']['default']['host']</td>
+			<td>host</td>
 			<td>string</td>
 			<td>Host database server.</td>
 		    </tr>
                     <tr>
-			<td>$CONFIG['db']['default']['user']</td>
+			<td>user</td>
 			<td>string</td>
 			<td>Username yang digunakan untuk koneksi ke database server.</td>
 		    </tr>
 		    <tr class="odd">
-			<td>$CONFIG['db']['default']['password']</td>
+			<td>password</td>
 			<td>string</td>
 			<td>Password yang digunakan untuk konesi ke database server.</td>
 		    </tr>
 		    <tr>
-			<td>$CONFIG['db']['default']['database']</td>
+			<td>database</td>
 			<td>string</td>
 			<td>Nama database yang akan digunakan.</td>
 		    </tr>
@@ -146,42 +153,47 @@ $CONFIG['db']['default']['database'] = '';
 		
 		<p>Nilai <strong>default</strong> pada konfigurasi di atas menunjukan koneksi database default. Jika Anda menginginkan koneksi database yang lain silahkan tambahkan nama baru pada bagian ini. Sebagai contoh:</p>
 
-<textarea rows="21" cols="50" class="textarea">
-// Koneksi default
-$CONFIG['db']['default']['driver'] = 'mysql';
-$CONFIG['db']['default']['host'] = '192.168.1.1'; 
-$CONFIG['db']['default']['user'] = 'dbuser'; 
-$CONFIG['db']['default']['password'] = 'dbpassword'; 
-$CONFIG['db']['default']['database'] = 'myblog';
-
-// Koneksi db 2
-$CONFIG['db']['db2']['driver'] = 'mysql';
-$CONFIG['db']['db2']['host'] = '192.168.1.2'; 
-$CONFIG['db']['db2']['user'] = 'dbuser'; 
-$CONFIG['db']['db2']['password'] = 'dbpassword'; 
-$CONFIG['db']['db2']['database'] = 'myforum';
-
-// Koneksi db 3
-$CONFIG['db']['db3']['driver'] = 'postgresql';
-$CONFIG['db']['db3']['host'] = '192.168.1.3'; 
-$CONFIG['db']['db3']['user'] = 'dbuser'; 
-$CONFIG['db']['db3']['password'] = 'dbpassword'; 
-$CONFIG['db']['db3']['database'] = 'myagregrator';
+<textarea rows="24" cols="50" class="textarea">
+'db2' => array(
+    'driver' => 'postgresql',
+    'host' => 'localhost',
+    'port' => 5432,
+    'user' => 'postgres',
+    'password' => '',
+    'database' => '',
+    'charset' => 'utf8',
+    'collate' => 'utf8_general_ci',
+    'persistent' => false,
+),
+    
+'db3' => array(
+    'driver' => 'sqlite',
+    'host' => '',
+    'user' => '',
+    'password' => '',
+    'database' => '/path/to/sqlitedb/my.db',
+    'charset' => '',
+    'collate' => '',
+    'persistent' => false,
+),
 </textarea>
 		<h4>Inisialisasi</h4>
 		<p>Berikut adalah contoh membuat <em>instance</em> untuk DB baik itu di dalam model ataupun controller:</p>
-<textarea rows="14" cols="50" class="textarea">
+<textarea rows="17" cols="50" class="textarea">
 &lt;?php
-class Model_comments {
+namespace Models;
+use Resources;
+
+class Comments {
     
     public function __construct(){
         
 	// DB koneksi default
-	$this->db = new Library_db();
+	$this->db = new Resources\Database;
 	// DB koneksi 2
-	$this->db2 = new Library_db('db2');
+	$this->db2 = new Resources\Database('db2');
 	// DB koneksi 3
-	$this->db3 = new Library_db('db3');
+	$this->db3 = new Resources\Database('db3');
     }
 }
 </textarea>

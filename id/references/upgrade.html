@@ -91,7 +91,7 @@
             <div class="lead">
                 <h2>Upgrade</h2>
 		<p>Panada versi 1.0.0 adalah versi mayor yang hampir setiap file system-nya dibuat dan ditulis ulang dari awal. Terdapat perubahan aturan yang cukup mendasar bila dibandingkan dengan versi sebelumnya. Oleh karena itu, sangat disarankan untuk kembali membaca dokumentasi untuk versi yang terbaru ini.</p>
-                <p>Berikut adalah panduan untuk melakukan proses upgrade dari versi sebelumnya ke versi terbaru. Pastikan Anda sudah membackup data dan aplikasi sebelum melakukan proses backup.</p>
+                <p>Berikut adalah panduan untuk melakukan proses upgrade dari versi sebelumnya ke versi terbaru. Pastikan Anda sudah membackup data dan aplikasi sebelum melakukan proses upgrade.</p>
             </div>
             
             <div class="main">
@@ -114,7 +114,9 @@
 			</code>
 		    </li>
 		    <li>Hilangkan prefix <strong>controller_</strong> sehingga yang ada hanya nama classnya saja. Setiap nama class juga harus diawali dengan hurup kapital.</li>
+		    <li>Ubah bagian <strong>extends Panada</strong> menjadi <strong>extends Resources\Controller</strong> di setiap file controller.</li>
 		    <li>Ubah semua method pemanggilan view yang lama dan gunakan method <strong>$this->output();</strong> untuk menampilkan file view.</li>
+		    <li>Ubah property <strong>$this->base_url</strong> di dalam setiap file view menjadi <strong>$this->uri->baseUri</strong>.</li>
 		    <li>Ulangi cara yang sama untuk class-class model, library dan module.</li>
 		    <li>Buka file-file yang ada di <strong>app/config/</strong> dan sesuaikan dengan kebutuhan aplikasi Anda.</li>
 		</ul>
