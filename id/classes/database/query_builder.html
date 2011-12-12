@@ -75,8 +75,8 @@
                                             <li><a href="#limit">Limit</a></li>
 					    <li><a href="#command">Command</a></li>
                                             <li><a href="#Insert_id">Insert Id</a></li>
-                                            <li><a href="#find_one">Find One</a></li>
-                                            <li><a href="#find_all">Find All</a></li>
+                                            <li><a href="#getOne">Get One</a></li>
+                                            <li><a href="#getAll">Get All</a></li>
                                             <li><a href="#insert">Insert</a></li>
                                             <li><a href="#update">Update</a></li>
                                             <li><a href="#delete">Delete</a></li>
@@ -117,7 +117,7 @@
 		<h3 id="select">Select</h3>
 		<p>Untuk mendapatkan data dari semua kolom tabel:</p>
 		<code>
-		    $data = $this->db-><strong>select()</strong>->from('users')->find_all();
+		    $data = $this->db-><strong>select()</strong>->from('users')->getAll();
 		</code>
 		
 		<p>Method ini menghasilkan output data SQL:</p>
@@ -126,9 +126,9 @@
 		</code>
 		<p>Untuk mendapatkan beberapa kolom dari tabel:</p>
 		<code>
-		    $data = $this->db-><strong>select('id', 'name')</strong>->from('users')->find_all();<br />
+		    $data = $this->db-><strong>select('id', 'name')</strong>->from('users')->getAll();<br />
 		    // atau bisa juga<br />
-		    $data = $this->db-><strong>select( array('id', 'name') )</strong>->from('users')->find_all();
+		    $data = $this->db-><strong>select( array('id', 'name') )</strong>->from('users')->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -136,7 +136,7 @@
 		</code>
                 <p>Fungsi SQL juga bisa diisikan pada argument <strong>select()</strong>:</p>
                 <code>
-		    $data = $this->db-><strong>select('COUNT(*)')</strong>->from('users')->find_var();
+		    $data = $this->db-><strong>select('COUNT(*)')</strong>->from('users')->getVar();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -149,7 +149,7 @@
 		<h3 id="distinct">Distinct</h3>
                 <p>Berikut adalah contoh penggunaan statetment <strong>distinct</strong>:</p>
                 <code>
-		    $data = $this->db->select('name')-><strong>distinct()</strong>->from('users')->limit(10)->find_all();
+		    $data = $this->db->select('name')-><strong>distinct()</strong>->from('users')->limit(10)->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -161,7 +161,7 @@
 		<h3 id="from">From</h3>
                 <p>Method <strong>from()</strong> dari contoh-contoh yang ada merepresentasikan dari nama tabel.
                 <code>
-		    $data = $this->db->select()-><strong>from('users')</strong>->find_all();
+		    $data = $this->db->select()-><strong>from('users')</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -169,9 +169,9 @@
 		</code>
 		<p>Nilai argument bisa berupa <strong>string</strong> ataupun <strong>array</strong>.</p>
 		<code>
-		    $data = $this->db->select()-><strong>from('users', 'posts')</strong>->where('users.id', '=', 'posts.post_author')->find_all();<br />
+		    $data = $this->db->select()-><strong>from('users', 'posts')</strong>->where('users.id', '=', 'posts.post_author')->getAll();<br />
 		    // atau<br />
-		    $data = $this->db->select()-><strong>from( array('users', 'posts') )</strong>->where('users.id', '=', 'posts.post_author')->find_all();
+		    $data = $this->db->select()-><strong>from( array('users', 'posts') )</strong>->where('users.id', '=', 'posts.post_author')->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -243,7 +243,7 @@
 		
 		<p>Berikut contoh penggunaan method ini:</p>
 		<code>
-		    $data = $this->db->select()->from('users')-><strong>where('id', '=', 1)</strong>->find_one(); 
+		    $data = $this->db->select()->from('users')-><strong>where('id', '=', 1)</strong>->getOne(); 
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -251,11 +251,11 @@
 		</code>
 		<p>Jika penyeleksian data lebih dari satu kondisi:</p>
 		<code>
-		    $data = $this->db->select()->from('users')-><strong>where('id', '=', 1, 'OR')</strong>-><strong>where('email', '=', 'kandar@kandar.com')</strong>->find_one();
+		    $data = $this->db->select()->from('users')-><strong>where('id', '=', 1, 'OR')</strong>-><strong>where('email', '=', 'kandar@kandar.com')</strong>->getOne();
 		</code>
 		<p>Penggunaan operator <strong>IN</strong>:</p>
 		<code>
-		    $data = $this->db->select()->from('users')-><strong>where('id', 'IN', array(1,4,7))</strong>->find_all();
+		    $data = $this->db->select()->from('users')-><strong>where('id', 'IN', array(1,4,7))</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -263,7 +263,7 @@
 		</code>
 		<p>Penggunaan operator <strong>BETWEEN</strong>:</p>
 		<code>
-		    $data = $this->db->select()->from('users')-><strong>where('id', 'BETWEEN', array(1,7))</strong>->find_all();
+		    $data = $this->db->select()->from('users')-><strong>where('id', 'BETWEEN', array(1,7))</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -276,7 +276,7 @@
 		<h3 id="group_by">Group By</h3>
                 <p>Penggunaan method <strong>group_by()</strong>:</p>
                 <code>
-		    $data = $this->db->select('id', 'name')->from('users')-><strong>group_by('name', 'id')</strong>->limit(10)->find_all();
+		    $data = $this->db->select('id', 'name')->from('users')-><strong>group_by('name', 'id')</strong>->limit(10)->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -288,7 +288,7 @@
 		<h3 id="having">Having</h3>
 		<p>Berikut adalah contoh cara menggunakan method <strong>having()</strong>:</p>
 		<code>
-		    $data = $this->db->select('id', 'post_title')->from('posts')->group_by('post_author','id', 'post_title')-><strong>having('COUNT(id)', '>=', 2)</strong>->find_all();
+		    $data = $this->db->select('id', 'post_title')->from('posts')->group_by('post_author','id', 'post_title')-><strong>having('COUNT(id)', '>=', 2)</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -300,7 +300,7 @@
 		<h3 id="order_by">Order By</h3>
                 <p>Untuk mengurutkan hasil pencarian data, Anda bisa menggunakan method <strong>order_by()</strong></p>
                 <code>
-		    $data = $this->db->select()->from('users')-><strong>order_by('id')</strong>->find_all();
+		    $data = $this->db->select()->from('users')-><strong>order_by('id')</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -308,7 +308,7 @@
 		</code>
                 <p>Cara yang lain:</p>
                 <code>
-		    $data = $this->db->select()->from('users')-><strong>order_by('id', 'DESC')</strong>->find_all();
+		    $data = $this->db->select()->from('users')-><strong>order_by('id', 'DESC')</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -316,7 +316,7 @@
 		</code>
                 <p>Penggunaan dengan method <strong>where()</strong>:</p>
                  <code>
-		    $data = $this->db->select()->from('users')->where('id', '>', 1)-><strong>order_by('id', 'DESC')</strong>->find_all();
+		    $data = $this->db->select()->from('users')->where('id', '>', 1)-><strong>order_by('id', 'DESC')</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -328,7 +328,7 @@
 		<h3 id="limit">Limit</h3>
                 <p>Argument pertama digunakan untuk menentukan jumlah limit. Berikut adalah cara penggunaan method <strong>limit()</strong>:</p>
                 <code>
-		    $data = $this->db->select()->from('users')->where('id', '>', 1)->order_by('id', 'DESC')-><strong>limit(3)</strong>->find_all();
+		    $data = $this->db->select()->from('users')->where('id', '>', 1)->order_by('id', 'DESC')-><strong>limit(3)</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -336,7 +336,7 @@
 		</code>
                 <p>Sedangkan argument ke dua digunakan untuk menentukan nilai offset:</p>
                 <code>
-		    $data = $this->db->select()->from('users')->where('id', '>', 1)->order_by('id', 'DESC')-><strong>limit(6,2)</strong>->find_all();
+		    $data = $this->db->select()->from('users')->where('id', '>', 1)->order_by('id', 'DESC')-><strong>limit(6,2)</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -365,11 +365,11 @@
 	    
 	    
 	    <div class="main">
-                <h3 id="find_one">Find One</h3>
+                <h3 id="getOne">Get One</h3>
 		
 		<p>Untuk mendapatkan single record menggunakan method:</p>
 		<code>
-			find_one( table_name, where_argument, fields );
+			getOne( table_name, where_argument, fields );
 		</code>
 		<p>Keterangan Method ini:</p>
 		<p><strong>table_name</strong> adalah string nama tabel yang akan diquery.</p>
@@ -386,24 +386,24 @@
 		<code>
 			"SELECT id, name, status FROM table_name WHERE id = '1' AND status = '0'"
 		</code>
-		<p>Penggunaan method find_one-nya adalah:</p>
+		<p>Penggunaan method getOne-nya adalah:</p>
 		
 <textarea rows="4" cols="50" class="textarea">			
-$data = $this->db->find_one('table_name', array('id' => 1, 'status' => '0'), array('id', 'name', 'status') );
+$data = $this->db->getOne('table_name', array('id' => 1, 'status' => '0'), array('id', 'name', 'status') );
 echo $data->email;
 </textarea>
 	    </div>
 	    
 	    <div class="main">
-                <h3 id="find_all">Find All</h3>
+                <h3 id="getAll">Get All</h3>
 		
 		<p>Untuk query seperti:</p>
 		<code>
 			"SELECT id, name, email FROM table_name WHERE status = '1'"
 		</code>
-		<p>Maka penggunaan Method find_all-nya adalah:</p>
+		<p>Maka penggunaan Method getAll-nya adalah:</p>
 <textarea rows="8" cols="50" class="textarea">
-$data = $this->db->find_all('table_name', array('id' => 1, 'email' => 'budi@budi.com'), array('field_1', 'field_2'));
+$data = $this->db->getAll('table_name', array('id' => 1, 'email' => 'budi@budi.com'), array('field_1', 'field_2'));
 
 foreach ($data as $data) {
     
