@@ -126,10 +126,13 @@
 		<h3 id="init">Inisialisasi</h3>
 		<p>Untuk menggunakan Active Record pastikan konfigurasi koneksi ke database sudah benar. Untuk detail panduan koneksi database, silahkan klik di halaman <a href="index.html#config">configuration</a>.</p>
 		<h4>Class Model</h4>
-		<p>Untuk menggunakan Active Record Anda harus membuat sebuah class model yang di extend ke class <strong>Library_active_record</strong>. Setiap class yang dibuat mewakili sebuah tabel yang ada di database. Berikut adalah contoh model dari tabel <strong>users</strong>:</p>
-<textarea rows="10" cols="50" class="textarea">
+		<p>Untuk menggunakan Active Record Anda harus membuat sebuah class model yang di extend ke class <strong>Resources\ActiveRecord</strong>. Setiap class yang dibuat mewakili sebuah tabel yang ada di database. Berikut adalah contoh model dari tabel <strong>users</strong>:</p>
+<textarea rows="13" cols="50" class="textarea">
 &lt;?php
-class Model_users extends Library_active_record {
+namespace Models;
+use Resources;
+
+class Users extends Resources\ActiveRecord {
     
     public function __construct(){
         
@@ -139,11 +142,14 @@ class Model_users extends Library_active_record {
 }
 </textarea>
 		<h4>Nama Tabel</h4>
-		<p>Secara default, nama tabel yang akan digunakan mengikuti nama class model tanpa prefix <strong>Model_</strong>. Sebagai contoh jika nama classnya adalah <strong>Model_users</strong>, maka nama tabel yang diwakili adalah <strong>users</strong> dan jika nama modelnya adalah <strong>Model_comments</strong> maka class ini mewakili tabel <strong>comments</strong>.</p>
+		<p>Secara default, nama tabel yang akan digunakan mengikuti nama class model. Sebagai contoh jika nama classnya adalah <strong>Users</strong>, maka nama tabel yang diwakili adalah <strong>users</strong> dan jika nama modelnya adalah <strong>Comments</strong> maka class ini mewakili tabel <strong>comments</strong>.</p>
 		<p>Namun Anda juga bisa menentukan nama lain yang tidak sama dengan nama class. Untuk melakukan hal ini Anda bisa mendeklarasikannya di properti <strong>$this->table</strong>. Berikut adalah contohnya:</p>
-<textarea rows="12" cols="50" class="textarea">
+<textarea rows="15" cols="50" class="textarea">
 &lt;?php
-class Model_users extends Library_active_record {
+namespace Models;
+use Resources;
+
+class Users extends Resources\ActiveRecord {
     
     public function __construct(){
         
@@ -155,14 +161,17 @@ class Model_users extends Library_active_record {
 }
 </textarea>		
 		<h4>Primary Key</h4>
-		<p>Setiap class model membutuhkan properti <strong>primary_key</strong>. Secara default Panada menggunakan nama <strong>id</strong>, namun Anda bisa menggunakan nama lain untuk konfigurasi ini. Berikut adalah contoh mendefenisikan nama primary key sesuai dengan nama yang ada di tabel:</p>
-<textarea rows="12" cols="50" class="textarea">
+		<p>Setiap class model membutuhkan properti <strong>primaryKey</strong>. Secara default Panada menggunakan nama <strong>id</strong>, namun Anda bisa menggunakan nama lain untuk konfigurasi ini. Berikut adalah contoh mendefenisikan nama primary key sesuai dengan nama yang ada di tabel:</p>
+<textarea rows="15" cols="50" class="textarea">
 &lt;?php
-class Model_posts extends Library_active_record {
+namespace Models;
+use Resources;
+
+class Posts extends Resources\ActiveRecord {
     
     public function __construct(){
         
-	$this->primary_key = 'table_key';
+	$this->primaryKey = 'table_key';
 	
         call_user_func_array( 'parent::__construct', func_get_args() );
         
@@ -171,9 +180,12 @@ class Model_posts extends Library_active_record {
 </textarea>		
 		<h4>Koneksi</h4>
 		<p>Jika Anda memiliki <a href="index.html#config">koneksi database</a> lebih dari satu dan ingin menggunakan koneksi tersebut pada class model ini, Anda bisa menggunakannya dengan memberikan nama koneksinya pada properti <strong>$this->connection</strong>. Berikut adalah contohnya:</p>
-<textarea rows="12" cols="50" class="textarea">
+<textarea rows="15" cols="50" class="textarea">
 &lt;?php
-class Model_posts extends Library_active_record {
+namespace Models;
+use Resources;
+
+class Posts extends Resources\ActiveRecord {
     
     public function __construct(){
         
@@ -185,7 +197,7 @@ class Model_posts extends Library_active_record {
 }
 </textarea>	<p>Cara lain yang bisa digunakan tanpa perlu mendeklarasikannya di dalam class model adalah dengan meberikan argument string nama koneksi ketika membuat instance class model.</p>
 		<code>
-		    $users = new Model_users( '<strong>dbconnection2</strong>' );
+		    $users = new Models\Users( '<strong>dbconnection2</strong>' );
 		</code>
 	    </div>
 	    <div class="main">
@@ -228,11 +240,14 @@ CREATE TABLE post_category (
 );
 </textarea>
 		
-		<p>Sebelum proses manipulasi database dilakukan, Anda harus mendeklarasikan instance class yang namanya sesuai dengan nama tabel dengan diawali prefix <strong>Model_</strong>.</p>
+		<p>Sebelum proses manipulasi database dilakukan, Anda harus mendeklarasikan instance class yang namanya sesuai dengan nama tabel.</p>
 		
-<textarea rows="15" cols="50" class="textarea">
+<textarea rows="18" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controller;
+use Resources, Models;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
@@ -242,7 +257,7 @@ class Controller_home extends Panada {
     public function index(){
         
 	// Tabel users
-        $users = new Model_users();
+        $users = new Models\Users;
     }
 }
 </textarea>
@@ -250,7 +265,7 @@ class Controller_home extends Panada {
 		<h4 id="save">Save</h4>
 		<p>Untuk menyimpan data baru ada dua cara yang bisa dilakukan. Cara pertama:</p>
 <textarea rows="6" cols="50" class="textarea">
-$users = new Model_users();
+$users = new Models\Users;
 $users->name = 'Budi';
 $users->email = 'budi@budi.com';
 $users->password = 'mypassword';
@@ -258,7 +273,7 @@ $users->save();
 </textarea>
 		<p>Atau dengan cara yang lebih cepat:</p>
 		<code>
-		    $users = new Model_users( array('name' => 'Budi', 'email' => 'budi@budi.com', 'password' => 'mypassword') );
+		    $users = new Models\Users( array('name' => 'Budi', 'email' => 'budi@budi.com', 'password' => 'mypassword') );
 		</code>
 		<p>Kedua cara di atas merepresentasikan SQL:</p>
 		<code>
@@ -266,18 +281,18 @@ $users->save();
 		</code>
 		<p>Jika argument pertama berupa <strong>array</strong>, maka jika diinginkan argument ke dua bisa diisikan nama koneksi database yang digunakan.</p>
 		<code>
-		    $users = new Model_users( array('name' => 'Budi', 'email' => 'budi@budi.com', 'password' => 'mypassword'), <strong>'dbconnection2'</strong> );
+		    $users = new Models\Users( array('name' => 'Budi', 'email' => 'budi@budi.com', 'password' => 'mypassword'), <strong>'dbconnection2'</strong> );
 		</code>
 		
 		<h4 id="find">Find</h4>
 		<p>Secara default method <strong>find()</strong> tanpa argument apapun akan menampilkan semua data yang ada di dalam tabel.</p>
 		<code>
-		    $users = new Model_users();<br />
+		    $users = new Models\Users;<br />
 		    print_r( $users->find() );
 		</code>
 		<p>Untuk mendapatkan data dengan <strong>id 28</strong>, bisa dilakukan dengan cara:</p>
 		<code>
-		    $users = new Model_users();<br />
+		    $users = new Models\Users;<br />
 		    print_r( $users->find(28) );
 		</code>
 		<p>Method ini merepresentasikan output SQL:</p>
@@ -286,7 +301,7 @@ $users->save();
 		</code>
 		<p>Atau jika ingin mendapatkan beberapa data sekaligus:</p>
 		<code>
-		    $users = new Model_users();<br />
+		    $users = new Models\Users;<br />
 		    print_r( $users->find(1,2,3) );
 		</code>
 		<p>Method ini merepresentasikan output SQL:</p>
@@ -297,7 +312,7 @@ $users->save();
 		<h4 id="find_first">Find First</h4>
 		<p>Mendapatkan record pertama dari tabel:</p>
 		<code>
-		    $users = new Model_users();<br />
+		    $users = new Models\Users;<br />
 		    print_r( $users-><strong>first()</strong> );
 		</code>
 		<p>Method ini merepresentasikan output SQL:</p>
@@ -308,7 +323,7 @@ $users->save();
 		<h4 id="find_last">Find Last</h4>
 		<p>Mendapatkan record terakhir dari tabel:</p>
 		<code>
-		    $users = new Model_users();<br />
+		    $users = new Models\Users;<br />
 		    print_r( $users-><strong>last()</strong> );
 		</code>
 		<p>Method ini merepresentasikan output SQL:</p>
@@ -318,18 +333,18 @@ $users->save();
 		
 		<h4 id="dynamic_finder">Dynamic Finder</h4>
 		<p>Cara lainnya adalah menggunakan <strong>Dynamic Finder</strong>. Cara ini ditujukan untuk mendapatkan record berdasarkan nama kolom tertentu.</p>
-		<p>Gunakan method <strong>find_by_</strong> dan dikuti dengan <strong>nama_colom</strong> yang akan dijadikan kriteria. Berikut adalah contohnya:</p>
+		<p>Gunakan method <strong>findBy</strong> dan dikuti dengan <strong>nama_kolom</strong> yang akan dijadikan kriteria. Berikut adalah contohnya:</p>
 
 <textarea rows="11" cols="50" class="textarea">
-    $users = new Model_users();
+    $users = new Models\Users;
     
-    print_r( $users->find_by_email( 'foo@fooweb.com' ) );
+    print_r( $users->findByemail( 'foo@fooweb.com' ) );
     //SELECT * FROM users WEHRE email = 'foo@fooweb.com'
     
-    print_r( $users->find_by_name( 'Rasmus Lerdorf' ) );
+    print_r( $users->findByname( 'Rasmus Lerdorf' ) );
     //SELECT * FROM users WEHRE title = 'Rasmus Lerdorf'
     
-    print_r( $users->find_by_category_id( 5 ) );
+    print_r( $users->findBycategory_id( 5 ) );
     //SELECT * FROM users WEHRE category_id = 5
 </textarea>
 		<p>Jika data yang ditemukan hanya satu, maka nilai returnnya hanya sebuah object tunggal. Dan jika lebih dari satu, maka nilai returnya terdiri dari beberapa array object.</p>
@@ -376,7 +391,7 @@ $users->save();
 		
 		<p>Berikut contoh penggunaan method ini:</p>
 <textarea rows="6" cols="50" class="textarea">
-$users = new Model_users();
+$users = new Models\Users;
 $users->condition('id', '>', 1, 'and');
 $users->condition('id', '<', 12);
 
@@ -385,7 +400,7 @@ print_r($users->find());
 		<h4 id="select">Select</h4>
 		<p>Untuk mendapatkan beberapa kolom dari tabel:</p>
 		<code>
-		    $users = new Model_users();<br />
+		    $users = new Models\Users;<br />
 		    $users->select('name');<br />
 		    print_r($users->find());
 		</code>
@@ -396,7 +411,7 @@ print_r($users->find());
 		</code>
 		<p>Berikut contoh penggunaanya:</p>
 		<code>
-		    $users = new Model_users();<br />
+		    $users = new Models\Users;<br />
 		    $users->limit(10);<br />
 		    print_r($users->find());
 		</code>
@@ -407,7 +422,7 @@ print_r($users->find());
 		</code>
 		<p>Contoh penggunaan method <strong>order()</strong>:</p>
 		<code>
-		    $users = new Model_users();<br />
+		    $users = new Models\Users;<br />
 		    $users->order('id', 'desc');<br />
 		    $users->limit(10);<br />
 		    
@@ -420,7 +435,7 @@ print_r($users->find());
 		</code>
 		<p>Contoh penggunaan method <strong>group()</strong>:</p>
 		<code>
-		    $users = new Model_users();<br />
+		    $users = new Models\Users;<br />
 		    $users->group('id', 'name');<br />
 		    $users->order('id', 'desc');<br />
 		    $users->limit(10);<br />
@@ -431,7 +446,7 @@ print_r($users->find());
 		<h4 id="update">Update</h4>
 		<p>Untuk memperbaharui data dengan <strong>id 28</strong> caranya adalah:</p>
 <textarea rows="6" cols="50" class="textarea">
-$users = new Model_users();
+$users = new Models\Users;
 $users->find(28);
 $users->name = 'Jhon Budi';
 $users->password = 'mynewpassword';
@@ -443,7 +458,7 @@ $users->save();
 		</code>
 		<p>Cara di atas adalah dengan me-load data terlebih dahulu, dalam hal ini id 28. Untuk melakukan update tanpa perlu meload data cara yang bisa dilakukan adalah:</p>
 <textarea rows="5" cols="50" class="textarea">
-$users = new Model_users();
+$users = new Models\Users;
 $users->name = 'Jhon Budi';
 $users->password = 'mynewpassword';
 $users->update(28);
@@ -451,14 +466,14 @@ $users->update(28);
 		<p>Cara lainnya:</p>
 		
 <textarea rows="5" cols="50" class="textarea">
-$users = new Model_users();
+$users = new Models\Users;
 $users->name = 'Jhon Budi';
 $users->password = 'mynewpassword';
 $users->update( array( 'id' => '28' ) );
 </textarea>
 		<p>Update dengan kondisi:</p>
 <textarea rows="7" cols="50" class="textarea">
-$users = new Model_users();
+$users = new Models\Users;
 $users->name = 'Jhon Budi';
 $users->password = 'mynewpassword';
 $users->condition('id', '>', 1, 'AND');
@@ -469,7 +484,7 @@ $users->update();
 		<h4>Delete</h4>
 		<p>Berikut adalah cara untuk menghapus data dengan <strong>id 28</strong>:</p>
 		<code>
-		    $users = new Model_users();<br />
+		    $users = new Models\Users;<br />
 		    $users->delete(28);
 		</code>
 		<p>Method ini merepresentasikan output SQL:</p>
@@ -478,7 +493,7 @@ $users->update();
 		</code>
 		<p>Cara alternatif:</p>
 <textarea rows="8" cols="50" class="textarea">
-$users = new Model_users();
+$users = new Models\Users;
 
 $users->delete( array('id' => '14') );
 // or
@@ -493,9 +508,12 @@ $users->delete();
 		<h3 id="relational_ar">Relational Active Record</h3>
 		<p>Panada Active Record juga mendukung <strong>Object Relasional</strong>. Tipe relasional yang sudah didukung adalah <a href="#belongs_to">BELONGS_TO</a></a>, <a href="#has_many">HAS_MANY</a>, <a href="#has_one">HAS_ONE</a> dan <a href="has_many">MANY_MANY</a>. Object Relasional digunakan untuk melakukan relasi tabel database antara satu model dengan model lainnya.</p>
 		<p>Untuk melakukan konfigurasi relasi, Anda harus membuat sebuah method bernama <strong>relations()</strong> di dalam class model dengan isi seperti berikut:</p>
-<textarea rows="17" cols="50" class="textarea">
+<textarea rows="20" cols="50" class="textarea">
 &lt;?php
-class Model_posts extends Library_active_record {
+namespace Models;
+use Resources;
+
+class Posts extends Resources\ActiveRecord {
     
     public function __construct(){
         
@@ -513,7 +531,7 @@ class Model_posts extends Library_active_record {
 </textarea>
 		<p>Dimana nilai array yang harus diisikan adalah:</p>
 		<code>
-		    return array( <strong>string</strong> 'nama_properti' => array( <strong>int</strong> self::TIPE_RELASI, <strong>string</strong> 'nama_model', <strong>string</strong> 'foreign_key' ) );
+		    return array( <strong>string</strong> 'nama_properti' => array( <strong>int</strong> self::TIPE_RELASI, <strong>string</strong> 'NamaModel', <strong>string</strong> 'foreignKey' ) );
 		</code>
 		
 		<h4>Keterangan</h4>
@@ -537,12 +555,12 @@ class Model_posts extends Library_active_record {
 			<td>Pilihan tipe relasi. Terdiri dari: <strong>self::BELONGS_TO</strong>, <strong>self::HAS_ONE</strong>, <strong>self::HAS_MANY</strong> dan <strong>self::MANY_MANY</strong>.</td>
 		    </tr>
                     <tr>
-			<td>nama_model</td>
+			<td>NamaModel</td>
 			<td>string</td>
-			<td>Nama class dari model yang akan direlasikan. Nama class tanpa menggunakan prefix Model_</td>
+			<td>Nama class dari model yang akan direlasikan.</td>
 		    </tr>
 		    <tr class="odd">
-			<td>foreign_key</td>
+			<td>foreignKey</td>
 			<td>string | array</td>
 			<td>Nama kolom dari tabel yang merelasikan dengan sebuah model.</td>
 		    </tr>
@@ -553,9 +571,12 @@ class Model_posts extends Library_active_record {
 		<p>Relasi BELONGS_TO menunjukan relasi sebuah model yang memiliki satu nilai atau lebih terhadap sebuah model lain yang memiliki satu nilai. Contoh relasi ini adalah sejumlah artikel yang ada di dalam tabel <strong>posts</strong> yang dimiliki oleh satu orang penulis yang ada di tabel <strong>users</strong>.</p>
 		<p>Berikut adalah contoh dari model <strong>posts</strong> yang berelasi BELONGS_TO terhadap model <strong>users</strong>.</p>
 		<p id="model_posts">Model posts:</p>
-<textarea rows="18" cols="50" class="textarea">
+<textarea rows="21" cols="50" class="textarea">
 &lt;?php
-class Model_posts extends Library_active_record {
+namespace Models;
+use Resources;
+
+class Posts extends Resources\ActiveRecord {
     
     public function __construct(){
         
@@ -566,16 +587,19 @@ class Model_posts extends Library_active_record {
     public function relations(){
         
         return array(
-            'author' => array(self::BELONGS_TO, 'users', 'post_author'),
-	    'categories' => array(self::MANY_MANY, 'categories', array('post_category', 'category_id', 'post_id') )
+            'author' => array(self::BELONGS_TO, 'Users', 'post_author'),
+	    'categories' => array(self::MANY_MANY, 'Categories', array('post_category', 'category_id', 'post_id') )
         );
     }
 }
 </textarea>
-		<p id="model_users">Model users:</p>
-<textarea rows="18" cols="50" class="textarea">
+		<p id="Models\Users">Model users:</p>
+<textarea rows="21" cols="50" class="textarea">
 &lt;?php
-class Model_users extends Library_active_record {
+namespace Models;
+use Resources;
+
+class Users extends Resources\ActiveRecord {
     
     public function __construct(){
         
@@ -586,16 +610,19 @@ class Model_users extends Library_active_record {
     public function relations(){
         
         return array(
-            'posts' => array(self::HAS_MANY, 'posts', 'post_author'),
-	    'profile' => array(self::HAS_ONE, 'profiles', 'user_id')
+            'posts' => array(self::HAS_MANY, 'Posts', 'post_author'),
+	    'profile' => array(self::HAS_ONE, 'Profiles', 'user_id')
         );
     }
 }
 </textarea>
 		<p>Berikut adalah contoh penggunaan model posts di dalam controller:</p>
-<textarea rows="35" cols="50" class="textarea">
+<textarea rows="38" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources, Models;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
@@ -605,7 +632,7 @@ class Controller_home extends Panada {
     
     public function index(){
         
-        $posts = new Model_posts();
+        $posts = new Models\Posts;
 	$data = $posts->find(10);
 	
 	if( $data ) {
@@ -618,9 +645,9 @@ class Controller_home extends Panada {
 	}
     }
     
-    public function all_posts(){
+    public function allPosts(){
         
-        $posts = new Model_posts();
+        $posts = new Model\Posts;
 	$data = $posts->find();
 	
 	foreach($data as $post){
@@ -634,9 +661,12 @@ class Controller_home extends Panada {
 		<p>Pada contoh di atas, relasi dilihat dari sudut pandang model <strong>posts</strong>. Contoh yang sama bisa juga diterapkan pada relasi HAS_MANY, tetapi yang membedakan adalah sudut pandang relasi dilihat dari model <strong>users</strong>.</p>
 		<p>Seorang user atau penulis dapat dipastikan bisa memiliki post atau artikel lebih dari satu.</p>
 		<p>Berikut adalah contoh penggunaan relasi HAS_MANY di dalam controller:</p>
-<textarea rows="55" cols="50" class="textarea">
+<textarea rows="58" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources, Models;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
@@ -646,7 +676,7 @@ class Controller_home extends Panada {
     
     public function index(){
         
-        $user = new Model_users();
+        $user = new Models\Users;
 	$data = $user->find(20);
 	
 	// Output data user dengan id 20
@@ -657,9 +687,9 @@ class Controller_home extends Panada {
 	    echo $post->title . '&lt;br /&gt;';
     }
     
-    public function posts_selection(){
+    public function postsSelection(){
 	
-	$users = new Model_users();
+	$users = new Models\Users;
 	$users->find(20);
 	$posts = $users->posts;
 	
@@ -693,11 +723,14 @@ class Controller_home extends Panada {
 
 		<h4 id="has_one">Has One</h4>
 		<p>Relasi HAS_ONE adalah relasi sebuah record yang hanya berrelasi dengan sebuah record dari model yang lain. Contohnya adalah, tabel user berelasi dengan tabel profile. Dalam contoh ini seorang user hanya memiliki satu record data di dalam tabel profile.</p>
-		<p>Pada contoh class <a href="#model_users">model users</a> di atas, selain relasi HAS_MANY terhadap model posts, kita juga melihat relasi lain yaitu <strong>HAS_ONE</strong> terhadap model <strong>profiles</strong>. Untuk itu, kita membutuhkan satu buah model lagi yang bernama profiles.</p>
+		<p>Pada contoh class <a href="#Models\Users">model users</a> di atas, selain relasi HAS_MANY terhadap model posts, kita juga melihat relasi lain yaitu <strong>HAS_ONE</strong> terhadap model <strong>profiles</strong>. Untuk itu, kita membutuhkan satu buah model lagi yang bernama profiles.</p>
 		<p>Model profiles:</p>
-<textarea rows="10" cols="50" class="textarea">
+<textarea rows="13" cols="50" class="textarea">
 &lt;?php
-class Model_profiles extends Library_active_record {
+namespace Models;
+use Resources;
+
+class Profiles extends Resources\ActiveRecord {
     
     public function __construct(){
         
@@ -708,9 +741,12 @@ class Model_profiles extends Library_active_record {
 </textarea>
 		<p>Berikut adalah contoh penggunaan relasi HAS_ONE model users terhadap model profiles di dalam controller:</p>
 
-<textarea rows="23" cols="50" class="textarea">
+<textarea rows="26" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources, Models;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
@@ -720,7 +756,7 @@ class Controller_home extends Panada {
     
     public function index(){
         
-        $user = new Model_users();
+        $user = new Models\Users;
 	
 	// Tampilkan semua data user dengan id 3 yang ada di tabel users.
 	print_r($user->find(3));
@@ -736,10 +772,13 @@ class Controller_home extends Panada {
 		<h4 id="many_many">Many Many</h4>
 		<p>Relasi MANY_MANY adalah kombinasi BELONGS_TO dan HAS_MANY. Sebagai contoh, post atau artikel bisa memiliki banyak kategori. Dan begitupula bila dilihat dari sudut pandang yang lain, kategori bisa memiliki lebih dari satu post atau artikel.</p>
 		<p>Untuk melakukan relasi ini, dibutuhkan sebuah tabel bantuan yang menghubungkan antara tabel posts dan categories. Tabel ini sebagai contoh kita beri nama <strong>post_category</strong>, yang kolomnya terdiri dari <strong>post_id</strong> dan <strong>category_id</strong>.</p>
-		<p>Untuk menjalankan relasi ini, dibutuhkan sebuah class model yang bernama <strong>Model_categories</strong>. Berikut contohnya:</p>
-<textarea rows="17" cols="50" class="textarea">
+		<p>Untuk menjalankan relasi ini, dibutuhkan sebuah class model yang bernama <strong>Categories</strong>. Berikut contohnya:</p>
+<textarea rows="20" cols="50" class="textarea">
 &lt;?php
-class Model_categories extends Library_active_record {
+namespace Models;
+use Resources;
+
+class Categories extends Resources\ActiveRecord {
     
     public function __construct(){
         
@@ -750,30 +789,33 @@ class Model_categories extends Library_active_record {
     public function relations(){
         
         return array(
-            'posts' => array(self::MANY_MANY, 'posts', array('post_category', 'post_id', 'category_id') )
+            'posts' => array(self::MANY_MANY, 'Posts', array('post_category', 'post_id', 'category_id') )
         );
     }
 }
 </textarea>
-	    <p>Yang perlu diperhatikan adalah array dari nilai return method condition. Parameter <strong>forign_key</strong> diisikan dengan data array seperti contoh berikut:</p>
+	    <p>Yang perlu diperhatikan adalah array dari nilai return method condition. Parameter <strong>forignKey</strong> diisikan dengan data array seperti contoh berikut:</p>
 	    <code>
 		return array( <br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>string</strong> 'nama_properti' => array(<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>int</strong> self::MANY_MANY,<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>string</strong> 'nama_model',<br />
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>array</strong> array( <strong>string</strong> 'tabel_penghubung', <strong>string</strong> 'forign_key1', <strong>string</strong> 'forign_key2' )<br />
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>array</strong> array( <strong>string</strong> 'tabel_penghubung', <strong>string</strong> 'forignKey1', <strong>string</strong> 'forignKey2' )<br />
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br />
 		);
 	    </code>
-	    <p>Dan kalau kita lihat kembali konfigurasi method relations() <a href="#model_posts">Model_posts</a> yang berelasi terhadap cetegories, nilainya adalah kebalikan dari konfigurasi di atas.</p>
+	    <p>Dan kalau kita lihat kembali konfigurasi method relations() <a href="#model_posts">Model Posts</a> yang berelasi terhadap Cetegories, nilainya adalah kebalikan dari konfigurasi di atas.</p>
 	    <code>
-		'categories' => array(self::MANY_MANY, 'categories', array('post_category', '<strong>category_id</strong>', '<strong>post_id</strong>') )
+		'categories' => array(self::MANY_MANY, 'Categories', array('post_category', '<strong>category_id</strong>', '<strong>post_id</strong>') )
 	    </code>
 	    <p>Berikut adalah contoh penggunaan relasi MANY_MANY di dalam controller:</p>
 
-<textarea rows="36" cols="50" class="textarea">
+<textarea rows="39" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
@@ -783,7 +825,7 @@ class Controller_home extends Panada {
     
     public function index(){
         
-        $posts = new Model_posts();
+        $posts = new Models\posts;
 	
 	// Dapatkan artikel dengan id 76
 	$post = $posts->find(76);
@@ -794,9 +836,9 @@ class Controller_home extends Panada {
 	    echo $category->name.'&lt;br /&gt;';
     }
     
-    public function get_posts_by_category(){
+    public function getPostsByCategory(){
 	
-	$categories = new Model_categories();
+	$categories = new Models\Categories;
 	
 	// Dapatkan kategori ber id 3
 	$category = $categories->find(3);
