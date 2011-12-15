@@ -587,8 +587,8 @@ class Posts extends Resources\ActiveRecord {
     public function relations(){
         
         return array(
-            'author' => array(self::BELONGS_TO, 'Users', 'post_author'),
-	    'categories' => array(self::MANY_MANY, 'Categories', array('post_category', 'category_id', 'post_id') )
+            'author' => array(self::BELONGS_TO, 'users', 'post_author'),
+	    'categories' => array(self::MANY_MANY, 'categories', array('post_category', 'category_id', 'post_id') )
         );
     }
 }
@@ -610,8 +610,8 @@ class Users extends Resources\ActiveRecord {
     public function relations(){
         
         return array(
-            'posts' => array(self::HAS_MANY, 'Posts', 'post_author'),
-	    'profile' => array(self::HAS_ONE, 'Profiles', 'user_id')
+            'posts' => array(self::HAS_MANY, 'posts', 'post_author'),
+	    'profile' => array(self::HAS_ONE, 'profiles', 'user_id')
         );
     }
 }
@@ -647,7 +647,7 @@ class Home extends Resources\Controller {
     
     public function allPosts(){
         
-        $posts = new Model\Posts;
+        $posts = new Models\Posts;
 	$data = $posts->find();
 	
 	foreach($data as $post){
@@ -789,7 +789,7 @@ class Categories extends Resources\ActiveRecord {
     public function relations(){
         
         return array(
-            'posts' => array(self::MANY_MANY, 'Posts', array('post_category', 'post_id', 'category_id') )
+            'posts' => array(self::MANY_MANY, 'posts', array('post_category', 'post_id', 'category_id') )
         );
     }
 }
