@@ -120,6 +120,13 @@
             <div class="lead">
                 <h2>Active Record</h2>
                 <p>Panada mengikuti <em>pattern</em> Active Record sebagaimana yang terdapat di <a target="_blank" href="http://en.wikipedia.org/wiki/Active_record_pattern">http://en.wikipedia.org/wiki/Active_record_pattern</a>. Setiap nama tabel diwakili oleh sebuah class dan setiap properties class mewakili nama kolom.</p>
+		<p>Panada Active Record saat ini support terhadap DBMS:</p>
+		<ul>
+		    <li>MySQL</li>
+		    <li>PostgreSQL</li>
+		    <li>SQLite</li>
+		    <li>Cubrid</li>
+		</ul>
             </div>
 	    
 	    <div class="main">
@@ -288,12 +295,12 @@ $users->save();
 		<p>Secara default method <strong>find()</strong> tanpa argument apapun akan menampilkan semua data yang ada di dalam tabel.</p>
 		<code>
 		    $users = new Models\Users;<br />
-		    print_r( $users->find() );
+		    print_r( $users->get() );
 		</code>
 		<p>Untuk mendapatkan data dengan <strong>id 28</strong>, bisa dilakukan dengan cara:</p>
 		<code>
 		    $users = new Models\Users;<br />
-		    print_r( $users->find(28) );
+		    print_r( $users->get(28) );
 		</code>
 		<p>Method ini merepresentasikan output SQL:</p>
 		<code>
@@ -302,7 +309,7 @@ $users->save();
 		<p>Atau jika ingin mendapatkan beberapa data sekaligus:</p>
 		<code>
 		    $users = new Models\Users;<br />
-		    print_r( $users->find(1,2,3) );
+		    print_r( $users->get(1,2,3) );
 		</code>
 		<p>Method ini merepresentasikan output SQL:</p>
 		<code>
@@ -333,18 +340,18 @@ $users->save();
 		
 		<h4 id="dynamic_finder">Dynamic Finder</h4>
 		<p>Cara lainnya adalah menggunakan <strong>Dynamic Finder</strong>. Cara ini ditujukan untuk mendapatkan record berdasarkan nama kolom tertentu.</p>
-		<p>Gunakan method <strong>findBy</strong> dan dikuti dengan <strong>nama_kolom</strong> yang akan dijadikan kriteria. Berikut adalah contohnya:</p>
+		<p>Gunakan method <strong>getBy</strong> dan dikuti dengan <strong>nama_kolom</strong> yang akan dijadikan kriteria. Berikut adalah contohnya:</p>
 
 <textarea rows="11" cols="50" class="textarea">
     $users = new Models\Users;
     
-    print_r( $users->findByemail( 'foo@fooweb.com' ) );
+    print_r( $users->getByemail( 'foo@fooweb.com' ) );
     //SELECT * FROM users WEHRE email = 'foo@fooweb.com'
     
-    print_r( $users->findByname( 'Rasmus Lerdorf' ) );
+    print_r( $users->getByname( 'Rasmus Lerdorf' ) );
     //SELECT * FROM users WEHRE title = 'Rasmus Lerdorf'
     
-    print_r( $users->findBycategory_id( 5 ) );
+    print_r( $users->getBycategory_id( 5 ) );
     //SELECT * FROM users WEHRE category_id = 5
 </textarea>
 		<p>Jika data yang ditemukan hanya satu, maka nilai returnnya hanya sebuah object tunggal. Dan jika lebih dari satu, maka nilai returnya terdiri dari beberapa array object.</p>
@@ -395,14 +402,14 @@ $users = new Models\Users;
 $users->condition('id', '>', 1, 'and');
 $users->condition('id', '<', 12);
 
-print_r($users->find());
+print_r($users->get());
 </textarea>
 		<h4 id="select">Select</h4>
 		<p>Untuk mendapatkan beberapa kolom dari tabel:</p>
 		<code>
 		    $users = new Models\Users;<br />
 		    $users->select('name');<br />
-		    print_r($users->find());
+		    print_r($users->get());
 		</code>
 		
 		<h4>Limit Offset</h4>
@@ -413,7 +420,7 @@ print_r($users->find());
 		<code>
 		    $users = new Models\Users;<br />
 		    $users->limit(10);<br />
-		    print_r($users->find());
+		    print_r($users->get());
 		</code>
 		
 		<h4 id="order">Order</h4>
@@ -426,7 +433,7 @@ print_r($users->find());
 		    $users->order('id', 'desc');<br />
 		    $users->limit(10);<br />
 		    
-		    print_r($users->find());
+		    print_r($users->get());
 		</code>
 		
 		<h4 id="group">Group</h4>
@@ -440,14 +447,14 @@ print_r($users->find());
 		    $users->order('id', 'desc');<br />
 		    $users->limit(10);<br />
 		    
-		    print_r($users->find());
+		    print_r($users->get());
 		</code>
 		
 		<h4 id="update">Update</h4>
 		<p>Untuk memperbaharui data dengan <strong>id 28</strong> caranya adalah:</p>
 <textarea rows="6" cols="50" class="textarea">
 $users = new Models\Users;
-$users->find(28);
+$users->get(28);
 $users->name = 'Jhon Budi';
 $users->password = 'mynewpassword';
 $users->save();
@@ -633,7 +640,7 @@ class Home extends Resources\Controller {
     public function index(){
         
         $posts = new Models\Posts;
-	$data = $posts->find(10);
+	$data = $posts->get(10);
 	
 	if( $data ) {
 	    
@@ -648,7 +655,7 @@ class Home extends Resources\Controller {
     public function allPosts(){
         
         $posts = new Models\Posts;
-	$data = $posts->find();
+	$data = $posts->get();
 	
 	foreach($data as $post){
 	    echo $post->title . ' Writen by: ' . $post->author->name . '&lt;br /&gt;';
@@ -677,20 +684,20 @@ class Home extends Resources\Controller {
     public function index(){
         
         $user = new Models\Users;
-	$data = $user->find(20);
+	$data = $user->get(20);
 	
 	// Output data user dengan id 20
 	print_r($data);
 	
 	// Listing semua post dari user dengan id 20
-	foreach( $user->posts->find() AS $post)
+	foreach( $user->posts->get() AS $post)
 	    echo $post->title . '&lt;br /&gt;';
     }
     
     public function postsSelection(){
 	
 	$users = new Models\Users;
-	$users->find(20);
+	$users->get(20);
 	$posts = $users->posts;
 	
 	/**
@@ -714,7 +721,7 @@ class Home extends Resources\Controller {
 	// Tampilkan 10 terbaru
 	$posts->limit(10);
 	
-	foreach( $posts->find() AS $post)
+	foreach( $posts->get() AS $post)
 	    echo 'ID: '. $post->id .' Title: '. $post->title . '&lt;br /&gt;';
     
     }
@@ -759,7 +766,7 @@ class Home extends Resources\Controller {
         $user = new Models\Users;
 	
 	// Tampilkan semua data user dengan id 3 yang ada di tabel users.
-	print_r($user->find(3));
+	print_r($user->get(3));
 	
 	echo '&lt;br /&gt;';
 	
@@ -828,11 +835,11 @@ class Home extends Resources\Controller {
         $posts = new Models\posts;
 	
 	// Dapatkan artikel dengan id 76
-	$post = $posts->find(76);
+	$post = $posts->get(76);
 	$categories = $post->categories;
 	
 	// Tampilkan semua kategori dari artikel ber id 76
-	foreach($categories->find() as $category)
+	foreach($categories->get() as $category)
 	    echo $category->name.'&lt;br /&gt;';
     }
     
@@ -841,11 +848,11 @@ class Home extends Resources\Controller {
 	$categories = new Models\Categories;
 	
 	// Dapatkan kategori ber id 3
-	$category = $categories->find(3);
+	$category = $categories->get(3);
 	$posts = $category->posts;
 	
 	// Tampilkan semua artikel dengan kategori yang ber id 3
-	foreach($posts->find() as $post)
+	foreach($posts->get() as $post)
 	    echo $post->title.'&lt;br /&gt;';
     }
 }
