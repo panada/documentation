@@ -81,28 +81,31 @@
         <div class="content">
             <div class="lead">
                 <h2>Encryption</h2>
-		<p>Untuk memudahkan Anda dalam melakukan pertukaran informasi yang sifatnya rahasia, Panada telah menyiapkan sebuah library enkripsi.</p>
+		<p>Untuk memudahkan Anda dalam melakukan pertukaran informasi yang sifatnya rahasia, Panada telah menyiapkan sebuah class Encryption.</p>
                 
             </div>
             
             <div class="main">
                 <h3>Inisialisasi</h3>
                 
-                <p>Sebelum digunakan, library encryption harus diinisialisasi terlebih dahulu. Inisialisasi bisa dilakukan pada konstruktor ataupun langsung di dalam method.</p>
+                <p>Sebelum digunakan, class Encryption harus diinisialisasi terlebih dahulu. Inisialisasi bisa dilakukan pada konstruktor ataupun langsung di dalam method.</p>
                 
 		<code>
-			$this->crypt = new Library_encryption();
+			$this->crypt = new Resources\Encryption;
 		</code>
-		<p>Berikut adalah contoh penggunaan library encription:</p>
-<textarea rows="41" cols="50" class="textarea">
+		<p>Berikut adalah contoh penggunaan class Encription:</p>
+<textarea rows="45" cols="50" class="textarea">
 &lt;?php
+namespace Controllers;
+use Resources;
 
-class Controller_sample extends Panada {
+class Sample extends Resources\Controller {
     
     public function __construct(){
         
 	parent::__construct();
-	$this->crypt = new Library_encryption();
+	
+	$this->crypt = new Resources\Encryption;
     }
     
     public function index(){
@@ -115,10 +118,10 @@ class Controller_sample extends Panada {
         $string = 'Ini string rahasia.';
         
         // String rahasia yang diperlukan untuk mengenkripsi
-	$secrete_token = '12345';
+	$secreteToken = '12345';
 	
         // Lakukan enkripsi untuk variable $string
-	$encrypted = $this->crypt->encrypt($string, $secrete_token);
+	$encrypted = $this->crypt->encrypt($string, $secreteToken);
         
         // Tampilkan string yang sudah terenkripsi.
         echo $encrypted;
@@ -126,10 +129,10 @@ class Controller_sample extends Panada {
         echo '&lt;br /&gt;';
         
         // String setelah dienkripsi
-        $encrypted_string = 'fp+bU6epo5uhm1Wjk5uVqJqTYQ==';
+        $encryptedString = 'fp+bU6epo5uhm1Wjk5uVqJqTYQ==';
         
         // Lakukan dekripsi
-        $decrypted = $this->crypt->decrypt($encrypted_string, $secrete_token);
+        $decrypted = $this->crypt->decrypt($encryptedString, $secreteToken);
         
         // Tampilkan hasil dekripsi
         echo $decrypted;
@@ -140,9 +143,9 @@ class Controller_sample extends Panada {
 	    
 	    <div class="main">
                 <h3>Tipe Encode</h3>
-		<p>Secara default library encryption menggunakan base_64 untuk encoding. Anda juga bisa menggunakan tipe lainnya. Pilihannya adalah: <strong>none</strong>, <strong>base_64</strong> dan <strong>hexa_decimal</strong></p>
+		<p>Secara default class Encryption menggunakan base_64 untuk encoding. Anda juga bisa menggunakan tipe lainnya. Pilihannya adalah: <strong>none</strong>, <strong>base_64</strong> dan <strong>hexa_decimal</strong></p>
 		<code>
-		    $this->crypt = new Library_encryption();<br />
+		    $this->crypt = new Resources\Encryption;<br />
 		    $this->crypt->encode_type = 'hexa_decimal';
 		</code>
 	    </div>
