@@ -87,9 +87,9 @@
 	    <div class="main">
                 <h3>Inisialisasi</h3>
                 
-		<p>Sebelum digunakan, object library email harus dideklarasikan terlebih dahulu:</p>
+		<p>Sebelum digunakan, object class email harus dideklarasikan terlebih dahulu:</p>
 		<code>
-		    $this->email = new Library_email();
+		    $this->email = new Resources\Email;
 		</code>
 		<p>Setelah itu gunakan method mail() untuk pengiriman email.
 		<code>
@@ -150,15 +150,18 @@
                 
 		<p>Berikut contoh cara menggunakan library email di dalam sebuah controller:</p>
 		
-<textarea rows="21" cols="50" class="textarea">
+<textarea rows="24" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
         
-        $this->email = new Library_email();
+        $this->email = new Resources\Email;
     }
     
     public function index(){
@@ -179,21 +182,24 @@ class Controller_home extends Panada {
 	
 		<p>Berikut adalah contoh untuk mengirimkan email via SMTP Server:</p>
 
-<textarea rows="24" cols="50" class="textarea">
+<textarea rows="28" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
-	$this->email = new Library_email();
+	$this->email = new Resources\Email;
     }
     
     public function index(){
         
-        $this->email->smtp_host = 'smtphost';
-	$this->email->smtp_username = 'username';
-	$this->email->smtp_password = 'password';
+        $this->email->smtpHost = 'smtphost';
+	$this->email->smtpUsername = 'username';
+	$this->email->smtpPassword = 'password';
         
         $send = $this->email->mail('budi@example.com', 'the subject', 'email messages', 'my@test.com', 'my name');
         
@@ -206,30 +212,33 @@ class Controller_home extends Panada {
 </textarea>
 		<p>Jika port <strong>SMTP</strong> yang digunakan bukan 25 (default), silahkan set di bagian:</p>
 		<code>
-		    $this->email->smtp_port = 25;
+		    $this->email->smtpPort = 25;
 		</code>
 		<p>Jika koneksi yang digunakan menggunakan <strong>SSL</strong> silahkan set bagian berikut:</p>
 		<code>
-		    $this->email->smtp_secure = 'ssl';
+		    $this->email->smtpSecure = 'ssl';
 		</code>
 		<p>Berikut adalah contoh penggunaan <strong>SSL</strong> dan <strong>port 465</strong> dengan menggunakan SMTP Gmail:</p>
-<textarea rows="26" cols="50" class="textarea">
+<textarea rows="29" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
-	$this->email = new Library_email();
+	$this->email = new Resources\Email;
     }
     
     public function index(){
         
-	$this->email->smtp_host = 'smtp.gmail.com';
-	$this->email->smtp_username = 'USERNAMEANDA@gmail.com';
-	$this->email->smtp_password = 'PASSWORD GMAIL ANDA';
-	$this->email->smtp_port = 465;
-	$this->email->smtp_secure = 'ssl';
+	$this->email->smtpHost = 'smtp.gmail.com';
+	$this->email->smtpUsername = 'USERNAMEANDA@gmail.com';
+	$this->email->smtpPassword = 'PASSWORD GMAIL ANDA';
+	$this->email->smtpPort = 465;
+	$this->email->smtpSecure = 'ssl';
         
         $send = $this->email->mail('budi@example.com', 'the subject', 'email messages', 'my@test.com', 'my name');
         
@@ -248,19 +257,23 @@ class Controller_home extends Panada {
 		
 		<p>Berikut adalah contoh untuk mengirimkan email dengan format HTML:</p>
 
-<textarea rows="51" cols="50" class="textarea">
+<textarea rows="59" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
-	$this->email = new Library_email();
+	
+	$this->email = new Resources\Email;
     }
     
     public function index(){
         
-        $this->email->message_type = 'html';
+        $this->email->messageType = 'html';
 	
 	$message = '&lt;html&gt;
             &lt;head&gt;
@@ -307,24 +320,28 @@ class Controller_home extends Panada {
 		
 		<p>Untuk melakukan <em>debugger</em> gunakan method berikut:</p>
 		<code>
-		    $this->email->print_debug();
+		    $this->email->printDebug();
 		</code>
 		<p>Berikut adalah contoh penggunaannya:</p>
 
-<textarea rows="16" cols="50" class="textarea">
+<textarea rows="20" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
-	$this->email = new Library_email();
+	
+	$this->email = new Resources\Email;
     }
     
     public function index(){
         
         $send = $this->email->mail('budi@example.com', 'the subject', 'email messages', 'my@test.com', 'my name');
-        $this->email->print_debug();
+        $this->email->printDebug();
     }
 }
 </textarea>
