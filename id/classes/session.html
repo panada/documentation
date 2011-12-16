@@ -64,12 +64,12 @@
 				<a href="session.html">Session</a>
 				<ul>
 				<li><a href="#config">Konfigurasi</a></li>
-				<li><a href="#set">Set</a></li>
-				<li><a href="#get">Get</a></li>
-				<li><a href="#remove">Remove</a></li>
+				<li><a href="#setValue">setValue</a></li>
+				<li><a href="#getValue">getValue</a></li>
+				<li><a href="#deleteValue">deleteValue</a></li>
 				<li><a href="#destroy">Destroy</a></li>
 				<li><a href="#session_clear_all">Session Clear All</a></li>
-				<li><a href="#regenerate">Regenerate</a></li>
+				<li><a href="#regenerateId">regenerateId</a></li>
 				<li><a href="#discussion">Diskusi</a></li>
 				</ul>
 			    </li>
@@ -96,25 +96,40 @@
                 <p>Panada memiliki tiga media penyimpanan data session yang bisa digunakan yaitu <strong>cookie</strong>, <strong>database</strong>, <strong>cache</strong> dan bawaan dari PHP (<strong><em>native session</em></strong>). Sebelm digunakan, library session terlebih dahulu harus diinisialisasi.</p>
             
 		<code>
-			$this->session  = new Library_session();
+			$this->session  = new Resources\Session();
 		</code>
 	    </div>
             
             <div class="main">
                 <h3 id="config">Konfigurasi</h3>
                 
-                <p>Bagian konfigurasi Library Session terletak pada file <strong>apps/config.php</strong>.</p>
+                <p>Bagian konfigurasi Library Session terletak pada file <strong>app/config/session.php</strong>.</p>
 		<p>Anda bisa menyesuaikan parameter-parameter di bawah ini sesuai dengan kebutuhan.</p>
-<textarea rows="10" cols="50" class="textarea">
-$CONFIG['session']['expiration'] = 7200;
-$CONFIG['session']['name'] = 'PAN_SID';
-$CONFIG['session']['cookie_expire'] = 0;
-$CONFIG['session']['cookie_path'] = '/';
-$CONFIG['session']['cookie_secure'] = false;
-$CONFIG['session']['cookie_domain'] = '';
-$CONFIG['session']['driver'] = 'native';
-$CONFIG['session']['driver_connection'] = 'default';
-$CONFIG['session']['storage_name'] = 'sessions';
+<textarea rows="26" cols="50" class="textarea">
+return array(
+    
+    'expiration' => 7200,
+    
+    'name' => 'PAN_SID',
+    
+    'cookieExpire' => 0,
+    
+    'cookiePath' => '/',
+    
+    'cookieSecure' => false,
+    
+    'cookieDomain' => '',
+    
+    'driver' => 'native', /* The option is 'native', 'cookie', cache or 'database' */
+    
+    'driverConnection' => 'default',
+    
+    'storageName' => 'sessions',
+    
+    'isEncrypt' => false,
+    
+    'secretKey' => '123'
+);
 </textarea>
 		
 		<p>Berikut adalah penjelasan dari masing-masing parameter:</p>
@@ -131,27 +146,27 @@ $CONFIG['session']['storage_name'] = 'sessions';
 			    <p>Name adalah nama cookie yang digunakan sebagai identitas session di browser.</p>
 			</li>
 			<li>
-			    <strong>cookie_expire</strong>
-			    <p>Cookie_expire menentukan berapa lama cookie session disimpan di browser.</p>
+			    <strong>cookieExpire</strong>
+			    <p>cookieExpire menentukan berapa lama cookie session disimpan di browser.</p>
 			</li>
 			<li>
-			    <strong>cookie_path</strong>
-			    <p>Cookie_path menentukan path-mana berlakunya cookie session.</p>
+			    <strong>cookiePath</strong>
+			    <p>cookiePath menentukan path-mana berlakunya cookie session.</p>
 			</li>
 			<li>
-			    <strong>cookie_secure</strong>
-			    <p>Cookie_secure menentukan apakah cookie session hanya berlaku di protokol HTTPS saja atau tidak.</p>
+			    <strong>cookieSecure</strong>
+			    <p>cookieSecure menentukan apakah cookie session hanya berlaku di protokol HTTPS saja atau tidak.</p>
 			</li>
 			<li>
-			    <strong>cookie_domain</strong>
-			    <p>Cookie_domain menentukan di mana session cookie berlaku. Jika Anda ingin session berlaku pada semua sub-domain, maka isikan dengan format '.domainanda.com'</p>
+			    <strong>cookieDomain</strong>
+			    <p>cookieDomain menentukan di mana session cookie berlaku. Jika Anda ingin session berlaku pada semua sub-domain, maka isikan dengan format '.domainanda.com'</p>
 			</li>
 			<li>
 			    <strong>driver</strong>
 			    <p>Driver menentukan media penyimpanan session. Pilihannya adalah <strong>cookie</strong>, <strong>database</strong>, <strong>cache</strong> dan <strong>native</strong>.</p>
 			</li>
 			<li>
-			    <strong>driver_connection</strong>
+			    <strong>driverConnection</strong>
 			    <p>Koneksi yang digunakan pada driver database atau session.</p>
 			    <p>Jika driver yang dipilih adalah database dan driver database yang digunakan adalah mysql, postgresql atau sqlite, berikut adalah struktur databasenya:</p>
 			    
@@ -167,7 +182,7 @@ CREATE TABLE sessions (
 			</li>
 			
 			<li>
-			    <strong>storage_name</strong>
+			    <strong>storageName</strong>
 			    <p>Nama yang digunakan untuk menyimpan data session baik itu di dalam database (table) atapun cache (collection/namespace).</p>
 			</li>
 			
@@ -180,24 +195,26 @@ CREATE TABLE sessions (
                 <p>Berikut adalah method-method yang bisa digunakan dalam menangani session di Panada.</p>
 		
 		<ul>
-		<li><a href="#set">Set</a></li>
-		<li><a href="#get">Get</a></li>
-		<li><a href="#remove">Remove</a></li>
+		<li><a href="#setValue">setValue</a></li>
+		<li><a href="#getValue">getValue</a></li>
+		<li><a href="#deleteValue">deleteValue</a></li>
 		<li><a href="#destroy">Destroy</a></li>
-		<li><a href="#session_clear_all">Session Clear All</a></li>
-		<li><a href="#regenerate">Regenerate</a></li>
+		<li><a href="#regenerateId">regenerateId</a></li>
 		</ul>
 		
 		<p>Contoh penggunaan masing-masing method di dalam controller adalah sebagai berikut:</p>
-<textarea rows="31" cols="50" class="textarea">
+<textarea rows="35" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
 	
-	$this->session = new Library_session();
+	$this->session = new Resources\Session();
     }
     
     public function index(){
@@ -205,17 +222,17 @@ class Controller_home extends Panada {
         echo 'Hello world!';
     }
     
-    public function set_new_session(){
+    public function setNewCession(){
 	
-	$this->session->set('user_id', '1234');
+	$this->session->setValue('user_id', '1234');
     }
     
-    public function get_session(){
+    public function getSession(){
 	
-	echo $this->session->get('user_id');
+	echo $this->session->getValue('user_id');
     }
     
-    public function destroy_session(){
+    public function destroySession(){
 	
 	$this->session->destroy();
     }
@@ -225,66 +242,57 @@ class Controller_home extends Panada {
 	    </div>
 	    
 	    <div class="main">
-                <h3 id="set">Set</h3>
+                <h3 id="setValue">setValue</h3>
 		
 		<p>Berikut adalah contoh mengisikan nilai baru ke dalam session.</p>
 		<code>
-			$this->session->set('user_id', '1234');<br />
-			$this->session->set('user_email', 'jhon@myemail.com');<br />
-			$this->session->set('user_name', 'jhon');
+			$this->session->setValue('user_id', '1234');<br />
+			$this->session->setValue('user_email', 'jhon@myemail.com');<br />
+			$this->session->setValue('user_name', 'jhon');
 		</code>
 		
 		<p>Untuk mengisikan beberapa data sekaligus, bisa menggunakan variable array seperti contoh berikut:</p>
 		<code>
 			$data = array('user_id' => '1234', 'user_email' => 'jhon@myemail.com', 'user_name' => 'jhon');<br />
-			$this->session->set($data);
+			$this->session->setValue($data);
 		</code>
 	    </div>
 	    
 	    <div class="main">
-                <h3 id="get">Get</h3>
+                <h3 id="getValue">getValue</h3>
 		
 		<p>Untuk mendapatkan data yang sudah disimpan di dalam session berikut adalah contohnya:</p>
 		<code>
-			echo $this->session->get('user_id'); // Output: 1234<br />
-			echo $this->session->get('user_email'); // Output: jhon@myemail.com
+			echo $this->session->getValue('user_id'); // Output: 1234<br />
+			echo $this->session->getValue('user_email'); // Output: jhon@myemail.com
 		</code>
 	    </div>
 	    
 	    <div class="main">
-                <h3 id="remove">Remove</h3>
+                <h3 id="deleteValue">deleteValue</h3>
 		
 		<p>Berikut adalah contoh cara menghapus nilai session satu-persatu:</p>
 		<code>
-			$this->session->remove('user_id');<br />
-			$this->session->remove('user_email');
+			$this->session->deleteValue('user_id');<br />
+			$this->session->deleteValue('user_email');
 		</code>
 	    </div>
 	    
 	    <div class="main">
-                <h3 id="destroy">Destroy</h3>
+                <h3 id="destroy">destroy</h3>
 		
-		<p>Untuk menghapus semua nilai sekaligus gunakan method destroy:</p>
+		<p>Untuk menghapus semua nilai sekaligus mereset cookie gunakan method destroy:</p>
 		<code>
 			$this->session->destroy();
 		</code>
 	    </div>
 	    
 	    <div class="main">
-                <h3 id="session_clear_all">Session Clear All</h3>
+                <h3 id="regenerateId">regenerateId</h3>
 		
-		<p>Untuk menghapus semua nilai session sekaligus mereset cookie gunakan method session_clear_all. Method ini sangat disarankan untuk digunakan pada fungsi logout.</p>
+		<p>Untuk me-regenerate session id, method yang digunakan adalah regenerateId();</p>
 		<code>
-			$this->session->session_clear_all();
-		</code>
-	    </div>
-	    
-	    <div class="main">
-                <h3 id="regenerate">Regenerate</h3>
-		
-		<p>Untuk me-regenerate session id, method yang digunakan adalah regenerate();</p>
-		<code>
-			$this->session->regenerate();
+			$this->session->regenerateId();
 		</code>
 	    </div>	
             <div id="discussion" class="main">
