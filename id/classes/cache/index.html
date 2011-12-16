@@ -91,45 +91,70 @@
             <div class="lead">
                 <h2>Cache</h2>
 		<p>Saat ini, driver Obeject Cache yang sudah tersedia adalah <a href="http://php.net/manual/en/book.apc.php">APC</a>, <a href="http://www.php.net/manual/en/book.memcache.php">Memcache</a> dan <a href="http://www.php.net/manual/en/book.memcached.php">Memcached</a>.</p>
-                <p>Sebelum menggunakan library cache, terlebih dahulu harus dilakukan konfigurasi. Bagian konfigurasi database terletak pada file <strong>apps/config.php</strong>.</p>
+                <p>Sebelum menggunakan library cache, terlebih dahulu harus dilakukan konfigurasi. Bagian konfigurasi database terletak pada file <strong>app/config/cache.php</strong>.</p>
             </div>
             
             <div class="main">
                 <h3 id="config">Konfigurasi</h3>
                 
-		<p>Bagian-bagian yang harus dilengkapi <strong>nama_koneksi</strong> dan <strong>driver</strong>.</p>
-		<code>
-		    $CONFIG['cache']['<strong>nama_koneksi</strong>']['driver'] = '<strong>driver</strong>';
-		</code>
+		<p>Bagian-bagian yang harus dilengkapi <strong>namaKoneksi</strong> dan <strong>driver</strong>.</p>
+<textarea rows="9" cols="50" class="textarea">
+return array(
+    
+    'namaKoneksi' => array(
+    
+        'driver' => 'apc',
+    ),
+);
+</textarea>
 		<p>Saat ini pilihan driver yang tersedia adalah <strong>apc</strong>, <strong>memcache</strong> dan <strong>memcached</strong>.</p>
-		<p>Sebagai contoh jika ingin mengunakan APC sebagai cache, maka konfigurasinya adalah:</p>
-		<code>
-		    $CONFIG['cache']['default']['driver'] = '<strong>apc</strong>';
-		</code>
+		<p>Sebagai contoh, konfigurasi di atas adalah jika ingin mengunakan APC sebagai cache.</p>
 		
-		<p>Nilai <strong>default</strong> pada konfigurasi di atas menunjukan koneksi cache default. Jika Anda menginginkan koneksi cache yang lain silahkan tambahkan nama baru pada bagian ini. Sebagai contoh:</p>
+		<p>Nilai <strong>default</strong> pada konfigurasi menunjukan koneksi cache default. Jika Anda menginginkan koneksi cache yang lain silahkan tambahkan nama baru pada bagian ini. Sebagai contoh:</p>
 
-<textarea rows="8" cols="50" class="textarea">
-// Koneksi default
-$CONFIG['cache']['default']['driver'] = 'apc';
-
-// Koneksi cache 2
-$CONFIG['cache']['cache_2']['driver'] = 'memcached';
-$CONFIG['cache']['cache_2']['host'] = array('localhost');
-$CONFIG['cache']['cache_2']['port'] = 11211;
+<textarea rows="26" cols="50" class="textarea">
+return array(
+    
+    'default' => array(
+    
+        'driver' => 'apc',
+	
+    ),
+    
+    'memcached' => array(
+    
+        'driver' => 'memcached',
+	
+        'server' => array(
+	
+            array(
+	    
+                'host' => 'localhost',
+		
+                'port' => 11211,
+		
+                'persistent' => false,
+            ),
+        )
+    ),
+);
 </textarea>
 		<h4 id="init">Inisialisasi</h4>
-		<p>Berikut adalah contoh membuat <em>instance</em> untuk DB baik itu di dalam model ataupun controller:</p>
-<textarea rows="12" cols="50" class="textarea">
+		<p>Berikut adalah contoh membuat <em>instance</em> untuk Cache baik itu di dalam model ataupun controller:</p>
+<textarea rows="16" cols="50" class="textarea">
 &lt;?php
-class Model_comments {
+namespace Models;
+Use Resources;
+
+class Comments {
     
     public function __construct(){
         
 	// Cache koneksi default
-	$this->cache = new Library_cache();
+	$this->cache = new Resources\Cache();
+	
 	// Cache koneksi 2
-	$this->cache2 = new Library_cache('cache_2');
+	$this->cache2 = new Resources\Cache('memcached');
     }
 }
 </textarea>
@@ -140,10 +165,10 @@ class Model_comments {
 		
 		<p>Untuk berinteraksi dengan cache driver, berikut adalah API yang tersedia:</p>
 		
-		<h4>set_value</h4>
+		<h4>setValue</h4>
 		<p>Melakukan penyimpanan data yang akan di-cache.</p>
 		<code>
-		    <strong>mix</strong> $this->cache-><strong>set_value</strong>($key, $value, $expire = 0, $namespace = false);
+		    <strong>mix</strong> $this->cache-><strong>setValue</strong>($key, $value, $expire = 0, $namespace = false);
 		</code>
 		<p>Parameter</p>
                 <table>
@@ -179,10 +204,10 @@ class Model_comments {
 		</tbody>
 		</table>
 		
-		<h4>add_value</h4>
+		<h4>addValue</h4>
 		<p>Melakukan penyimpanan data yang akan di-cache hanya jika key yang diberikan belum pernah digunakan sebelumnya. Jika ternyata key-nya sudah digunakan maka nilai returnnya adalah <strong>false</strong>.</p>
 		<code>
-		    <strong>mix</strong> $this->cache-><strong>add_value</strong>($key, $value, $expire = 0, $namespace = false);
+		    <strong>mix</strong> $this->cache-><strong>addValue</strong>($key, $value, $expire = 0, $namespace = false);
 		</code>
 		<p>Parameter</p>
                 <table>
@@ -218,10 +243,10 @@ class Model_comments {
 		</tbody>
 		</table>
 		
-		<h4>update_value</h4>
+		<h4>updateValue</h4>
 		<p>Melakukan update data yang sudah di-cache berdasarkan key yang diberikan.</p>
 		<code>
-		    <strong>mix</strong> $this->cache-><strong>update_value</strong>($key, $value, $expire = 0, $namespace = false);
+		    <strong>mix</strong> $this->cache-><strong>updateValue</strong>($key, $value, $expire = 0, $namespace = false);
 		</code>
 		<p>Parameter</p>
                 <table>
@@ -257,10 +282,10 @@ class Model_comments {
 		</tbody>
 		</table>
 		
-		<h4>get_value</h4>
+		<h4>getValue</h4>
 		<p>Mendapatkan data yang sudah di-cache berdasarkan key yang diberikan.</p>
 		<code>
-		    <strong>mix</strong> $this->cache-><strong>get_value</strong>($key, $namespace = false);
+		    <strong>mix</strong> $this->cache-><strong>getValue</strong>($key, $namespace = false);
 		</code>
 		<p>Parameter</p>
                 <table>
@@ -286,10 +311,10 @@ class Model_comments {
 		</tbody>
 		</table>
 		
-		<h4>delete_value</h4>
+		<h4>deleteValue</h4>
 		<p>Menghapus data yang sudah di-cache berdasarkan key yang diberikan.</p>
 		<code>
-		    <strong>mix</strong> $this->cache-><strong>delete_value</strong>($key, $namespace = false);
+		    <strong>mix</strong> $this->cache-><strong>deleteValue</strong>($key, $namespace = false);
 		</code>
 		<p>Parameter</p>
                 <table>
@@ -315,10 +340,10 @@ class Model_comments {
 		</tbody>
 		</table>
 		
-		<h4>flush_values</h4>
+		<h4>flushValues</h4>
 		<p>Menghapus semua data yang sudah di-cache.</p>
 		<code>
-		    <strong>bool</strong> $this->cache-><strong>flush_values</strong>();
+		    <strong>bool</strong> $this->cache-><strong>flushValues</strong>();
 		</code>
 		
 	    </div>
@@ -330,16 +355,18 @@ class Model_comments {
 		Setiap halaman dapat menampung 10 data dimana data ini kemudian disimpan ke dalam cache. Key dari masing-masing halaman misalnya <strong>comment_page_1</strong>, <strong>comment_page_2</strong>, <strong>comment_page_3</strong> ... dst.
 		Jika ada data baru yang ingin ditambahkan dan semua data ini perlu di flush, maka untuk melakukan hal ini cukup dengan menghapus namespace-nya saja. Berikut adalah contohnya:</p>
 		
-<textarea rows="48" cols="50" class="textarea">
+<textarea rows="51" cols="50" class="textarea">
 &lt;?php
+namespace Controllers;
+use Resources;
 
-class Controller_home extends Panada {
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
         
-        $this->cache = new Library_cache();
+        $this->cache = new Resources\Cache();
     }
     
     public function index(){
@@ -347,13 +374,13 @@ class Controller_home extends Panada {
 	$namespace = 'comment_id_29';
 	
         $key = 'comment_page_1';
-	print_r( $this->cache->get_value($key, $namespace) );
+	print_r( $this->cache->getValue($key, $namespace) );
 	
 	$key = 'comment_page_2';
-	print_r( $this->cache->get_value($key, $namespace) );
+	print_r( $this->cache->getValue($key, $namespace) );
     }
     
-    public function add_cache_comment(){
+    public function addCacheComment(){
 	
 	$namespace = 'comment_id_29';
 	$key = 'comment_page_3';
@@ -369,13 +396,13 @@ class Controller_home extends Panada {
 	    ),
 	);
 	
-	$this->cache->set_value( $key, $comments, 0, $namespace );
+	$this->cache->setValue( $key, $comments, 0, $namespace );
     }
     
-    public function delete_namespace(){
+    public function deleteNamespace(){
 	
 	$namespace = 'comment_id_29';
-	$this->cache->delete_value($namespace);
+	$this->cache->deleteValue($namespace);
     }
 }
 </textarea>

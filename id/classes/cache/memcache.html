@@ -98,14 +98,30 @@
             <div class="main">
                 <h3>Konfigurasi</h3>
 		
-                <p>Konfigurasi dilakukan di file <strong>apps/config.php</strong></p>
+                <p>Konfigurasi dilakukan di file <strong>app/config/cache.php</strong></p>
                 <p>Bagian-bagian yang harus dilengkapi adalah host, dan port.</p>
-<textarea rows="4" cols="50" class="textarea">
-$CONFIG['cache']['default']['driver'] = 'memcache';
-$CONFIG['cache']['default']['host'] = array('localhost');
-$CONFIG['cache']['default']['port'] = 11211;
+<textarea rows="20" cols="50" class="textarea">
+return array(
+    
+    'default' => array(
+    
+        'driver' => 'memcache',
+	
+        'server' => array(
+	
+            array(
+	    
+                'host' => 'localhost',
+		
+                'port' => 11211,
+		
+                'persistent' => false,
+            ),
+        )
+    ),
+);
 </textarea>
-                <p>Jika diperlukan untuk melakukan setting Compression Threshold, lihat pada bagian <b>panada/drivers/cache/memcache.php: 36</b></p>
+                <p>Jika diperlukan untuk melakukan setting Compression Threshold, lihat pada bagian <b>panada/drivers/cache/memcache.php: 37</b></p>
                 <code>
                     <b>bool</b> $this->setCompressThreshold(20000, 0.2);
                 </code>
@@ -117,7 +133,7 @@ $CONFIG['cache']['default']['port'] = 11211;
                 <h3 id="init">Inisialisasi</h3>
                 <p>Inisialisasi driver Memcached bisa dilakukan di dalam constructor ataupun method yang bersangkutan.</p>
                 <code>
-                    $this->cache = new Library_cache();
+                    $this->cache = new Resources\Cache();
                 </code>
 		
             </div>
@@ -438,15 +454,18 @@ $CONFIG['cache']['default']['port'] = 11211;
                 <h3 id="other_method">Contoh</h3>
                 <p>Berikut adalah contoh penggunaan dari masing-masing method di atas.</p>
 		
-<textarea rows="85" cols="50" class="textarea">
+<textarea rows="89" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
         
-        $this->cache = new Library_cache();
+        $this->cache = new Resources\Cache();
     }
     
     // Cache item baru selama 15 menit
@@ -474,7 +493,7 @@ class Controller_home extends Panada {
     }
     
     // Dapatkan item yang sudah dicache
-    public function get_memcached_cache(){
+    public function getMemcachedCache(){
 	
 	// Output: This is the string value
 	print_r($this->cache->get('key1') );
@@ -500,7 +519,7 @@ class Controller_home extends Panada {
     }
     
     // Hapus item yang sudah dicache
-    public function delete_memcached_cache(){
+    public function deleteMemcachedCache(){
 	
 	$this->cache->delete('key2');
 	
@@ -508,7 +527,7 @@ class Controller_home extends Panada {
 	var_dump( $this->cache->get('key2') );
     }
     
-    public function clear_all_memcached_cache(){
+    public function clearAllMemcachedCache(){
 	
 	$this->cache->flush();
 	

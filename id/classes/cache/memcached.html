@@ -98,12 +98,28 @@
             <div class="main">
                 <h3>Konfigurasi</h3>
 		
-                <p>Konfigurasi dilakukan di file <strong>apps/config.php</strong></p>
+                <p>Konfigurasi dilakukan di file <strong>app/config/cache.php</strong></p>
                 <p>Bagian-bagian yang harus dilengkapi adalah host, dan port.</p>
-<textarea rows="4" cols="50" class="textarea">
-$CONFIG['cache']['default']['driver'] = 'memcached';
-$CONFIG['cache']['default']['host'] = array('localhost');
-$CONFIG['cache']['default']['port'] = 11211;
+<textarea rows="20" cols="50" class="textarea">
+return array(
+    
+    'default' => array(
+    
+        'driver' => 'memcached',
+	
+        'server' => array(
+	
+            array(
+	    
+                'host' => 'localhost',
+		
+                'port' => 11211,
+		
+                'persistent' => false,
+            ),
+        )
+    ),
+);
 </textarea>
                 
             </div>
@@ -112,7 +128,7 @@ $CONFIG['cache']['default']['port'] = 11211;
                 <h3 id="init">Inisialisasi</h3>
                 <p>Inisialisasi driver Memcached bisa dilakukan di dalam constructor ataupun method yang bersangkutan.</p>
                 <code>
-                    $this->cache = new Library_cache();
+                    $this->cache = new Resources\Cache();
                 </code>
 		
             </div>

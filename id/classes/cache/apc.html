@@ -98,13 +98,20 @@
             
             <div class="main">
                 <h3 id="init">Inisialisasi</h3>
-		<p>Konfigurasi driver APC di dalam file config.php</p>
-		<code>
-		    $CONFIG['cache']['default']['driver'] = '<strong>apc</strong>';
-		</code>
+		<p>Konfigurasi driver APC di dalam file app/config/cache.php</p>
+		
+<textarea rows="8" cols="50" class="textarea">
+return array(
+    
+    'default' => array(
+    
+        'driver' => 'apc',
+    ),
+);
+</textarea>
                 <p>Inisialisasi Library APC bisa dilakukan di dalam constructor ataupun method yang bersangkutan.</p>
                 <code>
-                    $this->apc = new Library_cache();
+                    $this->apc = new Resources\Cache();
                 </code>
 		
             </div>
@@ -493,15 +500,18 @@
                 <h3 id="other_method">Contoh</h3>
                 <p>Berikut adalah contoh penggunaan dari masing-masing method di atas.</p>
 		
-<textarea rows="87" cols="50" class="textarea">
+<textarea rows="90" cols="50" class="textarea">
 &lt;?php
-class Controller_home extends Panada {
+namespace Controllers;
+use Resources;
+
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
         
-        $this->apc = new Library_cache();
+        $this->apc = new Resources\Cache();
     }
     
     // Cache item baru selama 15 menit
@@ -529,7 +539,7 @@ class Controller_home extends Panada {
     }
     
     // Dapatkan item yang sudah dicache
-    public function get_apc_cache(){
+    public function getApcCache(){
 	
 	// Output: This is the string value
 	print_r($this->apc->apc_fetch('key1') );
@@ -555,7 +565,7 @@ class Controller_home extends Panada {
     }
     
     // Hapus item yang sudah dicache
-    public function delete_apc_cache(){
+    public function deleteApcCache(){
 	
 	$this->apc->apc_delete('key2');
 	
@@ -563,7 +573,7 @@ class Controller_home extends Panada {
 	var_dump( $this->apc->apc_fetch('key2') );
     }
     
-    public function clear_all_apc_cache(){
+    public function clearAllApcCache(){
 	
 	$this->apc->apc_clear_cache('user');
 	
