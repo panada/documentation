@@ -99,7 +99,7 @@
                 
                 <p>Sebelum digunakan library pagination harus diinisialisasi terlebih dahulu.</p>
 		<code>
-		    $this->pagination  = new Library_pagination();
+		    $this->pagination  = new Resources\Pagination();
 		</code>
                 
             </div>
@@ -107,7 +107,7 @@
 	    <div class="main">
                 <h3 id="sample">Contoh Penggunaan</h3>
                 
-                <p>Data yang diperlukan dalam menggunakan library ini adalah:</p>
+                <p>Data yang diperlukan dalam menggunakan resource ini adalah:</p>
 		<ul>
 		    <li>Total data</li>
 		    <li>Posisi halaman saat ini. Defaultnya adalah halaman 1.</li>
@@ -117,17 +117,19 @@
 		
 		<p>Proses pagination sangat terkait dengan pengambilan data di database, berikut adalah contoh querey untuk paging di dalam model:</p>
 
-<textarea rows="24" cols="50" class="textarea">
+<textarea rows="28" cols="50" class="textarea">
 &lt;?php
+namespace Models;
+use Resources;
 
-class Model_collections {
+class Collections {
     
     public function __construct(){
         
-	$this->db = new Library_db();
+	$this->db = new Resources\Database;
     }
     
-    public function get_my_musics($page = 1, $limit = 10){
+    public function getMyMusics($page = 1, $limit = 10){
 	
 	$offset = ($limit * $page) - $limit;
 	
@@ -136,41 +138,43 @@ class Model_collections {
         return $results;
     }
     
-    public function my_total_musics(){
+    public function myTotalMusics(){
 	
-	return $this->db->get_var("SELECT COUNT(id) FROM musics");
+	return $this->db->getVar("SELECT COUNT(id) FROM musics");
     }
 }
 </textarea>
 
 		<p>Berikut adalah contoh controller yang menangani pagination:</p>
-<textarea rows="30" cols="50" class="textarea">
+<textarea rows="33" cols="50" class="textarea">
 &lt;?php
+namespace Controllers;
+use Resources, Models;
 
-class controller_music extends Panada {
+class Music extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
 	
-	$this->collections = new Model_collections();
+	$this->collections = new Models\Collections();
     }
     
     public function lists($page = 1){
         
-        $this->pagination   = new library_pagination();
+        $this->pagination   = new Resources\Pagination();
         
         $page = (int) $page;
 	$this->pagination->limit = 10;
 	
-        $data['musics'] = $this->collections->get_my_musics($page, $this->pagination->limit);
+        $data['musics'] = $this->collections->getMyMusics($page, $this->pagination->limit);
         
         $this->pagination->base = 'http://www.mysite.com/music/lists/%#%/';
-	$this->pagination->total = $this->collections->my_total_musics();
+	$this->pagination->total = $this->collections->myTotalMusics();
 	$this->pagination->current = $page;
-        $data['page_links'] = $this->pagination->get_url();
+        $data['pageLinks'] = $this->pagination->getUrl();
         
-        $this->view('members', $data);
+        $this->output('members', $data);
     }
     
 }
@@ -188,9 +192,9 @@ class controller_music extends Panada {
 			&lt;?php echo $music->title.'&lt;br /&gt;'; ?&gt;
                 &lt;?php endforeach;?&gt;
 		
-		&lt;?php if($page_links):?&gt;
+		&lt;?php if($pageLinks):?&gt;
                 &lt;ul&gt;
-                    &lt;?php foreach($page_links as $paging):?&gt;
+                    &lt;?php foreach($pageLinks as $paging):?&gt;
                         &lt;li&gt;&lt;?php echo $paging;?&gt;&lt;/li&gt;
                     &lt;?php endforeach;?&gt;
                 &lt;/ul&gt;
@@ -216,24 +220,24 @@ class controller_music extends Panada {
 	    <div class="main">
                 <h3 id="costumize">Kostumisasi</h3>
                 
-                <h4>show_number</h4>
+                <h4>showNumber</h4>
 		<p>Jika tidak ingin menampilkan link-link berupa angka, set paramter ini menjadi <strong>false</strong>:</p>
 		<code>
-		    $this->pagination->show_number = false;
+		    $this->pagination->showNumber = false;
 		</code>
 		
-		<h4>show_all</h4>
+		<h4>showAll</h4>
 		<p>Untuk menampilkan semua link-link angka, set parameter ini menjadi <strong>false</strong>:</p>
 		<code>
-		    $this->pagination->show_all = false;
+		    $this->pagination->showAll = false;
 		</code>
 		
-		<h4>no_href</h4>
+		<h4>noHref</h4>
 		<p>Jika data dari link-linknya tidak ingin dibungkus oleh tag link (&lt;a href), set parameter ini menjadi <strong>true</strong>:</p>
 		<code>
-		    $this->pagination->no_href = true;
+		    $this->pagination->noHref = true;
 		</code>
-		<p>Nilai variable <strong>page_links</strong> akan menghasilkan data array seperti berikut:</p>
+		<p>Nilai variable <strong>pageLinks</strong> akan menghasilkan data array seperti berikut:</p>
 		<code>
 		    Array([link] => paging link [value] => paging value)
 		</code>
@@ -241,7 +245,7 @@ class controller_music extends Panada {
 			    
 <textarea rows="8" cols="50" class="textarea">
 &lt;ul&gt;
-    &lt;?php foreach($page_links as $paging):?&gt;
+    &lt;?php foreach($pageLinks as $paging):?&gt;
 	&lt;li&gt;
 		&lt;a href="&lt;?php echo $paging['link'];?&gt;"&gt;&lt;?php echo $paging['value'];?&gt;&lt;/a&gt;
 	&lt;/li&gt;
@@ -251,37 +255,37 @@ class controller_music extends Panada {
 		<h4>prev_text</h4>
 		<p>String untuk previous misalnya "Sebelumnya".</p>
 		<code>
-		    $this->pagination->prev_text = 'Sebelumnya';
+		    $this->pagination->prevText = 'Sebelumnya';
 		</code>
 		
-		<h4>next_text</h4>
+		<h4>nextText</h4>
 		<p>String untuk next misalnya "Berikutnya".</p>
 		<code>
-		    $this->pagination->next_text = 'Berikutnya';
+		    $this->pagination->nextText = 'Berikutnya';
 		</code>
 		
-		<h4>prev_next</h4>
+		<h4>prevNext</h4>
 		<p>Jika Anda tidak ingin menampilkan bagian <strong>Previous</strong> dan <strong>Next</strong>, set parameter di bawah menjadi <strong>false</strong>.</p>
 		<code>
-		    $this->pagination->prev_next = false;
+		    $this->pagination->prevNext = false;
 		</code>
 		
-		<h4>group_separator</h4>
+		<h4>groupSeparator</h4>
 		<p>Pemisah antara blok angka yang satu dengan yang lainnya. contoh: 1 2 3 ... 22 23 24 ... 100 101 102</p>
 		<code>
-		    $this->pagination->group_separator = '...';
+		    $this->pagination->groupSeparator = '...';
 		</code>
 		
-		<h4>end_size</h4>
+		<h4>endSize</h4>
 		<p>Berapa banyak jumlah angka yang ditampilkan di blok angka terakhir. Jika di set 2 maka hasilnya akan 1 2 ... 10 11 12 ... 100 101</p>
 		<code>
-		    $this->pagination->end_size = 1;
+		    $this->pagination->endSize = 1;
 		</code>
 		
-		<h4>mid_size</h4>
+		<h4>midSize</h4>
 		<p>Jumlah angka sebelum dan sesudah angka paging saat ini. Jika di set 2 maka hasilnya akan 1 2 ... 9 10 [11] 12 13 ... 100 101</p>
 		<code>
-		    $this->pagination->mid_size = 3;
+		    $this->pagination->midSize = 3;
 		</code>
                 
             </div>
