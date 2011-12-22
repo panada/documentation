@@ -91,7 +91,7 @@
                 <p>Sebelum digunakan, class Encryption harus diinisialisasi terlebih dahulu. Inisialisasi bisa dilakukan pada konstruktor ataupun langsung di dalam method.</p>
                 
 		<code>
-			$this->crypt = new Resources\Encryption;
+			$this->crypt = new Resources\Encryption('mySecreteToken');
 		</code>
 		<p>Berikut adalah contoh penggunaan class Encription:</p>
 <textarea rows="45" cols="50" class="textarea">
@@ -105,7 +105,10 @@ class Sample extends Resources\Controller {
         
 	parent::__construct();
 	
-	$this->crypt = new Resources\Encryption;
+	// String rahasia yang diperlukan untuk mengenkripsi
+	$secreteToken = '12345';
+	
+	$this->crypt = new Resources\Encryption($secreteToken);
     }
     
     public function index(){
@@ -116,12 +119,9 @@ class Sample extends Resources\Controller {
 	
         // String yang akan dienkripsi
         $string = 'Ini string rahasia.';
-        
-        // String rahasia yang diperlukan untuk mengenkripsi
-	$secreteToken = '12345';
 	
         // Lakukan enkripsi untuk variable $string
-	$encrypted = $this->crypt->encrypt($string, $secreteToken);
+	$encrypted = $this->crypt->encrypt($string);
         
         // Tampilkan string yang sudah terenkripsi.
         echo $encrypted;
@@ -132,7 +132,7 @@ class Sample extends Resources\Controller {
         $encryptedString = 'fp+bU6epo5uhm1Wjk5uVqJqTYQ==';
         
         // Lakukan dekripsi
-        $decrypted = $this->crypt->decrypt($encryptedString, $secreteToken);
+        $decrypted = $this->crypt->decrypt($encryptedString);
         
         // Tampilkan hasil dekripsi
         echo $decrypted;
@@ -143,10 +143,9 @@ class Sample extends Resources\Controller {
 	    
 	    <div class="main">
                 <h3>Tipe Encode</h3>
-		<p>Secara default class Encryption menggunakan base_64 untuk encoding. Anda juga bisa menggunakan tipe lainnya. Pilihannya adalah: <strong>none</strong>, <strong>base_64</strong> dan <strong>hexa_decimal</strong></p>
+		<p>Secara default class Encryption menggunakan <strong>Resources\Encryption::BASE_64</strong> untuk encoding. Anda juga bisa menggunakan tipe lainnya. Pilihannya adalah: <strong>Resources\Encryption::NONE</strong>, <strong>Resources\Encryption::BASE_64</strong> dan <strong>Resources\Encryption::::HEXA_DECIMAL</strong></p>
 		<code>
-		    $this->crypt = new Resources\Encryption;<br />
-		    $this->crypt->encode_type = 'hexa_decimal';
+		    $this->crypt = new Resources\Encryption('mySecreteToken', Resources\Encryption::::HEXA_DECIMAL);
 		</code>
 	    </div>
             <div id="discussion" class="main">
