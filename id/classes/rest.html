@@ -90,7 +90,7 @@
                 <h3>Inisialisasi</h3>
                 <p>Baik untuk Provider ataupun Consumer, library REST harus diinisialisasi terlebih dahulu.</p>
 		<code>
-		    $this->rest = new Library_rest();
+		    $this->rest = new Resources\Rest;
 		</code>
                 
             </div>
@@ -100,46 +100,42 @@
 		
 		<p>Sebagai penyedia layanan, maka aplikasi provider akan menerima request dari aplikasi consumer. Untuk menerima request ini gunakan method:</p>
 		<code>
-		    $data = $this->rest->get_request();
+		    $data = $this->rest->getRequest();
 		</code>
 		<p>Selain <strong>POST</strong> dan <strong>GET</strong>, REST juga menggunakan <strong>PUT</strong> dan <strong>DELETE</strong> sebagai method request. Untuk mendapatkan jenis request method ini gunakan:</p>
 		<code>
-		    $this->rest->request_method;
+		    $this->rest->requestMethod;
 		</code>
 		
 		<p>Berikut adalah contoh controller untuk REST Provider.</p>
-<textarea rows="28" cols="50" class="textarea">
+<textarea rows="31" cols="50" class="textarea">
 &lt;?php
+namespace Controllers;
+use Resources;
 
-class Controller_sample extends Panada {
+class Controller_sample extends Resources\Controller {
 
     public function __construct(){
         
         parent::__construct();
-        $this->rest = new Library_rest();
-    }
-
-    public function index(){
-    
+        $this->rest = new Resources\Rest;
     }
     
     public function rest_provider(){
 	
-	$data = $this->rest->get_request();
+	$data = $this->rest->getRequest();
         
-	$data['REQUEST_METHOD'] = $this->rest->request_method;
+	$data['requestMethod'] = $this->rest->requestMethod;
 	
-	$this->rest->set_response_header(200);
-        
-	$print = $this->rest->wrap_response_output($data, 'json');
+	$this->rest->setResponseHeader(200);
 	
-	echo $print;
+	$this->outputJSON($data);
     }
 }
 </textarea>
 		<p>Untuk memberikan status respons pada header, gunakan method berikut:</p>
 		<code>
-		    $this->rest->set_response_header(200);
+		    $this->rest->setResponseHeader(200);
 		</code>
 		<p>Berikut keterangan beberapa status header untuk digunakan sebagai respons provider.</p>
 		
@@ -187,11 +183,21 @@ class Controller_sample extends Panada {
 		
 		<p>Daftar selengkapnya bisa dilihat di halaman <a href="http://en.wikipedia.org/wiki/List_of_HTTP_status_codes" target="_blank">http://en.wikipedia.org/wiki/List_of_HTTP_status_codes</a>.</p>
 	    
-		<p>Dalam memberikan ouput data, aplikasi API umumnya menggunakan format xml atau json. Secara default, Panada menggunakan format json. Method yang digunakan untuk menampilkan output ini adalah:</p>
+		<p>Dalam memberikan ouput data, aplikasi API umumnya menggunakan format xml atau json. Berikut adalah method untuk menampilkan data json:</p>
 		<code>
-		    $print = $this->rest->wrap_response_output($data, 'json');
+		    $this->outputJSON($data);
 		</code>
-		<p>Silahkan ganti keterangan <strong>json</strong> dengan <strong>xml</strong> jika output yang diinginkan berformat xml.</p>
+		<p>Sedangkan untuk menampilkan data berformat xml:</p>
+		<code>
+		    $this->outputXML($data);
+		</code>
+		<br />
+		
+		<h4>Get Client Headers</h4>
+		<p>Untuk mendapatkan request header dari client, Anda bisa menggunakan method <strong>getClientHeaders</strong></p>
+		<code>
+		    <strong>array</strong> $this->getClientHeaders();
+		</code>
 		
 	    </div>
 	    
@@ -200,7 +206,7 @@ class Controller_sample extends Panada {
 		
 		<p>Untuk melakukan request ke API Provider, consumer menggunakan method:</p>
 		<code>
-		    $contents = $this->rest->send_request($uri, $method, $data);
+		    $contents = $this->rest->sendRequest($uri, $method, $data);
 		</code>
 		<p>Dimana:</p>
 		<table>
@@ -229,31 +235,29 @@ class Controller_sample extends Panada {
 		<p>Berikut adalah contoh controller untuk REST Consumer:</p>
 <textarea rows="34" cols="50" class="textarea">
 &lt;?php
+namespace Controllers;
+use Resources;
 
-class Controller_sample extends Panada {
+class Controller_sample extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
-        $this->rest = new Library_rest();
+        $this->rest = new Resources\Rest;
     }
     
-    public function index(){
-    
-    }
-    
-    public function rest_consumer($method = 'get'){
+    public function restConsumer($method = 'get'){
         
         $uri = 'http://api.twitter.com/1/users/show.json';
         
         $data = array('screen_name' => 'panadaframework');
         
-        $contents = $this->rest->send_request($uri, 'GET', $data);
+        $contents = $this->rest->sendRequest($uri, 'GET', $data);
             
         if ($contents) {
             
             $response = $contents;
-            $response .= 'status header: '.$this->rest->response_status;
+            $response .= 'status header: '.$this->rest->responseStatus;
             echo $response;
         }
         else {
@@ -262,9 +266,23 @@ class Controller_sample extends Panada {
     }
 }
 </textarea>
+		<h4>HTTP Response Status</h4>
 		<p>Untuk mendapatkan status respon header, gunakan method:</p>
 		<code>
-		    $this->rest->response_status;
+		    $this->rest->responseStatus;
+		</code>
+		<br />
+		
+		<h4>HTTP Request Authorization</h4>
+		<p>Jika API Provider yang akan diakses membutuhkan otentifikasi misalnya HTTP Basic Auth, atau OAuth, maka Anda bisa memanfaatkan method <strong>setRequestAuthorization</strong></p>
+		<code>
+		    $this->rest->setRequestAuthorization($signature, $type = 'Basic');
+		</code>
+		<br />
+		
+		<h4>Additional Request Header</h4>
+		<code>
+		    $this->rest->setRequestHeaders( array( 'Accept' => 'application/json', 'Cache-Control' => 'max-age=0', 'Connection' => 'keep-alive' ) );
 		</code>
 		
 	    </div>
