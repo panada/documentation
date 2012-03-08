@@ -121,15 +121,15 @@
                 
                 <p>Pada umumnya jika kita ingin mendapatkan nilai dari variable $_POST kita menggunakan:</p>
 		<code>
-		    $my_value = $_POST['my_value'];
+		    $myValue = $_POST['myValue'];
 		</code>
 		<p>Jika tidak difilter, cara ini kurang baik karena dapat mebuka celah keamanan. Untuk mengatasi hal ini class Request mempersiapkan method:</p>
 		<code>
-		    $this->request->post('value_name', filter_type, flags);
+		    $this->request->post(key_name, filter_type, flags);
 		</code>
 		<p>Dimana:</p>
 		<ul>
-		    <li><strong>value_name</strong>, adalah nama nilai variable POST yang akan didapat.</li>
+		    <li><strong>key_name</strong>, adalah nama nilai variable POST yang akan didapat.</li>
 		    <li><strong>filter_type</strong>, adalah tipe filter yang diinginkan.</li>
 		    <li><strong>flags</strong>, flag dari tipe filter yang dipilih (opsional).</li>
 		</ul>
@@ -141,11 +141,11 @@
 		
 		<p>Untuk mendapatkan nilai dari variable GET, gunakan method:</p>
 		<code>
-		    $this->request->get('value_name', filter_type, flags);
+		    $this->request->get(key_name, filter_type, flags);
 		</code>
 		<p>Dimana:</p>
 		<ul>
-		    <li><strong>value_name</strong>, adalah nama nilai variable GET yang akan didapat.</li>
+		    <li><strong>key_name</strong>, adalah nama nilai variable GET yang akan didapat.</li>
 		    <li><strong>filter_type</strong>, adalah tipe filter yang diinginkan.</li>
 		    <li><strong>flags</strong>, flag dari tipe filter yang dipilih (opsional).</li>
 		</ul>
@@ -156,11 +156,11 @@
 		
 		<p>Untuk mendapatkan nilai dari variable COOKIE, gunakan method:</p>
 		<code>
-		    $this->request->cookie('value_name', filter_type, flags);
+		    $this->request->cookie(key_name, filter_type, flags);
 		</code>
 		<p>Dimana:</p>
 		<ul>
-		    <li><strong>value_name</strong>, adalah nama nilai variable COOKIE yang akan didapat.</li>
+		    <li><strong>key_name</strong>, adalah nama nilai variable COOKIE yang akan didapat.</li>
 		    <li><strong>filter_type</strong>, adalah tipe filter yang diinginkan.</li>
 		    <li><strong>flags</strong>, flag dari tipe filter yang dipilih (opsional).</li>
 		</ul>
@@ -169,28 +169,26 @@
 	    <div class="main">
                 <h3>Sample</h3>
 		
-<textarea rows="34" cols="50" class="textarea">
+<textarea rows="37" cols="50" class="textarea">
 &lt;?php
+namespace Controllers;
+use Resources;
 
-class Controller_sample extends Panada {
+class Sample extends Resources\Controller {
 
     public function __construct(){
         
         parent::__construct();
-	$this->request = new Library_request();
-    }
-    
-    public function index(){
-    
+	$this->request = new Resources\Request;
     }
     
     public function request(){
 	
         if( $this->request->post('submit') ){
 	    
-            $user_email = $this->request->post('user_email', FILTER_VALIDATE_EMAIL);
+            $userEmail = $this->request->post('user_email', FILTER_VALIDATE_EMAIL);
             
-            if ($user_email) {
+            if ($userEmail) {
                 
                 echo 'Email format valid';
                 
@@ -207,10 +205,10 @@ class Controller_sample extends Panada {
 	    </div>
 	    
 	    <div class="main">
-                <h3>strip_tags_attributes</h3>
+                <h3>stripTagsAttributes</h3>
 		<p>Jika Anda mengizinkan input berupa tag HTML, tetapi hanya beberapa tag saja yang diperbolehkan, maka Anda bisa menggunakan method:</p>
 		<code>
-			$this->request->strip_tags_attributes($string, $allowtags = null, $allowattributes = null);
+			$this->request->stripTagsAttributes($string, $allowtags = null, $allowattributes = null);
 		</code>
 		
 		<ul>
@@ -222,17 +220,15 @@ class Controller_sample extends Panada {
 		<h4>Contoh</h4>
 <textarea rows="24" cols="50" class="textarea">
 &lt;?php
+namespace Controllers;
+use Resources;
 
-class Controller_sample extends Panada {
+class Sample extends Resources\Controller {
 
     public function __construct(){
         
         parent::__construct();
-	$this->request = new Library_request();
-    }
-    
-    public function index(){
-    
+	$this->request = new Resources\Request;
     }
     
     public function request(){
@@ -240,8 +236,8 @@ class Controller_sample extends Panada {
         $str = 'Ini adalah artikel saya dengan &lt;a href="http://www.google.com"&gt;link&lt;/a&gt; tetapi tidak boleh &lt;b&gt;bold&lt;/b&gt;';
 	
 	echo 'Original: ' . $str;
-	echo '&lt;br /&gt;Strip: ' . $this->request->strip_tags_attributes($str, '&lt;a&gt;', 'href, rel');
-	echo '&lt;br /&gt;Allow tags img: ' . htmlentities($this->request->strip_tags_attributes($str, '&lt;a&gt;', 'href, rel'));
+	echo '&lt;br /&gt;Strip: ' . $this->request->stripTagsAttributes($str, '&lt;a&gt;', 'href, rel');
+	echo '&lt;br /&gt;Allow tags img: ' . htmlentities($this->request->stripTagsAttributes($str, '&lt;a&gt;', 'href, rel'));
     }
 }
 </textarea>
