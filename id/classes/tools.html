@@ -77,7 +77,6 @@
                                     <li><a href="#xml_decode">Xml Decode</a></li>
                                     <li><a href="#object_to_array">Object to Array</a></li>
                                     <li><a href="#array_to_object">Array to Object</a></li>
-                                    <li><a href="#sub_controller">Sub Controller</a></li>
                             </li>
                         </ul>
                     </li>
@@ -98,7 +97,7 @@
                 <h3 id="set_status_header">Set Status Header</h3>
                 <p>Memberikan status header sebelum output ditampilkan.</p>
                 <code>
-                    <b>void</b> Library_tools::set_status_header( <strong>int</strong> $code = 200, <strong>string</strong> $text = '');
+                    <b>void</b> Resources\Tools::setStatusHeader( <strong>int</strong> $code = 200, <strong>string</strong> $text = '');
                 </code>
                 
                 <h4>Parameter</h4>
@@ -131,7 +130,7 @@
                 <h3 id="get_random_string">Get Random String</h3>
                 <p>Method ini bisa digunakan untuk mendapatkan random string.</p>
                 <code>
-                    <b>string</b> Library_tools::get_random_string( <strong>int</strong> $length = 12, <strong>boolean</strong> $special_chars = true);
+                    <b>string</b> Resources\Tools::getRandomString( <strong>int</strong> $length = 12, <strong>boolean</strong> $specialChars = true);
                 </code>
                 
                 <h4>Parameter</h4>
@@ -150,7 +149,7 @@
 			<td>Jumlah karakter random yang diinginkan. Nilai default-nya adalah 12.</td>
 		    </tr>
 		    <tr class="odd">
-			<td>$special_chars</td>
+			<td>$specialChars</td>
 			<td>boolan</td>
 			<td>Menentukan apakah random stringnya menggunakan karakter sepsial atau tidak. Karakter tersebut adalah: '!@#$%^&amp;*()'</td>
 		    </tr>
@@ -164,7 +163,7 @@
                 <p>Meng-encode array menjadi xml.</p>
                 
                 <code>
-                    <b>string</b> Library_tools::xml_encode( <strong>array</strong> $data, <strong>string</strong> $root_node_name = 'data', <strong>string</strong> $xml = null);
+                    <b>string</b> Resources\Tools::xmlEncode( <strong>array</strong> $data, <strong>string</strong> $rootNodeName = 'data', <strong>string</strong> $xml = null);
                 </code>
                 
                 <h4>Parameter</h4>
@@ -183,7 +182,7 @@
 			<td>Sebuah data array yang akan di-encode menjadi data xml.</td>
 		    </tr>
                     <tr class="odd">
-			<td>$root_node_name</td>
+			<td>$rootNodeName</td>
 			<td>string</td>
 			<td>Nama tag induk xml.</td>
 		    </tr>
@@ -204,7 +203,7 @@
                 <p>Men-decode data xml menjadi object ataupun array.</p>
                 
                 <code>
-                    <b>array | object</b> Library_tools::xml_decode( <strong>string</strong> $xml, <strong>string</strong> $type = 'object');
+                    <b>array | object</b> Resources\Tools::xmlDecode( <strong>string</strong> $xml, <strong>string</strong> $type = 'object');
                 </code>
                 
                 <h4>Parameter</h4>
@@ -238,7 +237,7 @@
                 <p>Merubah sebuah data object menjadi array.</p>
                 
                 <code>
-                    <b>array</b> Library_tools::object_to_array($object);
+                    <b>array</b> Resources\Tools::objectToArray($object);
                 </code>
 		
 		<h4>Parameter</h4>
@@ -267,7 +266,7 @@
                 <p>Merubah sebuah data array menjadi object.</p>
                 
                 <code>
-                    <b>array</b> Library_tools::array_to_object($array);
+                    <b>array</b> Resources\Tools::arrayToObject($array);
                 </code>
 		
 		<h4>Parameter</h4>
@@ -289,11 +288,6 @@
 		</tbody>
 		</table>
                 
-            </div>
-	    
-	    <div class="main">
-                <h3 id="sub_controller">Sub Controller</h3>
-                <p>Keterangan lengkap mengenai method sub_controller bisa dilihat di bagian <a href="../references/controller.html#sub_controller">Controller</a></p>
             </div>
 	    
 	    <div id="discussion" class="main">
