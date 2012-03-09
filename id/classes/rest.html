@@ -90,7 +90,7 @@
                 <h3>Inisialisasi</h3>
                 <p>Baik untuk Provider ataupun Consumer, library REST harus diinisialisasi terlebih dahulu.</p>
 		<code>
-		    $this->rest = new Resources\Rest;
+		    <strong>object</strong> $this->rest = new Resources\Rest;
 		</code>
                 
             </div>
@@ -100,15 +100,15 @@
 		
 		<p>Sebagai penyedia layanan, maka aplikasi provider akan menerima request dari aplikasi consumer. Untuk menerima request ini gunakan method:</p>
 		<code>
-		    $data = $this->rest->getRequest();
+		    <strong>array</strong> $data = $this->rest->getRequest();
 		</code>
 		<p>Selain <strong>POST</strong> dan <strong>GET</strong>, REST juga menggunakan <strong>PUT</strong> dan <strong>DELETE</strong> sebagai method request. Untuk mendapatkan jenis request method ini gunakan:</p>
 		<code>
-		    $this->rest->requestMethod;
+		    <strong>string</strong> $this->rest->requestMethod;
 		</code>
 		
 		<p>Berikut adalah contoh controller untuk REST Provider.</p>
-<textarea rows="31" cols="50" class="textarea">
+<textarea rows="24" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
@@ -121,21 +121,19 @@ class Controller_sample extends Resources\Controller {
         $this->rest = new Resources\Rest;
     }
     
-    public function rest_provider(){
+    public function restProvider(){
 	
 	$data = $this->rest->getRequest();
         
 	$data['requestMethod'] = $this->rest->requestMethod;
 	
-	$this->rest->setResponseHeader(200);
-	
-	$this->outputJSON($data);
+	$this->outputJSON($data, 200);
     }
 }
 </textarea>
-		<p>Untuk memberikan status respons pada header, gunakan method berikut:</p>
+		<p>Untuk memberikan status respons pada header, tambahkan pada argument ke dua di dalam method outputJSON atau outputXML:</p>
 		<code>
-		    $this->rest->setResponseHeader(200);
+		    <strong>void</strong> $this->outputJSON($data, <strong>200</strong>);
 		</code>
 		<p>Berikut keterangan beberapa status header untuk digunakan sebagai respons provider.</p>
 		
@@ -185,11 +183,11 @@ class Controller_sample extends Resources\Controller {
 	    
 		<p>Dalam memberikan ouput data, aplikasi API umumnya menggunakan format xml atau json. Berikut adalah method untuk menampilkan data json:</p>
 		<code>
-		    $this->outputJSON($data);
+		    <strong>void</strong> $this->outputJSON($data);
 		</code>
 		<p>Sedangkan untuk menampilkan data berformat xml:</p>
 		<code>
-		    $this->outputXML($data);
+		    <strong>void</strong> $this->outputXML($data);
 		</code>
 		<br />
 		
@@ -269,20 +267,20 @@ class Controller_sample extends Resources\Controller {
 		<h4>HTTP Response Status</h4>
 		<p>Untuk mendapatkan status respon header, gunakan method:</p>
 		<code>
-		    $this->rest->responseStatus;
+		    <strong>integer</strong> $this->rest->responseStatus;
 		</code>
 		<br />
 		
 		<h4>HTTP Request Authorization</h4>
 		<p>Jika API Provider yang akan diakses membutuhkan otentifikasi misalnya HTTP Basic Auth, atau OAuth, maka Anda bisa memanfaatkan method <strong>setRequestAuthorization</strong></p>
 		<code>
-		    $this->rest->setRequestAuthorization($signature, $type = 'Basic');
+		    <strong>void</strong> $this->rest->setRequestAuthorization($signature, $type = 'Basic');
 		</code>
 		<br />
 		
 		<h4>Additional Request Header</h4>
 		<code>
-		    $this->rest->setRequestHeaders( array( 'Accept' => 'application/json', 'Cache-Control' => 'max-age=0', 'Connection' => 'keep-alive' ) );
+		    <strong>void</strong> $this->rest->setRequestHeaders( array( 'Accept' => 'application/json', 'Cache-Control' => 'max-age=0', 'Connection' => 'keep-alive' ) );
 		</code>
 		
 	    </div>
