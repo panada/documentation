@@ -290,7 +290,7 @@ class Home extends Resources\Controllers {
 namespace Controllers;
 use Resources;
 
-class User extends Resources/Controller {
+class User extends Resources\Controller {
     
     public function __construct(){
         
@@ -338,7 +338,7 @@ class User extends Resources/Controller {
 namespace Controllers;
 use Resources;
 
-class News extends Resources/Controller {
+class News extends Resources\Controller {
     
     public function __construct(){
         
@@ -371,10 +371,10 @@ class News extends Resources/Controller {
 
 <textarea rows="17" cols="50" class="textarea">
 &lt;?php
-namespace Controllers/Blog;
+namespace Controllers\Blog;
 use Resources;
 
-class Post extends Resources/Controller {
+class Post extends Resources\Controller {
     
     public function __construct(){
         
@@ -395,7 +395,7 @@ class Post extends Resources/Controller {
 namespace Controllers;
 use Resources;
 
-class News extends Resources/Controller {
+class News extends Resources\Controller {
     
     public function __construct(){
         
@@ -417,9 +417,9 @@ class News extends Resources/Controller {
 <textarea rows="29" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
-use Resources, Controllers/Blog;
+use Resources, Controllers\Blog;
 
-class Foo extends Resources/Controller {
+class Foo extends Resources\Controller {
     
     public function __construct(){
         
@@ -438,7 +438,7 @@ class Foo extends Resources/Controller {
     
     public function myBlog(){
     
-	$myBlog = new Blog/Post;
+	$myBlog = new Blog\Post;
 	$myBlog-&gt;index();
     }
 }

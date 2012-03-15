@@ -113,7 +113,7 @@ return array(
 		    <li>
 			Saat mendeklarasikan variable config di dalam componen, gunakan nama file config Anda sebagai nama method static config seperti contoh berikut:
 			<code>
-			    $this->myConfig = Resources/Config::<strong>example()</strong>;
+			    $this->myConfig = Resources\Config::<strong>example()</strong>;
 			</code>
 		</ul>
                 
@@ -123,13 +123,13 @@ namespace Controllers;
 use Resources;
 
 &lt;?php
-class Home extends Resources/Controller {
+class Home extends Resources\Controller {
     
     public function __construct(){
         
         parent::__construct();
 	
-	$this->myConfig = Resources/Config::example();
+	$this->myConfig = Resources\Config::example();
     }
     
     public function index(){
