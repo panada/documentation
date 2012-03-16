@@ -69,7 +69,7 @@
                                             <li><a href="#from">From</a></li>
 					    <li><a href="#join">Join</a></li>
                                             <li><a href="#where">Where</a></li>
-					    <li><a href="#group_by">Group By</a></li>
+					    <li><a href="#groupBy">Group By</a></li>
 					    <li><a href="#having">Having</a></li>
                                             <li><a href="#order_by">Order By</a></li>
                                             <li><a href="#limit">Limit</a></li>
@@ -273,10 +273,10 @@
 	    </div>
 	    
 	    <div class="main">
-		<h3 id="group_by">Group By</h3>
-                <p>Penggunaan method <strong>group_by()</strong>:</p>
+		<h3 id="groupBy">Group By</h3>
+                <p>Penggunaan method <strong>groupBy()</strong>:</p>
                 <code>
-		    $data = $this->db->select('id', 'name')->from('users')-><strong>group_by('name', 'id')</strong>->limit(10)->getAll();
+		    $data = $this->db->select('id', 'name')->from('users')-><strong>groupBy('name', 'id')</strong>->limit(10)->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -288,7 +288,7 @@
 		<h3 id="having">Having</h3>
 		<p>Berikut adalah contoh cara menggunakan method <strong>having()</strong>:</p>
 		<code>
-		    $data = $this->db->select('id', 'post_title')->from('posts')->group_by('post_author','id', 'post_title')-><strong>having('COUNT(id)', '>=', 2)</strong>->getAll();
+		    $data = $this->db->select('id', 'post_title')->from('posts')->groupBy('post_author','id', 'post_title')-><strong>having('COUNT(id)', '>=', 2)</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -348,7 +348,7 @@
 		<h3 id="command">Command</h3>
 		<p>Jika Anda ingin melihat output SQL dari <em>method chain</em> yang sudah dibuat, silahkan gunakan method <strong>_command()</strong>.</p>
 		<code>
-		    $sql = $this->db->select()->from('users')->group_by('name')->limit(10)->_command();<br />
+		    $sql = $this->db->select()->from('users')->groupBy('name')->limit(10)->_command();<br />
 		    die($sql);
 		</code>
 	    </div>
