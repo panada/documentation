@@ -125,10 +125,10 @@
             </div>
 	    
 	    <div class="main">
-                <h3>Properties getFileInfo</h3>
-                <p>Untuk mendapatkan data yang sudah berhasil diupload bisa menggunakan properties:</p>
+                <h3>getFileInfo()</h3>
+                <p>Untuk mendapatkan data yang sudah berhasil diupload bisa menggunakan method:</p>
 		<code>
-		    <b>array</b> $this->upload->getFileInfo;
+		    <b>array</b> $this->upload->getFileInfo();
 		</code>
 		<p>Informasi yang diberikan:</p>
 		<table>
@@ -173,7 +173,7 @@
                 <h3>Basic</h3>
                 <p>Sebelumnya, Anda harus menentukan lokasi folder tujuan upload. Yang harus diperhatikan adalah chmod dari folder tersebut harus 777.</p>
 		<code>
-		    $this->upload->folderLocation = 'uploads';
+		    $this->upload->setOption('folderLocation', 'uploads');
 		</code>
 		
 		<p>Anda membutuhkan sebuah form html untuk melakukan upload. Berikut contoh form di dalam file <strong>form_upload.php</strong> yang kemudian disimpan di folder <strong>app/view</strong></p>
@@ -214,7 +214,7 @@ class Sample extends Resources\Controller {
 	
         $this->upload = new Resources\Upload;
 	
-	$this->upload->folderLocation = 'uploads';
+	$this->upload->setOption('folderLocation','uploads');
 	
 	$data['messages'] = '';
 	
@@ -224,11 +224,11 @@ class Sample extends Resources\Controller {
 	    
 	    if($file) {
 		
-		$data['messages'] = $this->upload->getFileInfo;
+		$data['messages'] = $this->upload->getFileInfo();
 	    }
 	    else {
 		
-		$data['messages'] = $this->upload->error->message;
+		$data['messages'] = $this->upload->getError('message');
 	    }
 	}
 	
@@ -242,14 +242,14 @@ class Sample extends Resources\Controller {
 	    <div class="main">
                 <h3 id="autoRename">Auto Rename</h3>
 		
-		<p>Jika file yang sudah berhasil diupload dan ingin diberi nama baru secara otomatis, gunakan opsi <strong>$this->upload->autoRename</strong></p>
+		<p>Jika file yang sudah berhasil diupload dan ingin diberi nama baru secara otomatis, gunakan opsi <strong>autoRename</strong></p>
 		<code>
-		    $this->upload->autoRename = true;
+		    $this->upload->setOption('autoRename', true);
 		</code>
 		<p>Auto rename menggunakan fungsi <strong>time()</strong> dan <strong>rand()</strong> dari PHP. Contoh file yang berhasil diupload adalah <strong>12799728631007713596.jpg</strong>.</p>
 		<p>Anda juga bisa menentukan sendiri nama file yang sudah berhasil terupload dengan menggunakan opsi:</p>
 		<code>
-		    $this->upload->setFileName = 'new_file_name';
+		    $this->upload->setOption('setFileName', 'new_file_name');
 		</code>
 		<p>Contoh file yang berhasil terupload adalah <strong>new_file_name.jpg</strong>.</p>
 		
@@ -260,7 +260,7 @@ class Sample extends Resources\Controller {
 		
 		<p>Jika Anda ingin membuat sub-folder secara otomatis di dalam folder upload, maka gunakan opsi:</p>
 		<code>
-		    $this->upload->folderLocation = 'uploads/'.date('Y').'/'.date('m').'/';
+		    $this->upload->setOption('folderLocation', 'uploads/'.date('Y').'/'.date('m').'/');
 		</code>
 		<p>Struktur folder yang dibuat berdasarkan <strong>tahun_ini/bulan_ini</strong>, contohya adalah:</p>
 		<code>
@@ -274,7 +274,7 @@ class Sample extends Resources\Controller {
 		
 		<p>Untuk melakukan validasi tipe file, gunakan opsi:</p>
 		<code>
-			$this->upload->permittedFileType = 'gif|php|jpg|pdf';
+			$this->upload->setOption('permittedFileType', 'gif|php|jpg|pdf');
 		</code>
 		<p>Gunakan tanda <strong>|</strong> untuk memisahkan setiap jenis file. Pada contoh di atas maka file yang diijinkan diupload adalah file dengan ekstensi gif, php, jpg, dan pdf.</p>
 	    </div>
@@ -284,7 +284,7 @@ class Sample extends Resources\Controller {
 		
 		<p>Untuk melakukan validasi ukuran file, gunakan opsi:</p>
 		<code>
-			$this->upload->maximumSize = 1000000;
+			$this->upload->setOption('maximumSize', 1000000);
 		</code>
 		<p>Isikan opsi <strong>maximumSize</strong> dengan nilai dalam satuan byte. Untuk contoh di atas file yang bisa dipuload maksimal berukuran 1MB.</p>
 		
@@ -363,12 +363,12 @@ class Sample extends Resources\Controller {
 		</tbody>
 		</table>
 			
-			<p>Anda bisa melakukan modifikasi error-error ini dengan cara memberikan nilai baru pada pada array <strong>$this->upload->errorMessages</strong>, contohnya:</p>
+			<p>Anda bisa melakukan modifikasi error-error ini dengan cara memberikan nilai baru pada pada method <strong>$this->upload->setErrorMessage()</strong>, contohnya:</p>
 <textarea rows="5" cols="50" class="textarea">
-$errorMessages = $this->upload->errorMessages;
 $errorMessages[10] = 'Folder tidak tersedia.';
 $errorMessages[3] = 'File yang anda upload terlalu besar.';
-$this->upload->errorMessages = $errorMessages;
+
+$errorMessages = $this->upload->setErrorMessage($errorMessages);
 </textarea>
 		
 	    </div>
@@ -378,21 +378,21 @@ $this->upload->errorMessages = $errorMessages;
 		<P>Jika file yang diupload berupa image, Panada menggunakan class <a href="image.html">image</a> untuk melakukan pengeditan. Panada secara otomatis akan me-load class tersebut sehingga Anda tidak perlu lagi melakukannya secara manual.</P>
 		<p>Anda hanya perlu menambahkan opsi:</p>
 		<code>
-			$this->upload->editImage = array();
+			$this->upload->setOption( 'editImage', array() );
 		</code>
 		<p>Nilai array dari opsi edit_image mengacu pada library <a href="image.html">image</a>.</p>
 		<p>Berikut contoh melakukan uplaod image sekaligus resize dengan lebar maksimal 200:</p>
 		<code>
-			$this->upload->editImage = array('editType' => PIMG_RESIZE, 'resizeWidth' => 200);
+			$this->upload->setOption( 'editImage', array('editType' => PIMG_RESIZE, 'resizeWidth' => 200) );
 		</code>
 		
 		<p>Berikut contoh uplad image, resize dengan ukuran 400 dan sekaligus crop dengan ukuran 100 X 100:</p>
 		<code>
-			$this->upload->edit_image = array('editType' => PIMG_RESIZE_CROP, 'resizeWidth' => 400, 'cropWidth' => 100, 'cropHeight' => 100);
+			$this->upload->setOption( 'editImage', array('editType' => PIMG_RESIZE_CROP, 'resizeWidth' => 400, 'cropWidth' => 100, 'cropHeight' => 100) );
 		</code>
 		<p>Berikut melakukan uplad image, resize dengan ukuran 400, crop dengan ukuran 100 X 100, simpan dengan nama file cropped:</p>
 		<code>
-			$this->upload->edit_image = array('editType' => PIMG_RESIZE_CROP, 'resizeWidth' => 400, 'cropWidth' => 100, 'cropHeight' => 100, 'newFileName' => 'cropped');
+			$this->upload->setOption( 'editImage', array('editType' => PIMG_RESIZE_CROP, 'resizeWidth' => 400, 'cropWidth' => 100, 'cropHeight' => 100, 'newFileName' => 'cropped') );
 		</code>
 		
 	    </div>
@@ -401,7 +401,7 @@ $this->upload->errorMessages = $errorMessages;
                 <h3 id="sample">Sample</h3>
 		
 		<p>Berikut adalah contoh controller upload dilengkapi dengan beberapa opsi:</p>
-<textarea rows="48" cols="50" class="textarea">
+<textarea rows="55" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
@@ -416,18 +416,26 @@ class Sample extends Resources\Controller {
 	
         $this->upload = new Resources\Upload;
 	
-	$this->upload->folderLocation = 'uploads';
-	$this->upload->autoRename = true;
-	$this->upload->autoCreateFolder = true;
-	$this->upload->permittedFileType = 'gif|png|jpg';
-	$this->upload->maximumSize = 1000000;
-	
-	$errorMessages = $this->upload->errorMessages;
-	$errorMessages[10] = 'Folder tidak tersedia.';
-	$errorMessages[3] = 'File yang anda upload terlalu besar.';
-	$this->upload->errorMessages = $errorMessages;
-	
-	$this->upload->edit_image = array('editType' => PIMG_RESIZE, 'resizeWidth' => 200);
+	$this->upload
+	    ->setOption(
+		array(
+		    'folderLocation' => 'uploads',
+		    'autoRename' => true,
+		    'autoCreateFolder' => true,
+		    'permittedFileType' => 'gif|png|jpg',
+		    'maximumSize' => 1000000,
+		    'editImage' => array(
+			'editType' => PIMG_RESIZE,
+			'resizeWidth' => 200
+		    )
+		)
+	    )
+	    ->setErrorMessage(
+		array(
+		    10 => 'Folder tidak tersedia.',
+		    3 => 'File yang anda upload terlalu besar.'
+		)
+	    )
 	
 	$data['messages'] = '';
 	
@@ -437,15 +445,15 @@ class Sample extends Resources\Controller {
 	    
 	    if($file) {
 		
-		$data['messages'] = $this->upload->getFileInfo;
+		$data['messages'] = $this->upload->getFileInfo();
 	    }
 	    else {
 		
-		$data['messages'] = $this->upload->error->message;
+		$data['messages'] = $this->upload->getError('message');
 	    }
 	}
 	
-	$this->view_form_upload($data);
+	$this->output('form_upload', $data);
     }
 }
 </textarea>

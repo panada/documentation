@@ -92,56 +92,76 @@
 		<code>
 		    $this->email = new Resources\Email;
 		</code>
-		<p>Setelah itu gunakan method mail() untuk pengiriman email.
+		<p>Isikan method <strong>to()</strong>, <strong>subject()</strong>, <strong>message()</strong>, <strong>from()</strong> dan terakhir method <strong>mail()</strong> untuk pengiriman email.
 		<code>
-		    $this->email->mail(to, subject, message, from_email, from_name);
+		    $send = $this->email->to()->subject()->message()->from()->mail();
 		</code>
 		
-		<p>Parameter yang harus diisikan adalah:</p>
+		<p>Method yang tersedia adalah:</p>
                 
 		<ul>
 		    <li>
-			<h4>to</h4>
+			<h4>to()</h4>
 			<p>Isikan dengan alamat email tujuan. Untuk mengisi parameter ini bisa dilakukan dengan tiga cara yaitu: <strong>string satu email</strong>, <strong>string multiple email</strong> dan <strong>array</strong>.</p>
 			
 			<ul>
 			    <li>
 				<p>string satu email, contohnya:</p>
 				<code>
-				    $this->email->mail('budi@example.com', 'the subject', 'email messages', 'my@test.com', 'my name');
+				    $this->email->mail('budi@example.com');
 				</code>
 			    </li>
 			    <li>
 				<p>string multiple email harus dipisahkan dengan tanda koma (,) diantara email satu dengan lainnya, contohnya:</p>
 				<code>
-				    $this->email->mail('budi@test.com, ard@example.com, jhon@noone.com', 'the subject', 'email messages', 'my@test.com', 'my name');
+				    $this->email->mail('budi@test.com, ard@example.com, jhon@noone.com');
 				</code>
 			    </li>
 			    <li>
 				<p>array, contohnya:</p>
 				<code>
-				    $this->email->mail(array('budi@test.com', 'ard@example.com', 'jhon@noone.com'), 'the subject', 'email messages', 'my@test.com', 'my name');
+				    $this->email->mail( array('budi@test.com', 'ard@example.com', 'jhon@noone.com') );
 				</code>
 			    </li>
 			</ul>
 		    </li>
 		    <li>
-			<h4>subject</h4>
+			<h4>subject()</h4>
 			<p>Isikan dengan subject email.</p>
 			
 		    </li>
 		    <li>
-			<h4>message</h4>
+			<h4>message()</h4>
 			<p>Isikan dengan pesan email.</p>
 			
 		    </li>
 		    <li>
-			<h4>from_email</h4>
-			<p>Alamat email pengirim.</p>
+			<h4>from()</h4>
+			<p>Alamat email dan nama pengirim.</p>
+			<ul>
+			    <li>
+				<code>
+				    from('me@example.com');
+				</code>
+			    </li>
+			    <li>
+				<code>
+				    from('me@example.com', 'My Name');
+				</code>
+			    </li>
+			</ul>
 		    </li>
 		    <li>
-			<h4>from_name (<em>optional</em>)</h4>
-			<p>Nama pengirim.</p>
+			<h4>cc()</h4>
+			<p>Alamat email yang akan di cc.</p>
+		    </li>
+		    <li>
+			<h4>bcc()</h4>
+			<p>Alamat email yang akan di bcc.</p>
+		    </li>
+		    <li>
+			<h4>setOption()</h4>
+			<p>Opsi konfigurasi dalam pengiriman email.</p>
 		    </li>
 		</ul>
             </div>
@@ -151,7 +171,7 @@
                 
 		<p>Berikut contoh cara menggunakan library email di dalam sebuah controller:</p>
 		
-<textarea rows="24" cols="50" class="textarea">
+<textarea rows="30" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
@@ -167,7 +187,12 @@ class Home extends Resources\Controller {
     
     public function index(){
         
-        $send = $this->email->mail('budi@example.com', 'the subject', 'email messages', 'my@test.com', 'my name');
+        $send = $this->email
+	    ->to('budi@example.com')
+	    ->subject('the subject')
+	    ->message('email messages')
+	    ->from('my@test.com', 'my name')
+	    ->mail();
         
         if( $send )
             echo 'success';
@@ -183,7 +208,7 @@ class Home extends Resources\Controller {
 	
 		<p>Berikut adalah contoh untuk mengirimkan email via SMTP Server:</p>
 
-<textarea rows="28" cols="50" class="textarea">
+<textarea rows="38" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
@@ -198,12 +223,20 @@ class Home extends Resources\Controller {
     
     public function index(){
         
-        $this->email->smtpHost = 'smtphost';
-	$this->email->smtpUsername = 'username';
-	$this->email->smtpPassword = 'password';
-        
-        $send = $this->email->mail('budi@example.com', 'the subject', 'email messages', 'my@test.com', 'my name');
-        
+        $send = $this->email
+	    ->setOption(
+		array(
+		    'smtpHost' => 'smtphost',
+		    'smtpUsername' => 'username',
+		    'smtpPassword' => 'password'
+		)
+	    )
+	    ->to('budi@example.com')
+	    ->subject('the subject')
+	    ->message('email messages')
+	    ->from('my@test.com', 'my name')
+	    ->mail();
+	    
         if( $send )
             echo 'success';
         else
@@ -213,14 +246,14 @@ class Home extends Resources\Controller {
 </textarea>
 		<p>Jika port <strong>SMTP</strong> yang digunakan bukan 25 (default), silahkan set di bagian:</p>
 		<code>
-		    $this->email->smtpPort = 25;
+		    'smtpPort' => 25
 		</code>
 		<p>Jika koneksi yang digunakan menggunakan <strong>SSL</strong> silahkan set bagian berikut:</p>
 		<code>
-		    $this->email->smtpSecure = 'ssl';
+		    'smtpSecure' => 'ssl'
 		</code>
 		<p>Berikut adalah contoh penggunaan <strong>SSL</strong> dan <strong>port 465</strong> dengan menggunakan SMTP Gmail:</p>
-<textarea rows="29" cols="50" class="textarea">
+<textarea rows="39" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
@@ -235,13 +268,21 @@ class Home extends Resources\Controller {
     
     public function index(){
         
-	$this->email->smtpHost = 'smtp.gmail.com';
-	$this->email->smtpUsername = 'USERNAMEANDA@gmail.com';
-	$this->email->smtpPassword = 'PASSWORD GMAIL ANDA';
-	$this->email->smtpPort = 465;
-	$this->email->smtpSecure = 'ssl';
-        
-        $send = $this->email->mail('budi@example.com', 'the subject', 'email messages', 'my@test.com', 'my name');
+        $send = $this->email
+	    ->setOption(
+		array(
+		    'smtpHost' => 'smtp.gmail.com',
+		    'smtpUsername' => 'USERNAMEANDA@gmail.com',
+		    'smtpPassword' => 'PASSWORD GMAIL ANDA',
+		    'smtpPort' => 465,
+		    'smtpSecure' => 'ssl'
+		)
+	    )
+	    ->to('budi@example.com')
+	    ->subject('the subject')
+	    ->message('email messages')
+	    ->from('my@test.com', 'my name')
+	    ->mail();
         
         if( $send )
             echo 'success';
@@ -258,7 +299,7 @@ class Home extends Resources\Controller {
 		
 		<p>Berikut adalah contoh untuk mengirimkan email dengan format HTML:</p>
 
-<textarea rows="59" cols="50" class="textarea">
+<textarea rows="67" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
@@ -273,8 +314,6 @@ class Home extends Resources\Controller {
     }
     
     public function index(){
-        
-        $this->email->messageType = 'html';
 	
 	$message = '&lt;html&gt;
             &lt;head&gt;
@@ -305,7 +344,17 @@ class Home extends Resources\Controller {
 		&lt;/body&gt;
 		&lt;/html&gt;';
         
-        $send = $this->email->mail('budi@example.com', 'the subject', $message, 'my@test.com', 'my name');
+        $send = $this->email
+	    ->setOption(
+		array(
+		    messageType = 'html'
+		)
+	    )
+	    ->to('budi@example.com')
+	    ->subject('the subject')
+	    ->message($message)
+	    ->from('my@test.com', 'my name')
+	    ->mail();
         
         if( $send )
             echo 'success';
@@ -325,7 +374,7 @@ class Home extends Resources\Controller {
 		</code>
 		<p>Berikut adalah contoh penggunaannya:</p>
 
-<textarea rows="20" cols="50" class="textarea">
+<textarea rows="28" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
@@ -341,8 +390,14 @@ class Home extends Resources\Controller {
     
     public function index(){
         
-        $send = $this->email->mail('budi@example.com', 'the subject', 'email messages', 'my@test.com', 'my name');
-        $this->email->printDebug();
+	$send = $this->email
+	    ->to('budi@example.com')
+	    ->subject('the subject')
+	    ->message($message)
+	    ->from('my@test.com', 'my name')
+	    ->mail();
+	    
+        echo $this->email->printDebug();
     }
 }
 </textarea>
