@@ -144,9 +144,9 @@ class Sample extends Resources\Controller {
 	    
 	    <div class="main">
                 <h3>Tipe Encode</h3>
-		<p>Secara default class Encryption menggunakan <strong>Resources\Encryption::BASE_64</strong> untuk encoding. Anda juga bisa menggunakan tipe lainnya. Pilihannya adalah: <strong>Resources\Encryption::NONE</strong>, <strong>Resources\Encryption::BASE_64</strong> dan <strong>Resources\Encryption::::HEXA_DECIMAL</strong></p>
+		<p>Secara default class Encryption menggunakan <strong>PCRYPT_BASE_64</strong> untuk encoding. Anda juga bisa menggunakan tipe lainnya. Pilihannya adalah: <strong>PCRYPT_NONE</strong>, <strong>PCRYPT_BASE_64</strong> dan <strong>PCRYPT_HEXA_DECIMAL</strong></p>
 		<code>
-		    $this->crypt = new Resources\Encryption('mySecreteToken', Resources\Encryption::::HEXA_DECIMAL);
+		    $this->crypt = new Resources\Encryption('mySecreteToken', PCRYPT_HEXA_DECIMAL);
 		</code>
 	    </div>
             <div id="discussion" class="main">
