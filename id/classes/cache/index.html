@@ -152,7 +152,7 @@ class Comments {
     public function __construct(){
         
 	// Cache koneksi default
-	$this->cache = new Resources\Cache();
+	$this->cache = new Resources\Cache;
 	
 	// Cache koneksi 2
 	$this->cache2 = new Resources\Cache('memcached');
