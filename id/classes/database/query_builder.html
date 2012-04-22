@@ -51,6 +51,7 @@
                             <li><a href="../../references/autoloader.html">Auto Loader</a></li>
                             <li><a href="../../references/global_method.html">Global Method dan Properties</a></li>
 			    <li><a href="../../references/module.html">Module</a></li>
+			    <li><a href="../../references/vendor.html">Vendor</a></li>
 			    <li><a href="../../references/upgrade.html">Upgrade</a></li>
                         </ul>
                             
@@ -71,7 +72,7 @@
                                             <li><a href="#where">Where</a></li>
 					    <li><a href="#groupBy">Group By</a></li>
 					    <li><a href="#having">Having</a></li>
-                                            <li><a href="#order_by">Order By</a></li>
+                                            <li><a href="#orderBy">Order By</a></li>
                                             <li><a href="#limit">Limit</a></li>
 					    <li><a href="#command">Command</a></li>
                                             <li><a href="#Insert_id">Insert Id</a></li>
@@ -297,10 +298,10 @@
 	    </div>
             
             <div class="main">
-		<h3 id="order_by">Order By</h3>
-                <p>Untuk mengurutkan hasil pencarian data, Anda bisa menggunakan method <strong>order_by()</strong></p>
+		<h3 id="orderBy">Order By</h3>
+                <p>Untuk mengurutkan hasil pencarian data, Anda bisa menggunakan method <strong>orderBy()</strong></p>
                 <code>
-		    $data = $this->db->select()->from('users')-><strong>order_by('id')</strong>->getAll();
+		    $data = $this->db->select()->from('users')-><strong>orderBy('id')</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -308,7 +309,7 @@
 		</code>
                 <p>Cara yang lain:</p>
                 <code>
-		    $data = $this->db->select()->from('users')-><strong>order_by('id', 'DESC')</strong>->getAll();
+		    $data = $this->db->select()->from('users')-><strong>orderBy('id', 'DESC')</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -316,7 +317,7 @@
 		</code>
                 <p>Penggunaan dengan method <strong>where()</strong>:</p>
                  <code>
-		    $data = $this->db->select()->from('users')->where('id', '>', 1)-><strong>order_by('id', 'DESC')</strong>->getAll();
+		    $data = $this->db->select()->from('users')->where('id', '>', 1)-><strong>orderBy('id', 'DESC')</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -328,7 +329,7 @@
 		<h3 id="limit">Limit</h3>
                 <p>Argument pertama digunakan untuk menentukan jumlah limit. Berikut adalah cara penggunaan method <strong>limit()</strong>:</p>
                 <code>
-		    $data = $this->db->select()->from('users')->where('id', '>', 1)->order_by('id', 'DESC')-><strong>limit(3)</strong>->getAll();
+		    $data = $this->db->select()->from('users')->where('id', '>', 1)->orderBy('id', 'DESC')-><strong>limit(3)</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>
@@ -336,7 +337,7 @@
 		</code>
                 <p>Sedangkan argument ke dua digunakan untuk menentukan nilai offset:</p>
                 <code>
-		    $data = $this->db->select()->from('users')->where('id', '>', 1)->order_by('id', 'DESC')-><strong>limit(6,2)</strong>->getAll();
+		    $data = $this->db->select()->from('users')->where('id', '>', 1)->orderBy('id', 'DESC')-><strong>limit(6,2)</strong>->getAll();
 		</code>
 		<p>Method ini menghasilkan output data SQL:</p>
 		<code>

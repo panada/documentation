@@ -188,6 +188,10 @@ class Home extends Resources\Controller {
     }
 }
 </textarea>
+		<p>Jika ingin melakukan pemanggilan static method, isikan string di argument ke dua dengan format <strong>ClassName::staticMethod</strong> seperti contoh berikut:</p>
+		<code>
+		    $this->myStatic = Resources/Import::vendor('MyOwnLibs/MyClass', 'MyClass::myStaticMethod', array('arg1', 'arg2') );
+		</code>
             </div>
             
 	    <div id="discussion" class="main">
