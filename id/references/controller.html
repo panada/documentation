@@ -92,20 +92,20 @@
         <div class="content">
             <div class="lead">
                 <h2>Controller</h2>
-                <p>Dalam terminologi MVC, controller adalah file yang menghubungkan requset dari view ke model. Di dalam controller ini pula dilakukan pengolahan logic sebelum dikirimkan ke file view untuk ditampilkan ke user.</p>
+                <p>Dalam terminologi MVC, controller adalah file yang menghubungkan request dari view ke model. Di dalam controller ini pula dilakukan pengolahan logic sebelum dikirimkan ke file view untuk ditampilkan ke user.</p>
             </div>
            
 	    <div id="controller_acces" class="main">
                 <h3>Mengakses Controller</h3>
-                <p>Controller di Panada adalah sebuah class yang dalam mengaksesnya menggunakan path url tertentu. Nama path url mewakili nama controller. Sebagai contoh, Jika Anda akses alamat:</p>
+                <p>Controller di Panada adalah sebuah class yang dalam mengaksesnya menggunakan path url tertentu. Nama path url mewakili nama controller. Sebagai contoh, jika Anda akses alamat:</p>
                 <code>
                     http://www.mysite.com/index.php/welcome
                 </code>
-                <p>Maka yang menjadi controller-nya adalah <strong>welcome</strong>. Atau:</p>
+                <p>maka yang menjadi controller-nya adalah <strong>welcome</strong>. Atau:</p>
                 <code>
                     http://www.mysite.com/home
                 </code>
-                <p>Maka yang menjadi controller-nya adalah <strong>home</strong>.</p>
+                <p>maka yang menjadi controller-nya adalah <strong>home</strong>.</p>
             </div>
             
 	    <div id="default_controller" class="main">
@@ -163,7 +163,7 @@ dan class untuk model dengan namespace <strong>"Models"</strong>
             
 	    <div id="controllers_method" class="main">
                 <h3>Controller Method</h3>
-                <p>Sebuah controller setidak-tidaknya harus menggunakan namespace <strong>Resources</strong> yang akan digunakan untuk melakukan extend terhadap calsss Controllers. Jika controller
+                <p>Sebuah controller setidak-tidaknya harus menggunakan namespace <strong>Resources</strong> yang akan digunakan untuk melakukan extend terhadap class Controllers. Jika controller
 ini dikases tanpa argumen apapun, maka method yang akan diakses adalah index.</p>
             
                 <p>Jika aplikasi diakses dengan alamat:</p>
@@ -247,7 +247,7 @@ class Home extends Resources\Controllers {
 	$this->users = new Models\Users;
 	
 	// Load library
-        $this->test = new Libraries\test;
+        $this->test = new Libraries\Test;
         
     }
     
@@ -263,7 +263,7 @@ class Home extends Resources\Controllers {
                 <h3>Alias Controller</h3>
                 <p>Alias controller adalah sebuah controller di mana dalam mengakesnya tidak perlu disebutkan secara eksplisit pada alamat URL.</p>
                 <p>Sebagai gambaran, sering kita jumpai sebuah website memberikan fasilitas dinamik/personal url bagi usernya, misalnya <strong>http://www.facebook.com/WordPress</strong> atau <strong>http://twitter.com/mongodb</strong>.
-                Fasilitas ini akan memudahkan user untuk me-<em>share</em> halaman profilenya ke orang lain karena mudah untuk diingat.</p>
+                Fasilitas ini akan memudahkan user untuk melakukan <em>sharing</em> halaman profilenya ke orang lain karena mudah untuk diingat.</p>
                 <p>Feature yang sama juga digunakan pada aplikasi pemendek URL seperti <a href="http://bit.ly" target="_blank">bit.ly</a>.</p>
                 <p>Untuk membuat fasilitas ini Panada menyediakan feature <strong>Alias Controller</strong> yang konfigurasinya terletak di dalam file <strong>app/config/main.php</strong>.</p>
                 
@@ -300,12 +300,11 @@ class User extends Resources\Controller {
     
     public function index($user){
 	
-	&lt;?php echo $user; ?&gt;
-	// Outputnya adalah mandriva
+	echo $user; // Outputnya adalah mandriva
     }
 }
 </textarea>
-		<p>Setelah mendapatkan nilai argumen, maka Anda bisa memanfaatkannya untuk melakukan pengecekan pada databse misalnya.</p>
+		<p>Setelah mendapatkan nilai argumen, maka Anda bisa memanfaatkannya untuk melakukan pengecekan pada database misalnya.</p>
 		<div class="notice">
 		    <p>Yang perlu diperhatikan adalah, jika sebelumnya sudah ada controller dengan nama yang sama dengan argumen yang dikirimkan, maka yang akan dieksekusi adalah controller dan argumen tersebut akan diabaikan.</p>
 		</div>
@@ -313,7 +312,7 @@ class User extends Resources\Controller {
             
 	    <div id="alias_method" class="main">
                 <h3>Alias Method</h3>
-                <p>Cara kerja Alis Method mirip dengan Alias Controller bedanya, fasilitas ini berlaku pada level controller.</p>
+                <p>Cara kerja Alias Method mirip dengan Alias Controller bedanya, fasilitas ini berlaku pada level method controller.</p>
                 <p>Sebagai contoh, jika Anda memiliki sebuah controller bernama <strong>news</strong> dan di dalamnya memiliki sebuah method
                  bernama <strong>read</strong>, maka jika ingin mengakses artikel dengan id <strong>10</strong> maka urlnya menjadi:</p>
                 <code>
@@ -323,8 +322,8 @@ class User extends Resources\Controller {
                 <code>
                     http://www.mysite.com/news/10
                 </code>
-                <p>Cara kerjanya adalah, semua argumen requset yang ada setelah nama controller akan diteruskan ke method alias.</p>
-                <p>Untuk menjalankan feature ini, yang perlu dilakukan adalah mendefenisikan nama method yang menjadi method alias di dalam file config/main.php.
+                <p>Cara kerjanya adalah, semua argumen request yang ada setelah nama controller akan diteruskan ke method alias.</p>
+                <p>Untuk menjalankan feature ini, yang perlu dilakukan adalah mendefinisikan nama method yang menjadi method alias di dalam file config/main.php.
                  Secara default, nama dari method alias ini adalah <strong>alias</strong>:</p>
                 
 <textarea rows="5" cols="50" class="textarea">
@@ -364,7 +363,7 @@ class News extends Resources\Controller {
             
 	    <div id="sub_controller" class="main">
                 <h3>Sub Controller</h3>
-		<p>Anda bisa menambahkan sebuah folder di dalam folder controller <strong>app/Controllers/</strong> sesuai dengan kebutuhan. Sub-controller ini nantinya juga akan bisa diakses melalui alamt url seperti berikut:</p>
+		<p>Anda bisa menambahkan sebuah folder di dalam folder controller <strong>app/Controllers/</strong> sesuai dengan kebutuhan. Sub-controller ini nantinya juga akan bisa diakses melalui alamat url seperti berikut:</p>
 		<code>
 		    http://mysite.com/<strong>FolderName</strong>/<strong>ControllerName</strong>/<strong>MethodNmae</strong>
 		</code>
@@ -389,7 +388,7 @@ class Post extends Resources\Controller {
 </textarea>
 
                 <p>Anda juga bisa memanggil sebuah controller lain dari dalam sebuah controller dengan mengacu kepada namespace yang digunakan.</p>
-                <p>Berikut contoh cara penggunaanya. Pertama buat sebuah controller yang akan menjadi sub controller:</p>
+                <p>Berikut contoh cara penggunaannya. Pertama buat sebuah controller yang akan menjadi sub controller:</p>
                     
 <textarea rows="22" cols="53" class="textarea">
 &lt;?php
