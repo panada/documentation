@@ -93,7 +93,7 @@
                 <p>Module adalah sebuah sub-aplikasi yang memiliki komponen lengkap seperti layaknya aplikasi utama yang terdiri dari Model, View, Controller dan Library. Yang membedakannya adalah sebuah module harus digabungkan ke dalam aplikasi utama dan tidak dapat berdiri sendiri.
                 </p>
                 <p>Resource sebuah module bisa langsung diakses dari dalam controller utama. Module ini akan memberikan output resource melalui interface controller module. Resource sebuah module juga dimungkinkan untuk diakses melalui URL routing. Sebuah module juga dapat mengakses resource dari module lain.</p>
-                <p>Hierarki interaksi dari sebuah controller utama ke dalam controller module, ataupun dari sebuah controller module kepada controller module lainnya sering juga disebut Hierarchical Model View Controller(HMVC). Lebih jauh mengenai ini silahkan lihat <a target="_blank" href="http://en.wikipedia.org/wiki/Presentation-abstraction-control">Presentation Abstraction Control (PAC)</a>.</p>
+                <p>Hierarki interaksi dari sebuah controller utama ke dalam controller module, ataupun dari sebuah controller module kepada controller module lainnya sering juga disebut <em>Hierarchical Model View Controller</em> (HMVC). Lebih jauh mengenai ini silahkan lihat <a target="_blank" href="http://en.wikipedia.org/wiki/Presentation-abstraction-control">Presentation Abstraction Control (PAC)</a>.</p>
             </div>
 	    
 	    <div class="main">
@@ -334,7 +334,7 @@ class Home extends Resources\Controller {
                 <code>
                     http://website.com/index.php/<strong>NamaModule</strong>/<strong>NamaController</strong>/<strong>namaMethod</strong>/<strong>argument</strong>
                 </code>
-                <p>Atau jika mode_rewite telah diaktifkan:</p>
+                <p>Atau jika mod_rewite telah diaktifkan:</p>
                 <code>
                     http://website.com/<strong>NamaModule</strong>/<strong>NamaController</strong>/<strong>namaMethod</strong>/<strong>argument</strong>
                 </code>
