@@ -109,7 +109,7 @@
         <div class="content">
             <div class="lead">
                 <h2>Query Builder</h2>
-                <p>Query Builder membantu Anda untuk membuat query database secara dinamas dengan lebih cepat. Sebagian besar penggunaan
+                <p>Query Builder membantu Anda untuk membuat query database secara dinamis dengan lebih cepat. Sebagian besar penggunaan
                 method diakses dengan cara <strong>Method Chaining</strong>.</p>
 		<p>Untuk menggunakan feature ini pastikan konfigurasi koneksi ke database sudah benar. Untuk detail panduan koneksi database, silahkan klik di halaman <a href="index.html#config">configuration</a>.</p>
             </div>
@@ -389,10 +389,12 @@
 		</code>
 		<p>Penggunaan method getOne-nya adalah:</p>
 		
-<textarea rows="4" cols="50" class="textarea">			
-$data = $this->db->getOne('table_name', array('id' => 1, 'status' => '0'), array('id', 'name', 'status') );
-echo $data->email;
-</textarea>
+                <code>		
+                    $data = $this->db->getOne('table_name', array('id' => 1, 'status' => '0'), array('id', 'name', 'status') );<br />
+                    echo $data->id;<br />
+                    echo $data->name;<br />
+                    echo $data->status;<br />
+                </code>
 	    </div>
 	    
 	    <div class="main">
@@ -403,15 +405,13 @@ echo $data->email;
 			"SELECT id, name, email FROM table_name WHERE status = '1'"
 		</code>
 		<p>Maka penggunaan Method getAll-nya adalah:</p>
-<textarea rows="8" cols="50" class="textarea">
-$data = $this->db->getAll('table_name', array('id' => 1, 'email' => 'budi@budi.com'), array('field_1', 'field_2'));
-
-foreach ($data as $data) {
-    
-    echo $data->field_1;
-    echo $data->field_2;
-}
-</textarea>
+                <code>
+                    $data = $this->db->getAll('table_name', array('id' => 1, 'email' => 'budi@budi.com'), array('field_1', 'field_2')); <br />
+                    foreach ($data as $data) { <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $data->field_1; <br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;echo $data->field_2; <br />
+                    } <br />
+                </code>
 	    </div>
 	    
 	    <div class="main">
@@ -429,7 +429,7 @@ foreach ($data as $data) {
 	    
 	    <div class="main">
                 <h3 id="update">Update</h3>
-		<p>Untuk meng-update record dengan cara:</p>
+		<p>Untuk melakukan update record dengan cara:</p>
 		<code>
 			$query = $this->db->update('table_name', array('name' => 'jhon gmail', 'email' => 'jhon@gmail.com'), array('id' => 6));
 		</code>
