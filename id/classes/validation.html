@@ -117,6 +117,7 @@ class Registration extends Resources\Validation {
                     'required',
                     'min' => 3,
                     'max' => 10,
+                    'regex' => '/^([-a-z0-9_-])+$/i',
                     'callback' => 'usernameExists'
                 ),
                 'label' => 'Username',
