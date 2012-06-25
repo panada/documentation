@@ -1,0 +1,423 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+    <title>Panada PHP Framework 1.0.0 Documentation - Form Validation</title>
+    <link rel="stylesheet" href="../../style.css" type="text/css" media="screen" />
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+	    <a target="_blank" href="http://panadaframework.com/"><img src="../../images/logo.png" height="21" border="0" /></a>
+	</div>
+        <div class="menu">
+            <form action="http://www.google.com/search" method="get">
+	    <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
+            <input class="search-input" type="text" name="q" /><button class="search-button" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="subheader">
+        <h1>Panada Framework 1.0.0 Documentation</h1>
+    </div>
+    
+    <div class="wrapper">
+        <div class="sidebar">
+            <div class="navigation">
+                <ul>
+                    <li>
+                        <a href="../index.html">Umum</a>
+                        <ul>
+                            <li><a href="../index.html#about">Tentang Panada</a></li>
+                            <li><a href="../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
+                            <li><a href="../index.html#license">Lisensi</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="../config.html">Konfigurasi</a>
+                        <ul>
+                            <li><a href="../config.html#general">Dasar</a></li>
+                            <li><a href="../config.html#additional_config">Tambahan</a></li>
+                            <li><a href="../config.html#webserver">Webserver</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Referensi
+                        <ul>
+                            <li><a href="../references/controller.html">Controller</a></li>
+                            <li><a href="../references/model.html">Model</a></li>
+                            <li><a href="../references/view.html">View</a></li>
+                            <li><a href="../references/library.html">Library</a></li>
+                            <li><a href="../references/autoloader.html">Auto Loader</a></li>
+                            <li><a href="../references/global_method.html">Global Method dan Properties</a></li>
+			    <li><a href="../references/module.html">Module</a></li>
+			    <li><a href="../references/vendor.html">Vendor</a></li>
+			    <li><a href="../references/upgrade.html">Upgrade</a></li>
+                        </ul>
+                            
+                    </li>
+                    <li>
+                        <a href="index.html">Resources</a>
+                        <ul>
+                            <li><a href="database/index.html">Database</a></li>
+			    <li><a href="cache/index.html">Cache</a></li>
+                            <li><a href="session.html">Session</a></li>
+                            <li><a href="pagination.html">Pagination</a></li>
+                            <li><a href="email.html">Email</a></li>
+                            <li><a href="encryption.html">Encryption</a></li>
+                            <li><a href="upload.html">Upload</a></li>
+                            <li><a href="image.html">Image</a></li>
+                            <li><a href="request.html">Request</a></li>
+                            <li><a href="rest.html">RESTfull</a></li>
+			    <li><a href="tools.html">Tools</a></li>
+			    <li><a href="validation.html">Form Validation</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../contribution.html">Kontribusi</a></li>
+                    <li><a href="../credit.html">Credit</a></li>
+                </ul>
+	    </div>
+            
+        </div>
+        
+        <div class="content">
+            <div class="lead">
+                <h2>Form Validation</h2>
+                <p>Hal yang paling umum dilakukan pada aplikasi berbasis web adalah mengumpulkan data dari user. Data dikumpulkan melalui satu atau lebih form HTML. Data yang sudah
+                terkumpul harus diolah, divalidasi dan kemudian ditampilkan pesan error jika ada data yang tidak sesuai.</p>
+                
+                <p>Untuk mempermudah proses ini, Panada telah menyediakan tools validasi yang bisa digunakan untuk mempercepat pengolahan data yang bersumber dari form HTML.</p>
+	    
+            </div>
+            
+            <div class="main">
+                <h3>Validation Rule</h3>
+                <p>Petama-tama harus dibuat validation rule yang diletakkan di dalam sebuah class <a href="../references/model.html">model</a>. Class model ini harus extend dari class <strong>Resources\Validation</strong>. List rule di tempatkan pada sebuah method dengan nama <strong>setRules</strong>. Berikut adalah contoh rule untuk form registration:</p>
+<textarea rows="89" cols="50" class="textarea">
+&lt;?php
+namespace Models;
+use
+    Resources;
+
+class Registration extends Resources\Validation {
+    
+    public function setRules()
+    {
+        return array(
+            'name' => array(
+                'rules' => array(
+                    'required',
+                    'min' => 3
+                ),
+                'label' => 'Full Name',
+                'filter' => array('trim', 'strtolower', 'ucwords')
+            ),
+            'username' => array(
+                'rules' => array(
+                    'required',
+                    'min' => 3,
+                    'max' => 10,
+                    'callback' => 'usernameExists'
+                ),
+                'label' => 'Username',
+                'filter' => array('trim', 'strtolower')
+            ),
+            'email' => array(
+                'rules' => array(
+                    'required',
+                    'min' => 3,
+                    'email',
+                    'callback' => 'emailExists'
+                ),
+                'label' => 'Email',
+                'filter' => array('trim', 'strtolower')
+            ),
+            'password' => array(
+                'rules' => array(
+                    'required',
+                    'min' => 5,
+                    'compare' => 'repassword'
+                ),
+                'label' => 'Password'
+            ),
+            'repassword' => array(
+                'rules' => array(
+                    'required'
+                ),
+                'label' => 'Retype Password'
+            ),
+            'photo' => array(
+                'rules' => array(
+                    'file'
+                ),
+                'label' => 'Profile Pic'
+            )
+        );
+    }
+    
+    public function usernameExists($field, $value, $label)
+    {
+        if( $value != 'admin' )
+            return true;
+        
+        $this->setErrorMessage($field, 'Username already exists.');
+        
+        return false;
+    }
+    
+    public function emailExists($field, $value, $label)
+    {
+        if( $value != 'admin@site.com' )
+            return true;
+        
+        $this->setErrorMessage($field, 'Email already exists.');
+        
+        return false;
+    }
+}
+
+</textarea>
+		<h4>Keterangan</h4>
+                <ul>
+                <li>username, email, password, repassword dan photo adalah nama atribut <strong>name</strong> yang ada di setiap field form HTML.</li>
+                <li>rules adalah <a href="#rule-list">daftar rule</a> yang ingin diimplementasikan.</li>
+                <li>label adalah nama label yang digunakan untuk memudahkan user melakukan input.</li>
+                <li>filter, adalah daftar nama fungsi yang digunakan untuk mem-filter nilai input. Fungsi yang digunakan adalah semua fungsi native PHP yang bisa menerima satu parameter.</li>
+                </ul>
+                <p>Setelah ini kita kan buat sebuah file view.</p>
+                
+                <h3>View File</h3>
+                <p>Langkah selanjutnya adalah membuat sebuah file view yang berisi tag HTML dengan field-field yang dibutuhkan. Berikut adalah sebuah file dengan nama registration_form.php</p>
+<textarea rows="40" cols="50" class="textarea">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;Panada Form Registration&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;ul&gt;&lt;?php echo $registration-&gt;errorMessages(false, '&lt;li&gt;', '&lt;/li&gt;');?&gt;&lt;/ul&gt;
+
+&lt;form action="" method="post" enctype="multipart/form-data"&gt;
+
+&lt;?php echo $registration-&gt;errorMessages('name', '&lt;p&gt;', '&lt;/p&gt;');?&gt;
+
+Full Name: &lt;input type="text" name="name" value="&lt;?php echo $registration-&gt;value('name');?&gt;"&gt;&lt;br&gt;
+
+&lt;?php echo $registration-&gt;errorMessages('username', '&lt;p&gt;', '&lt;/p&gt;');?&gt;
+
+Username: &lt;input type="text" name="username" value="&lt;?php echo $registration-&gt;value('username');?&gt;"&gt;&lt;br&gt;
+
+&lt;?php echo $registration-&gt;errorMessages('email', '&lt;p&gt;', '&lt;/p&gt;');?&gt;
+
+Email: &lt;input type="text" name="email" value="&lt;?php echo $registration-&gt;value('email');?&gt;"&gt;&lt;br&gt;
+
+&lt;?php echo $registration-&gt;errorMessages('password', '&lt;p&gt;', '&lt;/p&gt;');?&gt;
+
+Password: &lt;input type="password" name="password" value="&lt;?php echo $registration-&gt;value('password');?&gt;"&gt;&lt;br&gt;
+
+&lt;?php echo $registration-&gt;errorMessages('repassword', '&lt;p&gt;', '&lt;/p&gt;');?&gt;
+
+Retype Password: &lt;input type="password" name="repassword" value="&lt;?php echo $registration-&gt;value('repassword');?&gt;"&gt;&lt;br&gt;
+
+Profile Pic: &lt;input type="file" name="photo"&gt;&lt;br&gt;
+
+&lt;input type="submit" name="submit" value="Submit"&gt;
+    
+&lt;/form&gt;
+&lt;/body&gt;
+</textarea>
+                <h4>Keterangan</h4>
+                <p>Pada file HTML di atas, kita sudah menggunakan method <strong>$registration->errorMessages()</strong>. Jika method ini digunakan tanpa parameter apapun, maka nilai returnnya adalah array yang berisi daftar pesan error.</p>
+                <p>Jika penggunaan parameternya seperti berikut <strong>$registration->errorMessages(false, '&lt;li&gt;', '&lt;/li&gt;')</strong>, maka data ditampilkan berupa string yang setiap errornya diawali dengan tag <strong>&lt;li&gt;</strong> dan diakhiri dengan tag <strong>&lt;/li&gt;</strong>.</p>
+                <p>Jika parameter pertama diisi dengan nama field maka error yang ditampilkan adalah error pada field tersebut.</p>
+            </div>
+	    
+	    <div class="main">
+                <h3>Controller</h3>
+		
+		<p>Berikut adalah contoh controller untuk menerima request dari form HTML.</p>
+<textarea rows="30" cols="50" class="textarea">
+&lt;?php
+namespace Controllers;
+use Resources, Models;
+
+class FormValidation extends Resources\Controller {
+    
+    public function __construct()
+    {
+        parent::__construct();
+    }
+    
+    public function index()
+    {
+        $registration = new Models\Registration;
+        
+        if( $_SERVER['REQUEST_METHOD'] == 'POST' ) {
+            
+            if( $registration->validate() ){
+                echo '&lt;pre&gt';
+                print_r( $registration->value() );
+                echo '&lt;/pre&gt';
+            }
+            
+        }
+        
+        $this->output('registration_form', array('registration' => $registration) );
+    }
+}
+</textarea>
+		<p>Method <strong>validate()</strong> akan memberikan nilai true atau false:</p>
+		<code>
+		    <strong>bool</strong> $registration->validate();
+		</code>
+		<p>Jika method validate() memberikan nilai <strong>true</strong> maka nilai input yang sudah divalidasi bisa didapatkan dari method <strong>value()</strong>.</p>
+		<code>
+		    <strong>array</strong> $registration->value();
+		</code>
+		
+	    </div>
+	    
+	    <div class="main">
+                <h3 id="rule-list">Rule List</h3>
+		
+		<p>Berikut adalah datar rule yang bisa digunakan:</p>
+		
+		<table>
+		    <thead>
+			<tr>
+			    <th scope="col">Rule</th>
+			    <th scope="col">Keterangan</th>
+			    <th scope="col">Contoh</th>
+			</tr>
+		    </thead>
+		<tbody>
+		    <tr>
+			<td>required</td>
+			<td>Nilai field tidak boleh dikosongkan.</td>
+			<td>rules => array('required')</td>
+		    </tr>
+		    <tr class="odd">
+			<td>email</td>
+			<td>Nilai field harus berformat email.</td>
+                        <td>rules => array('email')</td>
+		    </tr>
+		    <tr>
+			<td>min</td>
+			<td>Nilai field harus tidak kurang dari nilai yang telah ditentukan.</td>
+                        <td>rules => array('min' => 3)</td>
+		    </tr>
+                    <tr class="odd">
+			<td>max</td>
+			<td>Nilai field harus tidak lebih dari nilai yang telah ditentukan.</td>
+                        <td>rules => array('max' => 10)</td>
+		    </tr>
+                    <tr>
+			<td>compare</td>
+			<td>Membandingkan nilai sebuah field dengan field lain yang telah ditentukan.</td>
+                        <td>rules => array('max' => 10)</td>
+		    </tr>
+                    <tr class="odd">
+			<td>file</td>
+			<td>Nilai field file tidak boleh dikosongkan.</td>
+                        <td>rules => array('compare' => 'comparator_field')</td>
+		    </tr>
+                    <tr>
+			<td>in</td>
+			<td>Membandingkan nilai sebuah field dengan nilai yang sudah ditentukan sebelumnya.</td>
+                        <td>rules => array('in' => array('male','female'))</td>
+		    </tr>
+                    <tr class="odd">
+			<td>regex</td>
+			<td>Membandingkan nilai sebuah field dengan pola regular expression yang sudah ditentukan sebelumnya.</td>
+                        <td>rules => array('regex' => '/[^a-zA-Z0-9s .,"\']/')</td>
+		    </tr>
+                    <tr>
+			<td>url</td>
+			<td>Nilai field harus berformat URL.</td>
+                        <td>rules => array('url')</td>
+		    </tr>
+                    <tr class="odd">
+			<td>alpha</td>
+			<td>Nilai sebuah field harus alphabet.</td>
+                        <td>rules => array('alpha')</td>
+		    </tr>
+                    <tr>
+			<td>numeric</td>
+			<td>Nilai field harus berformat numeric.</td>
+                        <td>rules => array('numeric')</td>
+		    </tr>
+                    <tr class="odd">
+			<td>alphanumeric</td>
+			<td>Nilai sebuah field harus alphabet dan atau numeric.</td>
+                        <td>rules => array('alphanumeric')</td>
+		    </tr>
+                    <tr>
+			<td>match</td>
+			<td>Jumlah karakter nilai sebuah field sejumlah tertentu dengan ukuran yang sudah ditentukan sebelumnya.</td>
+                        <td>rules => array('match' => 7)</td>
+		    </tr>
+                    <tr class="odd">
+			<td>callback</td>
+			<td>Nilai sebuah field divalidasi pada sebuah method yang kita buat sendiri.</td>
+                        <td>rules => array('callback' => 'methodName')</td>
+		    </tr>
+		</tbody>
+		</table>
+		
+	    </div>
+            
+            <div class="main">
+                <h3 id="rule-list">Costume Error Message</h3>
+                <p>Kita bisa melakukan kostumasi terhadap pesan error yang ingin ditampilkan. Untuk melakukan ini kita bisa menggunakan method <strong>setRuleErrorMessages()</strong> yang dipanggil pada constructor model seperti contoh berikut:</p>
+<textarea rows="24" cols="50" class="textarea">
+&lt;?php
+namespace Models;
+use
+    Resources;
+
+class Registration extends Resources\Validation {
+    
+    public function __construct()
+    {
+        parent::__construct();
+        
+        $this->setRuleErrorMessages(
+            array(
+                'required' => '%label% tidak boleh kosong',
+                'email' => '%label% harus berformat email',
+                'min' => '%label% jumlah karakter yang diberikan minimal berjumlah %size%',
+                'max' => '%label% jumlah karakter yang diberikan maksimal berjumlah %size%',
+            )
+        );
+    }
+}
+
+</textarea>
+                <p>Nilai <strong>%label%</strong>, <strong>%size%</strong> dan <strong>%comparatorLabel%</strong> akan digantikan dengan nilai yang sudah ditentukan.</p>
+            </div>
+            <div id="discussion" class="main">
+		<h3>Diskusi</h3>
+		<div id="disqus_thread"></div>
+	    </div>
+        
+        </div>
+        
+    </div>
+          
+    <div class="footer">
+        <span class="right">All Rights Reserved.</span>
+    </div>
+    <script type="text/javascript">
+	var disqus_shortname = 'panada';
+	var disqus_url = 'http://panadaframework.com/documentation/id/classes/validation.html';
+	var disqus_identifier = disqus_url;
+	(function() {
+	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	})();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</body>
+</html>
