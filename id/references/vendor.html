@@ -1,8 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
 <head>
-    <title>Panada PHP Framework 1.0.0 Documentation - Vendor</title>
-    <link rel="stylesheet" href="../../style.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../style.css" type="text/css" media="screen" />
+<script>
+var disqus_url = 'references/vendor.html';
+</script>
+<script src="../../panada.js"></script>
+<title>Panada PHP Framework 1.0.0 Documentation - Vendor</title>
 </head>
 <body>
     <div class="header">
@@ -194,6 +198,53 @@ class Home extends Resources\Controller {
 		    $this->myStatic = Resources/Import::vendor('MyOwnLibs/MyClass', 'MyClass::myStaticMethod', array('arg1', 'arg2') );
 		</code>
             </div>
+	    
+	    <div class="main">
+		<h3>Composer</h3>
+		<p>Kini Panada secara natif telah mendukung penggunaan <a href="http://getcomposer.org/">composer</a>. Untuk menjalankan composer pastikan file composer.json telah tersedia.</p>
+		<p>Kita perlu menambahkan informasi folder panada/vendors ini di dalam composer.json seperti contoh berikut:</p>
+<textarea rows="18" cols="50" class="textarea">
+{
+    "config": {
+        "vendor-dir": "panada/vendors"
+    }
+}
+</textarea>
+		<p>Sebagi contoh jika kita ingin menggunakan library <a href="https://github.com/bobthecow/mustache.php">mustache</a> di dalam aplikasi kita, maka file composer.json-nya akan seperti:</p>
+<textarea rows="18" cols="50" class="textarea">
+{
+    "config": {
+        "vendor-dir": "panada/vendors"
+    },
+    "require": {
+        "mustache/mustache": "*"
+    }
+}
+</textarea>
+		<p>Jalankan composer install untuk men-download library yang dibutuhkan.</p>
+		<p>Pada saat proses install, composer akan membuatkan file autoload.php di dalam folder vendor. Panada akan menggunakan file ini untuk me-load semua resource dari composer. Untuk itu pastikan file ini telah tersedia. Untuk menggunakan package yang ada di dalam vendor bisa dengan cara:</p>
+<textarea rows="18" cols="50" class="textarea">
+&lt;?php
+namespace Controllers;
+use Resources;
+
+class MyController extends Resources\Controller {
+    
+    public function __construct(){
+        
+        parent::__construct();
+        Resources\Import::composer();
+    }
+    
+    public function index(){
+        
+        $m = new \Mustache_Engine;
+        
+        echo $m->render('Hello {{planet}}', array('planet' => 'World!'));
+    }
+}
+</textarea>
+	    </div>
             
 	    <div id="discussion" class="main">
 		<h3>Diskusi</h3>
@@ -205,15 +256,5 @@ class Home extends Resources\Controller {
     <div class="footer">
 	<span class="right">All Rights Reserved.</span>
     </div>
-    <script type="text/javascript">
-	var disqus_shortname = 'panada';
-	var disqus_url = 'http://panadaframework.com/documentation/id/references/vendor.html';
-	var disqus_identifier = disqus_url;
-	(function() {
-	    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-	    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	})();
-    </script>
 </body>
 </html>
