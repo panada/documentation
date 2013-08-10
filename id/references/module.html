@@ -1,121 +1,131 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="../../style.css" type="text/css" media="screen" />
-<title>Panada PHP Framework 1.0.0 Documentation - Module</title>
+<meta charset="utf-8">
+<title>Panada PHP Framework 1.1.0 Documentation - Autoloader</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-	    <a target="_blank" href="http://panadaframework.com/"><img src="../../images/logo.png" height="21" border="0" /></a>
-	</div>
-        <div class="menu">
-            <form action="http://www.google.com/search" method="get">
-	    <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
-            <input class="search-input" type="text" name="q" /><button class="search-button" type="submit">Search</button>
+<div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../../images/logosimple.png"></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="http://panadaframework.com/">Home</a></li>
+	      <li><a href="https://github.com/panada/Panada">Source</a></li>
+		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
+		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
+		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
+		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
+            </ul>
+            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
+                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
+                <div class="input-append">
+                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
+                    <button class="btn" type="button"><i class="icon-search"></i></button>
+                </div>
             </form>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
+</div>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Panada Framework 1.1.0 Documentation</h1>
     </div>
-    <div class="subheader">
-        <h1>Panada Framework 1.0.0 Documentation</h1>
-    </div>
-    <div class="wrapper">
-        <div class="sidebar">
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="../index.html">Umum</a>
-                        <ul>
-                            <li><a href="../index.html#about">Tentang Panada</a></li>
-                            <li><a href="../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
-                            <li><a href="../index.html#license">Lisensi</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="../config.html">Konfigurasi</a>
-                        <ul>
-                            <li><a href="../config.html#general">Dasar</a></li>
-                            <li><a href="../config.html#additional_config">Tambahan</a></li>
-                            <li><a href="../config.html#webserver">Webserver</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Referensi
-                        <ul>
-                            <li><a href="controller.html">Controller</a></li>
-                            <li><a href="model.html">Model</a></li>
-                            <li><a href="view.html">View</a></li>
-                            <li><a href="library.html">Library</a></li>
-                            <li><a href="autoloader.html">Auto Loader</a></li>
-                            <li><a href="global_method.html">Global Method dan Properties</a></li>
-                            <li>
-                                <a class="active" href="module.html">Module</a>
-                                <ul>
-                                    <li><a href="#create_module">Membuat Module</a></li>
-                                    <li><a href="#config_module">Konfigurasi Module</a></li>
-                                    <li><a href="#controller_module">Controller Module</a></li>
-                                    <li><a href="#view_module">View Module</a></li>
-                                    <li><a href="#model_module">Model Module</a></li>
-                                    <li><a href="#library_module">Library Module</a></li>
-                                    <li><a href="#using_module">Penggunaan Module</a></li>
-                                    <li><a href="#discussion">Diskusi</a></li>
-                                </ul>
-                            </li>
-			    <li><a href="vendor.html">Vendor</a></li>
-			    <li><a href="upgrade.html">Upgrade</a></li>
-                        </ul>
-                            
-                    </li>
-                    <li>
-                        <a href="../classes/index.html">Resources</a>
-                        <ul>
-                            <li><a href="../classes/database/index.html">Database</a></li>
-                            <li><a href="../classes/cache/index.html">Cache</a></li>
-                            <li><a href="../classes/session.html">Session</a></li>
-                            <li><a href="../classes/pagination.html">Pagination</a></li>
-                            <li><a href="../classes/email.html">Email</a></li>
-                            <li><a href="../classes/encryption.html">Encryption</a></li>
-                            <li><a href="../classes/upload.html">Upload</a></li>
-                            <li><a href="../classes/image.html">Image</a></li>
-                            <li><a href="../classes/request.html">Request</a></li>
-                            <li><a href="../classes/rest.html">RESTfull</a></li>
-			    <li><a href="../classes/tools.html">Tools</a></li>
-			    <li><a href="../classes/validation.html">Form Validation</a></li>
-                        </ul>
-                    </li>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"><a href="../index.html" class="muted">Umum</a></li>
+                    <li><a href="../index.html#about">Tentang Panada</a></li>
+                    <li><a href="../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
+                    <li><a href="../index.html#requirement">Requirement</a></li>
+                    <li><a href="../index.html#license">Lisensi</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../config.html" class="muted">Konfigurasi</a></li>
+                    <li><a href="../config.html#general">Dasar</a></li>
+                    <li><a href="../config.html#additional_config">Tambahan</a></li>
+                    <li><a href="../config.html#webserver">Webserver</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Referensi</li>
+                    <li><a href="controller.html">Controller</a></li>
+                    <li><a href="model.html">Model</a></li>
+                    <li><a href="view.html">View</a></li>
+                    <li><a href="library.html">Library</a></li>
+                    <li><a href="autoloader.html">Auto Loader</a></li>
+                    <li><a href="global_method.html">Global Method dan Properties</a></li>
+                    <li class="active"><a href="module.html">Module</a></li>
+		    <li>
+			<ul>
+			    <li><a href="#create_module">Membuat Module</a></li>
+			    <li><a href="#config_module">Konfigurasi Module</a></li>
+			    <li><a href="#controller_module">Controller Module</a></li>
+			    <li><a href="#view_module">View Module</a></li>
+			    <li><a href="#model_module">Model Module</a></li>
+			    <li><a href="#library_module">Library Module</a></li>
+			    <li><a href="#using_module">Penggunaan Module</a></li>
+			    <li><a href="#discussion">Diskusi</a></li>
+			</ul>
+		    </li>
+                    <li><a href="vendor.html">Vendor</a></li>
+                    <li><a href="upgrade.html">Upgrade</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../classes/index.html" class="muted">Resources</a></li>
+                    <li><a href="../classes/database/index.html">Database</a></li>
+                    <li><a href="../classes/cache/index.html">Cache</a></li>
+                    <li><a href="../classes/session.html">Session</a></li>
+                    <li><a href="../classes/pagination.html">Pagination</a></li>
+                    <li><a href="../classes/email.html">Email</a></li>
+                    <li><a href="../classes/encryption.html">Encryption</a></li>
+                    <li><a href="../classes/upload.html">Upload</a></li>
+                    <li><a href="../classes/image.html">Image</a></li>
+                    <li><a href="../classes/request.html">Request</a></li>
+                    <li><a href="../classes/rest.html">RESTfull</a></li>
+                    <li><a href="../classes/tools.html">Tools</a></li>
+                    <li><a href="../classes/validation.html">Form Validation</a></li>
+                    <li class="divider"></li>
                     <li><a href="../contribution.html">Kontribusi</a></li>
                     <li><a href="../credit.html">Credit</a></li>
                 </ul>
-	    </div>
-        </div>
-        <div class="content">
-            <div class="lead">
-                <h2>Module</h2>
+            </div><!--/.well -->
+        </div><!--/span-->
+      <div class="span9">
+        <div class="row-fluid">
+                <div class="page-header"><h2>Module</h2></div>
                 <p>Module adalah sebuah sub-aplikasi yang memiliki komponen lengkap seperti layaknya aplikasi utama yang terdiri dari Model, View, Controller dan Library. Yang membedakannya adalah sebuah module harus digabungkan ke dalam aplikasi utama dan tidak dapat berdiri sendiri.
                 </p>
                 <p>Resource sebuah module bisa langsung diakses dari dalam controller utama. Module ini akan memberikan output resource melalui interface controller module. Resource sebuah module juga dimungkinkan untuk diakses melalui URL routing. Sebuah module juga dapat mengakses resource dari module lain.</p>
                 <p>Hierarki interaksi dari sebuah controller utama ke dalam controller module, ataupun dari sebuah controller module kepada controller module lainnya sering juga disebut <em>Hierarchical Model View Controller</em> (HMVC). Lebih jauh mengenai ini silahkan lihat <a target="_blank" href="http://en.wikipedia.org/wiki/Presentation-abstraction-control">Presentation Abstraction Control (PAC)</a>.</p>
             </div>
 	    
-	    <div class="main">
-                <h3 id="config_module">Konfigurasi Module</h3>
+	    <div class="row-fluid" id="config_module">
+                <div class="page-header"><h2>Konfigurasi Module</h2></div>
 		<p>Konfigurasi module dilakukan di dalam file <strong>app/config/main.php</strong>.</p>
-		
-<textarea rows="6" cols="50" class="textarea">
+<pre>
 'module' => array(
-
     'path' => GEAR,
-    
 ),
-</textarea>
+</pre>
                 <h4>Penjelasan:</h4>
-		<table>
-		<thead>
-		<tr>
-                    <th scope="col">Parameter</th>
-                    <th scope="col">Keterangan</th>
-		</tr>
-		</thead>
+		<table class="table table-bordered">
+		    <thead>
+			<tr>
+			    <th scope="col">Parameter</th>
+			    <th scope="col">Keterangan</th>
+			</tr>
+		    </thead>
 		<tbody>
 		<tr>
                     <td>path</td>
@@ -125,24 +135,20 @@
 		</tr>
 		</tbody>
 		</table>
-                
             </div>
             
-            
-            <div class="main">
-                <h3 id="create_module">Membuat Module</h3>
+            <div class="row-fluid" id="create_module">
+                <div class="page-header"><h2>Membuat Module</h2></div>
                 <p>Buat sebuah folder dan beri nama sesuai dengan nama module yang ingin dibuat. Letakkan folder ini di dalam direktori <strong>Modules</strong>:</p>
-                <code>
-                    panada/Modules/<strong>NamaModule</strong>
-                </code>
+                <pre>panada/Modules/<strong>NamaModule</strong></pre>
                 <p>Sebuah module setidaknya harus terdiri dari:</p>
-<textarea rows="5" cols="50" class="textarea">
+<pre>
 NamaModule/
     Controllers/
         home.php
-</textarea>
+</pre>
                 <p>Namun demikian sebaiknya digunakan struktur secara lengkap seperti berikut ini:</p>
-<textarea rows="15" cols="50" class="textarea">
+<pre>
 NamaModule/
     Controllers/
         Home.php
@@ -156,31 +162,26 @@ NamaModule/
         LibraryClass.php
     views/
         index.php
-</textarea>
+</pre>
             </div>
             
         
-            <div class="main">
-                <h3 id="controller_module">Controller Module</h3>
+            <div class="row-fluid">
+                <div class="page-header"><h2 id="controller_module">Controller Module</h2></div>
                 <p>Membuat sebuah controller di dalam module sama seperti membuat <a href="controller.html#create_controller">controller</a> pada aplikasi utama. Yang membedakannya adalah penggunaan namespace yang dilengkapi nama module.</p>
-		<code>
-		    namespace Modules\<strong>NamaModule</strong>\Controllers;
-		</code>
+		<pre>namespace Modules\<strong>NamaModule</strong>\Controllers;</pre>
                 <p>Jika misalnya Anda memiliki module dengan nama <strong>User</strong> dan sebuah controller <strong>Home</strong>, maka nama namespace-nya adalah:</p>
-		<code>
-		    namespace Modules\<strong>User</strong>\Controllers;
-		</code>
-		
+		<pre>namespace Modules\<strong>User</strong>\Controllers;</pre>
                 <p>Berikut adalah contoh kodenya:</p>
-<textarea rows="37" cols="50" class="textarea">
+<pre>
 &lt;?php
 namespace Modules\User\Controllers;
 use Resources,  Modules\User;
 
-class Home extends Resources\Controller {
-    
-    public function __construct(){
-        
+class Home extends Resources\Controller
+{    
+    public function __construct()
+    {    
         parent::__construct();
         
 	// Load library dari module User
@@ -193,8 +194,8 @@ class Home extends Resources\Controller {
         $this->request = new Resources\Request;
     }
     
-    public function index(){
-        
+    public function index()
+    {
         $this->output(
             'index',
             array(
@@ -206,158 +207,140 @@ class Home extends Resources\Controller {
         );
     }
 }
-</textarea>
+</pre>
                 <p>Penggunaan namespace <strong>Modules\NamaModule\</strong> juga berlaku untuk memanggil komponen library atau model yang ada di dalam module. Sebagaimana yang ada pada contoh di atas.</p>
                 <p>Contoh memanggil sebuah model:</p>
-                <code>
-                    $this->dummy = new Models\ModelDummy;
-                </code>
+                <pre>$this->dummy = new Models\ModelDummy;</pre>
                 <p>Contoh memanggil sebuah library:</p>
-                <code>
-                    $this->test = new Libraries\Test;
-                </code>
+                <pre>$this->test = new Libraries\Test;</pre>
                 <p>Untuk memanggil resource natif panada:</p>
-                <code>
-                    $this->request = new Resources\Request;
-                </code>
+                <pre>$this->request = new Resources\Request;</pre>
                 <p>Dengan pola seperti ini, Anda juga bisa langsung memanggil library atau model yang ada pada module lain. Terlebih dahulu deklarasikan <strong>use</strong> dari module lain yang akan digunakan.</p>
-		<code>
-		    use Modules\<strong>ModuleLain</strong>;
-		</code>
+		<pre>use Modules\<strong>ModuleLain</strong>;</pre>
                 <p>Contoh memanggil sebuah model dari module lain:</p>
-                <code>
-                    $this->dummy2 = new ModuleLain\Models\Dummy;
-                </code>
+                <pre>$this->dummy2 = new ModuleLain\Models\Dummy;</pre>
                 <p>Contoh memanggil sebuah library dari module lain:</p>
-                <code>
-                    $this->test2 = new ModuleLain\Libraries\Test;
-                </code>
+                <pre>$this->test2 = new ModuleLain\Libraries\Test;</pre>
                 <p><a href="controller.html#alias_method">Alias Method</a> juga tetap bisa diimplementasikan pada controller yang berada di dalam module. Nama method alias yang ada di dalam controller module mengikuti nama yang didefenisikan pada konfigurasi aplikasi utama.</p>
             </div>
             
-            <div class="main">
-                <h3 id="view_module">View Module</h3>
+            <div class="row-fluid">
+                <div class="page-header"><h2 id="view_module">View Module</h2></div>
                 <p>Pemanggilan file view di dalam controller module tidak ada perbedaan dengan pemanggilan <a href="view.html">view</a> pada aplikasi utama.</p>
             </div>
-            <div class="main">
-                <h3>Model Module</h3>
+            <div class="row-fluid">
+                <div class="page-header"><h2>Model Module</h2></div>
                 <p>Sama seperti controller, pembuatan nama class untuk sebuah model di dalam module harus diawali dengen namespace <strong>Modules\NamaModule\Models</strong> kemudian diikuti dengan nama model.</p>
-<textarea rows="13" cols="50" class="textarea">
+<pre>
 &lt;?php
 namespace Modules\User\Models;
 
-class Dummy {
-    
-    public function str(){
-        
+class Dummy
+{    
+    public function str()
+    {
         return 'This string return from model dummy class located in model folder within this module.';
     }
 }
-</textarea>
-            
+</pre>
             </div>
-            <div class="main">
-                <h3 id="library_module">Library Module</h3>
+            <div class="row-fluid">
+                <div class="page-header"><h2 id="library_module">Library Module</h2></div>
                 <p>Demikian juga hal yang sama berlaku pada nama class untuk library. Namespace-nya adalah <strong>Modules\NamaModule\Libraries</strong>.</p>
 
-<textarea rows="13" cols="50" class="textarea">
+<pre>
 &lt;?php
 namespace Modules\NamaModule\Libraries;
 
-class Test {
-    
-    public function str(){
-        
+class Test
+{    
+    public function str()
+    {
         return 'This string return from library test class located in library folder within this module.';
     }
 }
-</textarea>
-            
+</pre>
             </div>
-            <div class="main">
-                <h3 id="using_module">Penggunaan Module</h3>
+            <div class="row-fluid">
+                <div class="page-header"><h2 id="using_module">Penggunaan Module</h2></div>
                 <p>Pemanggilan sebuah module bisa dilakukan dengan tiga cara yaitu melalui <strong>controller utama</strong>, <strong>controller module lain</strong> dan <strong>URL</strong>.</p>
                 
                 <h4>Controller Utama</h4>
                 <p>Untuk memanggil sebuah module dari dalam controller aplikasi utama, caranya adalah dengan menggunakan:</p>
-		<code>
-		    use Modules\NamaModule;
-		</code>
+		<pre>use Modules\NamaModule;</pre>
                 <p>Misalnya module <strong>User</strong> ingin dipanggil dari controller utama <strong>Home</strong> seperti contoh berikut:</p>
 
-<textarea rows="22" cols="50" class="textarea">
+<pre>
 &lt;?php
 namespace Controllers;
 use Resources, Modules\User;
 
-class Home extends Resources\Controller {
-    
-    public function __construct(){
-        
+class Home extends Resources\Controller
+{
+    public function __construct()
+    {
         parent::__construct();
         
         $this->user = new User\Controllers\Home;
         $this->auth = new User\Controllers\Login;
     }
     
-    public function index(){
-        
+    public function index()
+    {
         $this->user->index();
         $this->auth->session();
     }
 }
-</textarea>
-                
+</pre>
                 <h4>Controller Module</h4>
                 <p>Cara yang sama jika kita ingin memanggil sebuah module dari dalam controller module lain.</p>
-<textarea rows="20" cols="50" class="textarea">
+<pre>
 &lt;?php
 namespace Modules\MyModule\Controllers;
 use Resources, Modules\User;
 
-class Home extends Resources\Controller {
-    
-    public function __construct(){
-        
+class Home extends Resources\Controller
+{    
+    public function __construct()
+    {
         parent::__construct();
         
         $this->auth = new User\Controllers\Login;
     }
     
-    public function index(){
-        
+    public function index()
+    {
         $this->auth->session();
     }
 }
-</textarea>
+</pre>
                 <h4>URL</h4>
                 <P>Berikut adalah segment pemanggilan module di dalam URL:</P>
-                <code>
-                    http://website.com/index.php/<strong>NamaModule</strong>/<strong>NamaController</strong>/<strong>namaMethod</strong>/<strong>argument</strong>
-                </code>
+                <pre>http://website.com/index.php/<strong>NamaModule</strong>/<strong>NamaController</strong>/<strong>namaMethod</strong>/<strong>argument</strong></pre>
                 <p>Atau jika mod_rewrite telah diaktifkan (dengan setting .htaccess file yang benar):</p>
-                <code>
-                    http://website.com/<strong>NamaModule</strong>/<strong>NamaController</strong>/<strong>namaMethod</strong>/<strong>argument</strong>
-                </code>
+                <pre>http://website.com/<strong>NamaModule</strong>/<strong>NamaController</strong>/<strong>namaMethod</strong>/<strong>argument</strong></pre>
                 <p>Sebagai contoh jika ingin mengakses module <strong>User</strong> dengan controller <strong>Home</strong> dan method <strong>index</strong>, maka URL-nya adalah:</p>
-                <code>
-                    http://website.com/<strong>User</strong>
-                </code>
+                <pre>http://website.com/<strong>User</strong></pre>
             </div>
-            
-	    <div id="discussion" class="main">
-		<h3>Diskusi</h3>
-		<div id="disqus_thread"></div>
-	    </div>
-
-        </div>
-          
-    <div class="footer">
-	<span class="right">All Rights Reserved.</span>
+	<div class="row-fluid">
+            <div class="page-header" id="discussion">
+                <h2>Diskusi</h2>
+            </div>
+	    <div id="disqus_thread"></div>
+	</div>
+        
+      </div>
     </div>
+    <hr>
+    <footer>
+      <p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/id/references/module.html">fork dan edit</a>.</p>
+    </footer>
+</div>
 <script>
 var disqus_url = 'references/module.html';
 </script>
+<script src="../../jquery.js"></script>
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
 <script src="../../panada.js"></script>
 </body>
 </html>

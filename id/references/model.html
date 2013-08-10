@@ -1,108 +1,121 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="../../style.css" type="text/css" media="screen" />
-<title>Panada PHP Framework 1.0.0 Documentation - Model</title>
+<meta charset="utf-8">
+<title>Panada PHP Framework 1.1.0 Documentation - Autoloader</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-	    <a target="_blank" href="http://panadaframework.com/"><img src="../../images/logo.png" height="21" border="0" /></a>
-	</div>
-        <div class="menu">
-            <form action="http://www.google.com/search" method="get">
-	    <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
-            <input class="search-input" type="text" name="q" /><button class="search-button" type="submit">Search</button>
+<div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../../images/logosimple.png"></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="http://panadaframework.com/">Home</a></li>
+	      <li><a href="https://github.com/panada/Panada">Source</a></li>
+		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
+		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
+		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
+		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
+            </ul>
+            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
+                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
+                <div class="input-append">
+                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
+                    <button class="btn" type="button"><i class="icon-search"></i></button>
+                </div>
             </form>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
+</div>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Panada Framework 1.1.0 Documentation</h1>
     </div>
-    <div class="subheader">
-        <h1>Panada Framework 1.0.0 Documentation</h1>
-    </div>
-    <div class="wrapper">
-        <div class="sidebar">
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="../index.html">Umum</a>
-                        <ul>
-                            <li><a href="../index.html#about">Tentang Panada</a></li>
-                            <li><a href="../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
-                            <li><a href="../index.html#license">Lisensi</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="../config.html">Konfigurasi</a>
-                        <ul>
-                            <li><a href="../config.html#general">Dasar</a></li>
-                            <li><a href="../config.html#additional_config">Tambahan</a></li>
-                            <li><a href="../config.html#webserver">Webserver</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Referensi
-                        <ul>
-                            <li><a href="controller.html">Controller</a></li>
-                            <li class="active"><a href="model.html">Model</a></li>
-                            <li><a href="view.html">View</a></li>
-                            <li><a href="library.html">Library</a></li>
-                            <li><a href="autoloader.html">Auto Loader</a></li>
-                            <li><a href="global_method.html">Global Method dan Properties</a></li>
-			    <li><a href="module.html">Module</a></li>
-			    <li><a href="vendor.html">Vendor</a></li>
-			    <li><a href="upgrade.html">Upgrade</a></li>
-                        </ul>
-                            
-                    </li>
-                    <li>
-                        <a href="../classes/index.html">Resources</a>
-                        <ul>
-                            <li><a href="../classes/database/index.html">Database</a></li>
-			    <li><a href="../classes/cache/index.html">Cache</a></li>
-                            <li><a href="../classes/session.html">Session</a></li>
-                            <li><a href="../classes/pagination.html">Pagination</a></li>
-                            <li><a href="../classes/email.html">Email</a></li>
-                            <li><a href="../classes/encryption.html">Encryption</a></li>
-                            <li><a href="../classes/upload.html">Upload</a></li>
-                            <li><a href="../classes/image.html">Image</a></li>
-                            <li><a href="../classes/request.html">Request</a></li>
-                            <li><a href="../classes/rest.html">RESTfull</a></li>
-			    <li><a href="../classes/tools.html">Tools</a></li>
-			    <li><a href="../classes/validation.html">Form Validation</a></li>
-                        </ul>
-                    </li>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"><a href="../index.html" class="muted">Umum</a></li>
+                    <li><a href="../index.html#about">Tentang Panada</a></li>
+                    <li><a href="../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
+                    <li><a href="../index.html#requirement">Requirement</a></li>
+                    <li><a href="../index.html#license">Lisensi</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../config.html" class="muted">Konfigurasi</a></li>
+                    <li><a href="../config.html#general">Dasar</a></li>
+                    <li><a href="../config.html#additional_config">Tambahan</a></li>
+                    <li><a href="../config.html#webserver">Webserver</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Referensi</li>
+                    <li><a href="controller.html">Controller</a></li>
+                    <li class="active"><a href="model.html">Model</a></li>
+                    <li><a href="view.html">View</a></li>
+                    <li><a href="library.html">Library</a></li>
+                    <li><a href="autoloader.html">Auto Loader</a></li>
+                    <li><a href="global_method.html">Global Method dan Properties</a></li>
+                    <li><a href="module.html">Module</a></li>
+                    <li><a href="vendor.html">Vendor</a></li>
+                    <li><a href="upgrade.html">Upgrade</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../classes/index.html" class="muted">Resources</a></li>
+                    <li><a href="../classes/database/index.html">Database</a></li>
+                    <li><a href="../classes/cache/index.html">Cache</a></li>
+                    <li><a href="../classes/session.html">Session</a></li>
+                    <li><a href="../classes/pagination.html">Pagination</a></li>
+                    <li><a href="../classes/email.html">Email</a></li>
+                    <li><a href="../classes/encryption.html">Encryption</a></li>
+                    <li><a href="../classes/upload.html">Upload</a></li>
+                    <li><a href="../classes/image.html">Image</a></li>
+                    <li><a href="../classes/request.html">Request</a></li>
+                    <li><a href="../classes/rest.html">RESTfull</a></li>
+                    <li><a href="../classes/tools.html">Tools</a></li>
+                    <li><a href="../classes/validation.html">Form Validation</a></li>
+                    <li class="divider"></li>
                     <li><a href="../contribution.html">Kontribusi</a></li>
                     <li><a href="../credit.html">Credit</a></li>
                 </ul>
-	    </div>
-        </div>
-        <div class="content">
-            <div class="lead">
-                <h2>Model</h2>
+            </div><!--/.well -->
+        </div><!--/span-->
+      <div class="span9">
+        <div class="row-fluid">
+                <div class="page-header"><h2>Model</h2></div>
                 <p>Model adalah sebuah class yang tugasnya berkaitan langsung dengan penanganan data, baik itu dari database, atau sistem penyimpanan yang lain.</p>
             </div>
             
-            <div class="main">
-                <h3>Membuat Model</h3>
+            <div class="row-fluid">
+                <div class="page-header"><h2>Membuat Model</h2></div>
                 <p>Untuk membuat sebuah class model, tambahkan file baru dan letakan di dalam folder <strong>app/Models/</strong>, misalnya <strong>Users.php</strong>.</p>
                 <p>Buat class users di dalam file ini dengan diberi namespace <strong>"Models"</strong>, contohnya:</p>
-
-<textarea rows="12" cols="50" class="textarea">
+<pre>
 &lt;?php
 namespace Models;
 
-class Users {
-    
-    public function __construct(){
+class Users
+{    
+    public function __construct()
+    {
         
     }
 }
-</textarea>
+</pre>
             </div>
             
         
-            <div class="main">
-                <h3>Load Library di dalam Model</h3>
+            <div class="row-fluid">
+                <div class="page-header"><h2>Load Library di dalam Model</h2></div>
 		<p>Jika Anda akan me-load library atau class lain di dalam model ini, ada dua cara yang bisa dilakukan. Pertama, jika resource dari
 		class atau library tersebut ingin digunakan oleh semua method yang ada di dalam class model, maka pengambilan dan penginisialisasian bisa dilakukan di
 		method <b>__construct</b>. Namun, jika resource hanya ingin digunakan pada salah satu method saja, maka inisialisasi dan pemanggilan bisa
@@ -110,56 +123,61 @@ class Users {
 		
                 <p>Salah satu hal yang paling umum dilakukan di dalam sebuah class model adalah me-load resource database. Berikut adalah contoh sederhana untuk me-load resource database dalam sebuah class model :</p>
 		
-<textarea rows="12" cols="50" class="textarea">
+<pre>
 &lt;?php
 namespace Models;
 use Resources;
 
-class Users {
-    
-    public function __construct(){
-        
+class Users
+{    
+    public function __construct()
+    {    
         $this->db = new Resources\Database;
     }
 }
-</textarea>
-                
-		
+</pre>
 		<p>Selanjutnya, properti <strong>"$this->db"</strong> bisa digunakan di semua method yang ada di dalam class tersebut. Berikut adalah contoh untuk mendapatkan 5 record dari database:</p>
-<textarea rows="18" cols="50" class="textarea">
+<pre>
 &lt;?php
 namespace Models;
 use Resources;
 
-class Users {
-    
-    public function __construct(){
-        
+class Users
+{    
+    public function __construct()
+    {
         $this->db = new Resources\Database;
     }
     
-    public function users(){
-        
+    public function users()
+    {
         $result = $this->db->results("SELECT * FROM table_name ORDER BY id LIMIT 5");
     }
 }
-</textarea>
-                <div class="notice"><strong>Catatan:</strong> Selain dengan cara ini, pemanggilan bisa dilakukan dengan cara lain yaitu dengan <a href="autoloader.html">auto loader</a>.</div>
+</pre>
+                <div class="alert alert-info alert-block"><strong>Catatan:</strong> Selain dengan cara ini, pemanggilan bisa dilakukan dengan cara lain yaitu dengan <a href="autoloader.html">auto loader</a>.</div>
                
             </div>
-	    <div id="discussion" class="main">
-		<h3>Diskusi</h3>
-		<div id="disqus_thread"></div>
-	    </div>
-
-        </div>
-          
-    <div class="footer">
-	<span class="right">All Rights Reserved.</span>
+	    
+	<div class="row-fluid">
+            <div class="page-header" id="discussion">
+                <h2>Diskusi</h2>
+            </div>
+	    <div id="disqus_thread"></div>
+	</div>
+        
+      </div>
     </div>
+    <hr>
+    <footer>
+      <p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/id/references/model.html">fork dan edit</a>.</p>
+    </footer>
+</div>
 <script>
 var disqus_url = 'references/model.html';
 </script>
+<script src="../../jquery.js"></script>
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
 <script src="../../panada.js"></script>
 </body>
 </html>

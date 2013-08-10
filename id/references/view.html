@@ -1,144 +1,150 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="../../style.css" type="text/css" media="screen" />
-<title>Panada PHP Framework 1.0.0 Documentation - Vendor</title>
+<meta charset="utf-8">
+<title>Panada PHP Framework 1.1.0 Documentation - Autoloader</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-	    <a target="_blank" href="http://panadaframework.com/"><img src="../../images/logo.png" height="21" border="0" /></a>
-	</div>
-        <div class="menu">
-            <form action="http://www.google.com/search" method="get">
-	    <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
-            <input class="search-input" type="text" name="q" /><button class="search-button" type="submit">Search</button>
+<div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../../images/logosimple.png"></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="http://panadaframework.com/">Home</a></li>
+	      <li><a href="https://github.com/panada/Panada">Source</a></li>
+		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
+		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
+		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
+		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
+            </ul>
+            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
+                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
+                <div class="input-append">
+                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
+                    <button class="btn" type="button"><i class="icon-search"></i></button>
+                </div>
             </form>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
+</div>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Panada Framework 1.1.0 Documentation</h1>
     </div>
-    
-    <div class="subheader">
-        <h1>Panada Framework 1.0.0 Documentation</h1>
-    </div>
-    
-    <div class="wrapper">
-        <div class="sidebar">
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="../index.html">Umum</a>
-                        <ul>
-                            <li><a href="../index.html#about">Tentang Panada</a></li>
-                            <li><a href="../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
-                            <li><a href="../index.html#license">Lisensi</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="../config.html">Konfigurasi</a>
-                        <ul>
-                            <li><a href="../config.html#general">Dasar</a></li>
-                            <li><a href="../config.html#additional_config">Tambahan</a></li>
-                            <li><a href="../config.html#webserver">Webserver</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Referensi
-                        <ul>
-                            <li><a href="controller.html">Controller</a></li>
-                            <li><a href="model.html">Model</a></li>
-                            <li class="active"><a href="view.html">View</a></li>
-                            <li><a href="library.html">Library</a></li>
-                            <li><a href="autoloader.html">Auto Loader</a></li>
-                            <li><a href="global_method.html">Global Method dan Properties</a></li>
-			    <li><a href="module.html">Module</a></li>
-			    <li><a href="vendor.html">Vendor</a></li>
-			    <li><a href="upgrade.html">Upgrade</a></li>
-                        </ul>
-                            
-                    </li>
-                    <li>
-                        <a href="../classes/index.html">Resources</a>
-                        <ul>
-                            <li><a href="../classes/database/index.html">Database</a></li>
-                            <li><a href="../classes/cache/index.html">Cache</a></li>
-                            <li><a href="../classes/session.html">Session</a></li>
-                            <li><a href="../classes/pagination.html">Pagination</a></li>
-                            <li><a href="../classes/email.html">Email</a></li>
-                            <li><a href="../classes/encryption.html">Encryption</a></li>
-                            <li><a href="../classes/upload.html">Upload</a></li>
-                            <li><a href="../classes/image.html">Image</a></li>
-                            <li><a href="../classes/request.html">Request</a></li>
-                            <li><a href="../classes/rest.html">RESTfull</a></li>
-                            <li><a href="../classes/apc.html">APC</a></li>
-			    <li><a href="../classes/tools.html">Tools</a></li>
-			    <li><a href="../classes/validation.html">Form Validation</a></li>
-                        </ul>
-                    </li>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"><a href="../index.html" class="muted">Umum</a></li>
+                    <li><a href="../index.html#about">Tentang Panada</a></li>
+                    <li><a href="../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
+                    <li><a href="../index.html#requirement">Requirement</a></li>
+                    <li><a href="../index.html#license">Lisensi</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../config.html" class="muted">Konfigurasi</a></li>
+                    <li><a href="../config.html#general">Dasar</a></li>
+                    <li><a href="../config.html#additional_config">Tambahan</a></li>
+                    <li><a href="../config.html#webserver">Webserver</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Referensi</li>
+                    <li><a href="controller.html">Controller</a></li>
+                    <li><a href="model.html">Model</a></li>
+                    <li class="active"><a href="view.html">View</a></li>
+                    <li><a href="library.html">Library</a></li>
+                    <li><a href="autoloader.html">Auto Loader</a></li>
+                    <li><a href="global_method.html">Global Method dan Properties</a></li>
+                    <li><a href="module.html">Module</a></li>
+                    <li><a href="vendor.html">Vendor</a></li>
+                    <li><a href="upgrade.html">Upgrade</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../classes/index.html" class="muted">Resources</a></li>
+                    <li><a href="../classes/database/index.html">Database</a></li>
+                    <li><a href="../classes/cache/index.html">Cache</a></li>
+                    <li><a href="../classes/session.html">Session</a></li>
+                    <li><a href="../classes/pagination.html">Pagination</a></li>
+                    <li><a href="../classes/email.html">Email</a></li>
+                    <li><a href="../classes/encryption.html">Encryption</a></li>
+                    <li><a href="../classes/upload.html">Upload</a></li>
+                    <li><a href="../classes/image.html">Image</a></li>
+                    <li><a href="../classes/request.html">Request</a></li>
+                    <li><a href="../classes/rest.html">RESTfull</a></li>
+                    <li><a href="../classes/tools.html">Tools</a></li>
+                    <li><a href="../classes/validation.html">Form Validation</a></li>
+                    <li class="divider"></li>
                     <li><a href="../contribution.html">Kontribusi</a></li>
                     <li><a href="../credit.html">Credit</a></li>
                 </ul>
-	    </div>
-            
-        </div>
-        
-        <div class="content">
-            <div class="lead">
-                <h2>View</h2>
+            </div><!--/.well -->
+        </div><!--/span-->
+      <div class="span9">
+        <div class="row-fluid">
+                <div class="page-header"><h2>View</h2></div>
                 <p>View adalah sebuah file yang bertugas untuk menampilkan <strong>output</strong> dari semua proses yang sudah dilakukan pada bagian <a href="controller.html">controller</a> dan <a href="model.html">model</a>.</p>
             </div>
             
-            <div class="main">
-                <h3>Membuat View</h3>
+            <div class="row-fluid">
+                <div class="page-header"><h2>Membuat View</h2></div>
                 <p>Folder view terletak pada:</p>
-				<code>
-					app/views/
-				</code>
-				<p>Untuk membuat file view, tambahkan file baru di dalama folder ini, misalnya <strong>helloworld.php</strong>.</p>
-<textarea rows="9" cols="50" class="textarea">
+		<pre>app/views/</pre>
+		<p>Untuk membuat file view, tambahkan file baru di dalama folder ini, misalnya <strong>helloworld.php</strong>.</p>
+<pre>
 &lt;html&gt;
-	&lt;head&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		Hello world!
-	&lt;/body&gt;
+    &lt;head&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+	Hello world!
+    &lt;/body&gt;
 &lt;/html&gt;
-</textarea>
+</pre>
 			<p>Untuk bisa digunakan di dalam aplikasi, file view harus di-load di dalam method controller. Berikut adalah contoh me-load file view di dalam method index pada controller home.</p>
-<textarea rows="17" cols="50" class="textarea">
+<pre rows="17" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
 
-class Home extends Resources\Controller {
-    
-    public function __construct(){
-        
+class Home extends Resources\Controller
+{    
+    public function __construct()
+    {
         parent::__construct();
     }
     
-    public function index(){
-        
+    public function index()
+    {
         $this->output('helloworld');
     }
 }
-</textarea>
+</pre>
 
 				<p>Untuk menampilkan data <strong>output</strong> dari controller ke view, maka masing-masing data tersebut harus di isikan ke sebuah variable array. Nilai yang diisikan bisa data apapun, array, object, string, integer, boolean dll.</p>
 				<p>Berikut adalah contoh untuk meneruskan data yang diproduksi di controller dan menampilkannya di view:</p>
-<textarea rows="22" cols="50" class="textarea">
+<pre rows="22" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
 
-class Home extends Resources\Controller {
-    
-    public function __construct(){
-        
+class Home extends Resources\Controller
+{
+    public function __construct()
+    {
         parent::__construct();
     }
     
-    public function index(){
-        
+    public function index()
+    {
 	$data = array(
             'title' => 'Hello World Page!',
             'content' => 'Hello World!'
@@ -147,89 +153,92 @@ class Home extends Resources\Controller {
         $this->output('helloworld', $data);
     }
 }
-</textarea>
+</pre>
 				<p>Dan berikut adalah isi file <strong>app/views/helloworld.php</strong>:</p>
-<textarea rows="9" cols="50" class="textarea">
+<pre rows="9" cols="50" class="textarea">
 &lt;html&gt;
-	&lt;head&gt;
-		&lt;title>&lt;?php echo $title; ?&gt;&lt;/title&gt;
-	&lt;/head&gt;
-	&lt;body&gt;
-		&lt;?php echo $content; ?&gt;
-	&lt;/body&gt;
+    &lt;head&gt;
+	&lt;title>&lt;?php echo $title; ?&gt;&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+	&lt;?php echo $content; ?&gt;
+    &lt;/body&gt;
 &lt;/html&gt;
-</textarea>
+</pre>
 		<p>Dan jika filenya terletak di dalam folder:</p>
-		<code>
-		    $this->output( 'subfolder/helloworld', $data );
-		</code>
+		<pre>$this->output( 'subfolder/helloworld', $data );</pre>
             </div>
-	    <div id="outputJSON" class="main">
-                <h3>OutputJSON</h3>
+	    <div id="outputJSON" class="row-fluid">
+                <div class="page-header"><h2>OutputJSON</h2></div>
 		<p>Jika Anda ingin menampilkan data berformat JSON, maka method <strong>$this-&gt;outputJSON()</strong> bisa Anda gunakan.</p>
-<textarea rows="22" cols="50" class="textarea">
+<pre rows="22" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
 
-class Home extends Resources\Controller {
-    
-    public function __construct(){
-        
-        parent::__construct();
-    }
-    
-    public function index(){
-        
-	$data = array(
-            'title' => 'Hello World Page!',
-            'content' => 'Hello World!'
-        );
+class Home extends Resources\Controller
+{    
+	public function __construct()
+	{
+		parent::__construct();
+	}
 	
-        $this->outputJSON($data);
-    }
+	public function index()
+	{
+		$data = array(
+			'title' => 'Hello World Page!',
+			'content' => 'Hello World!'
+		);
+		
+		$this->outputJSON($data);
+	}
 }
-</textarea>
+</pre>
 		<p>Maka di browser akan menampilkan:</p>
-<textarea rows="5" cols="50" class="textarea">
+<pre rows="5" cols="50" class="textarea">
 {
     "title":"Hello World Page!",
     "content":"Hello World!"
 }
-</textarea>
+</pre>
 		<p>Argument kedua pada method ini bisa Anda isikan dengan status reponse header.</p>
-		<code>
-		    $this-&gt;outputJSON($data, 500);
-		</code>
+		<pre>$this-&gt;outputJSON($data, 500);</pre>
 		<p>Jika data tidak ingin ditampilkan, tetapi diolah kedalam suatu variable, isikan argument ketiga dengan nilai <strong>true</strong></p>
-		<code>
-		    $myData = $this-&gt;outputJSON($data, 200, true);<br />
-		    echo $myData;
-		</code>
+<pre>
+$myData = $this-&gt;outputJSON($data, 200, true);
+echo $myData;
+</pre>
+		<p>Hal ini juga berlaku untuk method $this->output()</p>
+<pre>
+$template = $this-&gt;output('view/file', array(), true);
+echo $template;
+</pre>
+
 	    </div>
-	    <div id="outputXML" class="main">
-                <h3>OutputXML</h3>
+	    <div id="outputXML" class="row-fluid">
+                <div class="page-header"><h2>OutputXML</h2></div>
 		<p>Cara yang sama juga bisa digunakan untuk menampilkan data xml, yaitu dengan menggunakan method <strong>$this-&gt;outputXML()</strong></p>
-		<code>
-		    $this-&gt;outputXML($data);
-		</code>
+		<pre>$this-&gt;outputXML($data);</pre>
 	    </div>
-	    <div id="discussion" class="main">
-		<h3>Diskusi</h3>
-		<div id="disqus_thread"></div>
-	    </div>
-            
+	    
+	
+	<div class="row-fluid">
+            <div class="page-header" id="discussion"><h2>Diskusi</h2></div>
+	    <div id="disqus_thread"></div>
+	</div>
         
-        </div>
-        
+      </div>
     </div>
-          
-    <div class="footer">
-        <span class="right">All Rights Reserved.</span>
-    </div>
+    <hr>
+    <footer>
+      <p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/id/references/view.html">fork dan edit</a>.</p>
+    </footer>
+</div>
 <script>
 var disqus_url = 'references/view.html';
 </script>
+<script src="../../jquery.js"></script>
+<script src="../../bootstrap/js/bootstrap.min.js"></script>
 <script src="../../panada.js"></script>
 </body>
 </html>

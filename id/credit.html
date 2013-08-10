@@ -1,148 +1,166 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Panada PHP Framework 1.0.0 Documentation - Credit</title>
-    <link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<meta charset="utf-8">
+<title>Panada PHP Framework 1.1.0 Documentation - Credit</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-	    <a target="_blank" href="http://panadaframework.com/"><img src="../images/logo.png" height="21" border="0" /></a>
-	</div>
-        <div class="menu">
-            <form action="http://www.google.com/search" method="get">
-	    <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
-            <input class="search-input" type="text" name="q" /><button class="search-button" type="submit">Search</button>
+<div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../images/logosimple.png"></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="http://panadaframework.com/">Home</a></li>
+	      <li><a href="https://github.com/panada/Panada">Source</a></li>
+		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
+		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
+		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
+		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
+            </ul>
+            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
+                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
+                <div class="input-append">
+                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
+                    <button class="btn" type="button"><i class="icon-search"></i></button>
+                </div>
             </form>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
+</div>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Panada Framework 1.1.0 Documentation</h1>
     </div>
-    <div class="subheader">
-        <h1>Panada Framework 1.0.0 Documentation</h1>
-    </div>
-    <div class="wrapper">
-        <div class="sidebar">
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="index.html">Umum</a>
-                        <ul>
-                            <li><a href="index.html#about">Tentang Panada</a></li>
-                            <li><a href="index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
-                            <li><a href="index.html#license">Lisensi</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="config.html">Konfigurasi</a>
-                        <ul>
-                            <li><a href="config.html#general">Dasar</a></li>
-                            <li><a href="config.html#additional_config">Tambahan</a></li>
-                            <li><a href="config.html#webserver">Webserver</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Referensi
-                        <ul>
-                            <li><a href="references/controller.html">Controller</a></li>
-                            <li><a href="references/model.html">Model</a></li>
-                            <li><a href="references/view.html">View</a></li>
-                            <li><a href="references/library.html">Library</a></li>
-                            <li><a href="references/autoloader.html">Auto Loader</a></li>
-                            <li><a href="references/global_method.html">Global Method dan Properties</a></li>
-			    <li><a href="references/module.html">Module</a></li>
-			    <li><a href="references/vendor.html">Vendor</a></li>
-			    <li><a href="references/upgrade.html">Upgrade</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="classes/index.html">Resources</a>
-                        <ul>
-                            <li><a href="classes/database/index.html">Database</a></li>
-			    <li><a href="classes/cache/index.html">Cache</a></li>
-                            <li><a href="classes/session.html">Session</a></li>
-                            <li><a href="classes/pagination.html">Pagination</a></li>
-                            <li><a href="classes/email.html">Email</a></li>
-                            <li><a href="classes/encryption.html">Encryption</a></li>
-                            <li><a href="classes/upload.html">Upload</a></li>
-                            <li><a href="classes/image.html">Image</a></li>
-                            <li><a href="classes/request.html">Request</a></li>
-                            <li><a href="classes/rest.html">RESTfull</a></li>
-			    <li><a href="classes/tools.html">Tools</a></li>
-			    <li><a href="classes/validation.html">Form Validation</a></li>
-                        </ul>
-                    </li>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"><a href="index.html" class="muted">Umum</a></li>
+                    <li><a href="index.html#about">Tentang Panada</a></li>
+                    <li><a href="index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
+                    <li><a href="index.html#requirement">Requirement</a></li>
+                    <li><a href="index.html#license">Lisensi</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="config.html" class="muted">Konfigurasi</a></li>
+                    <li><a href="config.html#general">Dasar</a></li>
+                    <li><a href="config.html#additional_config">Tambahan</a></li>
+                    <li><a href="config.html#webserver">Webserver</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Referensi</li>
+                    <li><a href="references/controller.html">Controller</a></li>
+                    <li><a href="references/model.html">Model</a></li>
+                    <li><a href="references/view.html">View</a></li>
+                    <li><a href="references/library.html">Library</a></li>
+                    <li><a href="references/autoloader.html">Auto Loader</a></li>
+                    <li><a href="references/global_method.html">Global Method dan Properties</a></li>
+                    <li><a href="references/module.html">Module</a></li>
+                    <li><a href="references/vendor.html">Vendor</a></li>
+                    <li><a href="references/upgrade.html">Upgrade</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="classes/index.html" class="muted">Resources</a></li>
+                    <li><a href="classes/database/index.html">Database</a></li>
+                    <li><a href="classes/cache/index.html">Cache</a></li>
+                    <li><a href="classes/session.html">Session</a></li>
+                    <li><a href="classes/pagination.html">Pagination</a></li>
+                    <li><a href="classes/email.html">Email</a></li>
+                    <li><a href="classes/encryption.html">Encryption</a></li>
+                    <li><a href="classes/upload.html">Upload</a></li>
+                    <li><a href="classes/image.html">Image</a></li>
+                    <li><a href="classes/request.html">Request</a></li>
+                    <li><a href="classes/rest.html">RESTfull</a></li>
+                    <li><a href="classes/tools.html">Tools</a></li>
+                    <li><a href="classes/validation.html">Form Validation</a></li>
+                    <li class="divider"></li>
                     <li><a href="contribution.html">Kontribusi</a></li>
-                    <li><a href="credit.html">Credit</a></li>
+                    <li class="active"><a href="credit.html">Credit</a></li>
                 </ul>
-	    </div>
+            </div>
         </div>
-        <div class="content">
-            <div class="lead">
+      <div class="span9">
+        <div class="row-fluid">
+            <div class="page-header">
                 <h2>Credit</h2>
-                <p>Saat ini Panada secara aktif dikembangkan oleh Iskandar Soesman (iskandarsoesman at google dot com, <a target="_blank" href="http://kandar.info">http://kandar.info</a> dan <a target="_blank" href="http://twitter.com/k4ndar">@k4ndar</a> di twitter), dan para kontributor yang secara aktif mengirimkan patch-nya, mereka adalah:</p>
-		<ul>
-		    <li><a target="_blank" href="https://github.com/back2arie">Azhari Harahap</a></li>
-		    <li><a target="_blank" href="https://github.com/de3">Edi Firmansyah</a></li>
-		    <li><a target="_blank" href="https://github.com/cakyus">Yusuf Abdin Bakhtiar</a></li>
-		    <li><a target="_blank" href="https://github.com/aryoxp">Aryo Pinandito</a></li>
-		    <li><a target="_blank" href="https://github.com/ariefbayu">Arief Bayu Purwanto</a></li>
-		    <li><a target="_blank" href="https://github.com/mul14">Mulia A. Nasution</a></li>
-		    <li><a target="_blank" href="https://github.com/riespandi">Aris S Ripandi</a></li>
-		    <li><a target="_blank" href="https://github.com/harrysudana">Harrysudana</a></li>
-		</ul>
-		<p>Dukungan dan dorongan juga diberikan oleh:</p>
-		<ul>
-		    <li><a target="_blank" href="https://www.facebook.com/kangtatang">Tatang Iwan Suryana</a></li>
-		    <li><a target="_blank" href="https://www.facebook.com/juliusbernhard">Julius Bernhard Schuter</a></li>
-		    <li><a target="_blank" href="http://www.koder.web.id/">Ibnu Daqiqil Id</a></li>
-		</ul>
-		
-                <p>Apresiasi dan penghargaan diberikan kepada teman-teman engineer di <a target="_blank" href="http://www.detik.com/">detikcom</a> dan <a target="_blank" href="http://www.kompas.com/">KOMPAS.com</a> terutama <a terget="_blank" href="http://twitter.com/oq">@oq</a> dan <a terget="_blank" href="http://twitter.com/mboi_coy">@mboi_coy</a> atas masukan yang diberikan.</p>
-                
             </div>
-            <div class="main">
-                <h3>If we can write this code it is only by standing on the shoulders of giants</h3>
-                <p>Panada dikembangkan dan belajar dari banyak aplikasi dan framework yang sudah sangat populer saat ini.</p>
-                
-                <ul>
-		    <li><strong>Yii</strong>
-                        <p><a target="_blank" href="http://www.yiiframework.com/">Yii</a>, sebuah framework yang kaya feature seperti MVC, DAO/ActiveRecord, I18N/L10N, caching, authentication dan role-based access control dan scaffolding. Beberapa konsep Active Record Yii digunakan di Active Record Panada.</p>
-                    </li>
-                    <li><strong>CodeIgniter</strong>
-                        <p><a target="_blank" href="http://codeigniter.com/">CodeIgniter</a> Merupakan Framework PHP yang dikembangkan oleh Ellislab, Inc. Panada meminjam konsep CodeIgniter dalam hal kemudahan penggunaan dan manajemen pengelompokan file Model, View dan controller (MVC).</p>
-                    </li>
-               
-                    <li><strong>Kohana</strong>
-                        <p><a terget="_blank" href="http://kohanaframework.org/">Kohana</a> adalah Framework HMVC yang berbasiskan PHP 5. Kohana menginspirasi Panada dalam hal kemudahan me-<em>load</em> sumber daya secara cepat dan mudah.</p>
-                    </li>
-               
-                    <li><strong>WordPress</strong>
-                        <p><a terget="_blank" href="http://wordpress.org/">WordPress</a> merupakan Open Source CMS Blog yang paling populer saat ini.</p>
-                    </li>
-                 
-                    <li><strong>ezSQL</strong>
-                        <p><a target="_blank" href="http://justinvincent.com/ezsql">ezSQL</a> adalah open source PHP database class yang dikembangkan oleh <a target="_blank" href="http://justinvincent.com/">Justin Vincent</a>.</p>
-                    </li>
-                    
-                    <li><strong>PHPMailer</strong>
-                        <p><a target="_blank" href="http://phpmailer.worxware.com/">PHPMailer</a> adalah open source PHP class yang membantu para developer dalam pengiriman email.</p>
-                    </li>
-                </ul>
-            </div>
-	    <div id="discussion" class="main">
-		<h3>Diskusi</h3>
-		<div id="disqus_thread"></div>
-	    </div>
-      
+			<p>Saat ini Panada secara aktif dikembangkan oleh Iskandar Soesman (iskandarsoesman at google dot com, <a target="_blank" href="http://kandar.info">http://kandar.info</a> dan <a target="_blank" href="http://twitter.com/k4ndar">@k4ndar</a> di twitter), dan para kontributor yang secara aktif mengirimkan patch-nya, mereka adalah:</p>
+			<ul>
+				<li><a target="_blank" href="https://github.com/back2arie">Azhari Harahap</a></li>
+				<li><a target="_blank" href="https://github.com/de3">Edi Firmansyah</a></li>
+				<li><a target="_blank" href="https://github.com/cakyus">Yusuf Abdin Bakhtiar</a></li>
+				<li><a target="_blank" href="https://github.com/aryoxp">Aryo Pinandito</a></li>
+				<li><a target="_blank" href="https://github.com/ariefbayu">Arief Bayu Purwanto</a></li>
+				<li><a target="_blank" href="https://github.com/mul14">Mulia A. Nasution</a></li>
+				<li><a target="_blank" href="https://github.com/riespandi">Aris S Ripandi</a></li>
+				<li><a target="_blank" href="https://github.com/harrysudana">Harrysudana</a></li>
+			</ul>
+			<p>Dukungan dan dorongan juga diberikan oleh:</p>
+			<ul>
+				<li><a target="_blank" href="https://www.facebook.com/kangtatang">Tatang Iwan Suryana</a></li>
+				<li><a target="_blank" href="https://www.facebook.com/juliusbernhard">Julius Bernhard Schuter</a></li>
+				<li><a target="_blank" href="http://www.koder.web.id/">Ibnu Daqiqil Id</a></li>
+			</ul>
+			<p>Apresiasi dan penghargaan diberikan kepada teman-teman engineer di <a target="_blank" href="http://www.detik.com/">detikcom</a> dan <a target="_blank" href="http://www.kompas.com/">KOMPAS.com</a> terutama <a terget="_blank" href="http://twitter.com/oq">@oq</a> dan <a terget="_blank" href="http://twitter.com/mboi_coy">@mboi_coy</a> atas masukan yang diberikan.</p>
         </div>
-            
+		<div class="row-fluid">
+			<h3>If we can write this code it is only by standing on the shoulders of giants</h3>
+			<p>Panada dikembangkan dan belajar dari banyak aplikasi dan framework yang sudah sangat populer saat ini.</p>
+			
+			<ul>
+			<li><strong>Yii</strong>
+				<p><a target="_blank" href="http://www.yiiframework.com/">Yii</a>, sebuah framework yang kaya feature seperti MVC, DAO/ActiveRecord, I18N/L10N, caching, authentication dan role-based access control dan scaffolding. Beberapa konsep Active Record Yii digunakan di Active Record Panada.</p>
+				</li>
+				<li><strong>CodeIgniter</strong>
+					<p><a target="_blank" href="http://codeigniter.com/">CodeIgniter</a> Merupakan Framework PHP yang dikembangkan oleh Ellislab, Inc. Panada meminjam konsep CodeIgniter dalam hal kemudahan penggunaan dan manajemen pengelompokan file Model, View dan controller (MVC).</p>
+				</li>
+		   
+				<li><strong>Kohana</strong>
+					<p><a terget="_blank" href="http://kohanaframework.org/">Kohana</a> adalah Framework HMVC yang berbasiskan PHP 5. Kohana menginspirasi Panada dalam hal kemudahan me-<em>load</em> sumber daya secara cepat dan mudah.</p>
+				</li>
+		   
+				<li><strong>WordPress</strong>
+					<p><a terget="_blank" href="http://wordpress.org/">WordPress</a> merupakan Open Source CMS Blog yang paling populer saat ini.</p>
+				</li>
+			 
+				<li><strong>ezSQL</strong>
+					<p><a target="_blank" href="http://justinvincent.com/ezsql">ezSQL</a> adalah open source PHP database class yang dikembangkan oleh <a target="_blank" href="http://justinvincent.com/">Justin Vincent</a>.</p>
+				</li>
+				
+				<li><strong>PHPMailer</strong>
+					<p><a target="_blank" href="http://phpmailer.worxware.com/">PHPMailer</a> adalah open source PHP class yang membantu para developer dalam pengiriman email.</p>
+				</li>
+			</ul>
+		</div>
+		<div class="row-fluid">
+            <div class="page-header" id="discussion">
+                <h2>Diskusi</h2>
+            </div>
+			<div id="disqus_thread"></div>
+		</div>
+		
+      </div>
     </div>
-    
-    <div class="footer">
-        <span class="right">All Rights Reserved.</span>
-    </div>
+    <hr>
+    <footer>
+		<p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/id/credit.html">fork dan edit</a>.</p>
+    </footer>
+</div>
 <script>
 var disqus_url = 'credit.html';
 </script>
+<script src="../jquery.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../panada.js"></script>
 </body>
 </html>

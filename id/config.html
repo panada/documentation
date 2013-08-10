@@ -1,103 +1,121 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Panada PHP Framework 1.0.0 Documentation - Configuration</title>
-    <link rel="stylesheet" href="../style.css" type="text/css" media="screen" />
+<meta charset="utf-8">
+<title>Panada PHP Framework 1.1.0 Documentation - Configuration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-	    <a target="_blank" href="http://panadaframework.com/"><img src="../images/logo.png" height="21" border="0" /></a>
-	</div>
-        <div class="menu">
-            <form action="http://www.google.com/search" method="get">
-	    <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
-            <input class="search-input" type="text" name="q" /><button class="search-button" type="submit">Search</button>
+<div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../images/logosimple.png"></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="http://panadaframework.com/">Home</a></li>
+	      <li><a href="https://github.com/panada/Panada">Source</a></li>
+		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
+		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
+		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
+		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
+            </ul>
+            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
+                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
+                <div class="input-append">
+                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
+                    <button class="btn" type="button"><i class="icon-search"></i></button>
+                </div>
             </form>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
+</div>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Panada Framework 1.1.0 Documentation</h1>
     </div>
-    <div class="subheader">
-        <h1>Panada Framework 1.0.0 Documentation</h1>
-    </div>
-    <div class="wrapper">
-        <div class="sidebar">
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="index.html">Umum</a>
-                        <ul>
-                            <li><a href="index.html#about">Tentang Panada</a></li>
-                            <li><a href="index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
-                            <li><a href="index.html#license">Lisensi</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="config.html">Konfigurasi</a>
-                        <ul>
-                            <li><a href="config.html#general">Dasar</a></li>
-                            <li><a href="config.html#additional_config">Tambahan</a></li>
-                            <li><a href="config.html#webserver">Webserver</a></li>
-                            <li><a href="config.html#discussion">Diskusi</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Referensi
-                        <ul>
-                            <li><a href="references/controller.html">Controller</a></li>
-                            <li><a href="references/model.html">Model</a></li>
-                            <li><a href="references/view.html">View</a></li>
-                            <li><a href="references/library.html">Library</a></li>
-                            <li><a href="references/autoloader.html">Auto Loader</a></li>
-                            <li><a href="references/global_method.html">Global Method dan Properties</a></li>
-                            <li><a href="references/module.html">Module</a></li>
-			    <li><a href="references/vendor.html">Vendor</a></li>
-                            <li><a href="references/upgrade.html">Upgrade</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="classes/index.html">Resources</a>
-                        <ul>
-                            <li><a href="classes/database/index.html">Database</a></li>
-			    <li><a href="classes/cache/index.html">Cache</a></li>
-                            <li><a href="classes/session.html">Session</a></li>
-                            <li><a href="classes/pagination.html">Pagination</a></li>
-                            <li><a href="classes/email.html">Email</a></li>
-                            <li><a href="classes/encryption.html">Encryption</a></li>
-                            <li><a href="classes/upload.html">Upload</a></li>
-                            <li><a href="classes/image.html">Image</a></li>
-                            <li><a href="classes/request.html">Request</a></li>
-                            <li><a href="classes/rest.html">RESTfull</a></li>
-			    <li><a href="classes/tools.html">Tools</a></li>
-			    <li><a href="classes/validation.html">Form Validation</a></li>
-                        </ul>
-                    </li>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"><a href="index.html" class="muted">Umum</a></li>
+                    <li><a href="index.html#about">Tentang Panada</a></li>
+                    <li><a href="index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
+                    <li><a href="index.html#requirement">Requirement</a></li>
+                    <li><a href="index.html#license">Lisensi</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="config.html" class="muted">Konfigurasi</a></li>
+                    <li class="active"><a href="config.html#general">Dasar</a></li>
+                    <li><a href="config.html#additional_config">Tambahan</a></li>
+                    <li><a href="config.html#webserver">Webserver</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Referensi</li>
+                    <li><a href="references/controller.html">Controller</a></li>
+                    <li><a href="references/model.html">Model</a></li>
+                    <li><a href="references/view.html">View</a></li>
+                    <li><a href="references/library.html">Library</a></li>
+                    <li><a href="references/autoloader.html">Auto Loader</a></li>
+                    <li><a href="references/global_method.html">Global Method dan Properties</a></li>
+                    <li><a href="references/module.html">Module</a></li>
+                    <li><a href="references/vendor.html">Vendor</a></li>
+                    <li><a href="references/upgrade.html">Upgrade</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="classes/index.html" class="muted">Resources</a></li>
+                    <li><a href="classes/database/index.html">Database</a></li>
+                    <li><a href="classes/cache/index.html">Cache</a></li>
+                    <li><a href="classes/session.html">Session</a></li>
+                    <li><a href="classes/pagination.html">Pagination</a></li>
+                    <li><a href="classes/email.html">Email</a></li>
+                    <li><a href="classes/encryption.html">Encryption</a></li>
+                    <li><a href="classes/upload.html">Upload</a></li>
+                    <li><a href="classes/image.html">Image</a></li>
+                    <li><a href="classes/request.html">Request</a></li>
+                    <li><a href="classes/rest.html">RESTfull</a></li>
+                    <li><a href="classes/tools.html">Tools</a></li>
+                    <li><a href="classes/validation.html">Form Validation</a></li>
+                    <li class="divider"></li>
                     <li><a href="contribution.html">Kontribusi</a></li>
                     <li><a href="credit.html">Credit</a></li>
                 </ul>
-	    </div>
-        </div>
-        <div class="content">
-            <div class="lead">
+            </div><!--/.well -->
+        </div><!--/span-->
+      <div class="span9">
+        <div class="row-fluid">
+            <div class="page-header">
                 <h2>Konfigurasi</h2>
-                <p>Semua setting pengaturan aplikasi dilakukan pada file konfigurasi. Pengaturan-pengaturan ini termasuk: <a href="classes/database/index.html">Koneksi Database</a>, <a href="classes/session.html">Session</a>, <a href="references/controller.html#alias_controller">Alias Controller</a> dan <a href="references/controller.html#alias_method">Alias Method</a>, <a href="classes/request.html">Query filter</a>, <a href="classes/cache/index.html">Cache</a> dll.</p>
-                <p>Anda juga bisa menambahkan setting konfigurasi sesuai dengan kebutuhan aplikasi yang akan dibuat.</p>
             </div>
-            <div id="general" class="main">
-                <h3>Konfigurasi Dasar</h3>
-                <p>File konfigurasi Panada terletak pada direktori:</p>
-                <code>
-                    app/config/
-                </code>
+            <p>Semua setting pengaturan aplikasi dilakukan pada file konfigurasi. Pengaturan-pengaturan ini termasuk: <a href="classes/database/index.html">Koneksi Database</a>, <a href="classes/session.html">Session</a>, <a href="references/controller.html#alias_controller">Alias Controller</a> dan <a href="references/controller.html#alias_method">Alias Method</a>, <a href="classes/request.html">Query filter</a>, <a href="classes/cache/index.html">Cache</a> dll.</p>
+            <p>Anda juga bisa menambahkan setting konfigurasi sesuai dengan kebutuhan aplikasi yang akan dibuat.</p>
+        </div>
+        <div class="row-fluid">
+            <div class="page-header">
+                <h2>Konfigurasi Dasar</h2>
             </div>
-	    
-	    <div id="additional_config" class="main">
-                <h3>Konfigurasi Tambahan</h3>
-		<p>Berikut adalah tahapan dalam membuat konfigurasi tambahan pada aplikasi Anda:</p>
+	    <p>File konfigurasi Panada terletak pada direktori:</p>
+            <pre>app/config/</pre>
+        </div>
+        
+        <div class="row-fluid">
+            <div class="page-header" id="additional_config">
+                <h2>Konfigurasi Tambahan</h2>
+            </div>
+	    <p>Berikut adalah tahapan dalam membuat konfigurasi tambahan pada aplikasi Anda:</p>
 		<ul>
 		    <li>Buat sebuah file baru di dalam folder <strong>app/config/</strong> dan beri nama sesuai dengan nama konfigurasi, misalnya <strong>example.php</strong>.</li>
 		    <li>
 			Isikan dengan data array seperti contoh berikut:
-<textarea rows="15" cols="50" class="textarea">&lt;?php
+<pre>
+&lt;?php
 return array(
     
     'myArg1' => 'hello',
@@ -110,21 +128,19 @@ return array(
     
     ),
 );
-</textarea>
+</pre>
 		    </li>
 		    <li>
 			Saat mendeklarasikan variable config di dalam komponen, gunakan nama file config Anda sebagai nama method static config seperti contoh berikut:
-			<code>
-			    $this->myConfig = Resources\Config::<strong>example()</strong>;
-			</code>
+			<pre>$this->myConfig = Resources\Config::example();</pre>
 		</ul>
                 
                 <p>Berikut adalah contoh untuk mendapatkan nilai config Anda di dalam file controller:</p>
-<textarea rows="21" cols="50" class="textarea">
+<pre>
+&lt;?php
 namespace Controllers;
 use Resources;
 
-&lt;?php
 class Home extends Resources\Controller {
     
     public function __construct(){
@@ -141,18 +157,18 @@ class Home extends Resources\Controller {
 	echo $this-&gt;myConfig['myArg3']['say'];
     }
 }
-</textarea>
-
+</pre>
+        </div>
+	<div class="row-fluid">
+            <div class="page-header" id="webserver">
+                <h2>Webserver</h2>
             </div>
-            
-            <div id="webserver" class="main">
-                <h3>Webserver</h3>
-                <p>Berikutnya Anda juga perlu melakukan konfigurasi pada sisi webserver. Berikut ini penjelasan pengaturannya untuk webserver <a href="http://httpd.apache.org/" target="_blank">Apache</a>, <a href="http://wiki.nginx.org/Main" target="_blank">Nginx</a> dan <a href="http://www.lighttpd.net/" target="_blank">Lighttpd</a>.
+	    <p>Berikutnya Anda juga perlu melakukan konfigurasi pada sisi webserver. Berikut ini penjelasan pengaturannya untuk webserver <a href="http://httpd.apache.org/" target="_blank">Apache</a>, <a href="http://wiki.nginx.org/Main" target="_blank">Nginx</a> dan <a href="http://www.lighttpd.net/" target="_blank">Lighttpd</a>.
                 <ul>
                     <li>
                         <h4>Apache</h4>
                         <p>Tambahkan file <strong>.htaccess</strong> di root aplikasi yang isinya:</p>
-<textarea rows="10" cols="50" class="textarea">
+<pre>
 RewriteEngine on
 
 # Sesuaikan nilai parameter
@@ -162,12 +178,12 @@ RewriteBase /
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
-</textarea>
+</pre>
                     </li>
                     <li>
                         <h4>Nginx</h4>
                         <p>Untuk webserver Nginx, gunakan konfigurasi berikut:</p>
-<textarea rows="18" cols="50" class="textarea">
+<pre>
 location / {
 
     root /www/var/your_site;
@@ -185,21 +201,17 @@ location ~ \.php(.*)$ {
     fastcgi_param  SCRIPT_FILENAME  /www/var/your_site/index.php;
     include fastcgi_params;
 }
-</textarea>
+</pre>
 			<p>Pastikan selalu melakukan reload/restart service Nginx setelah melakukan perubahan.</p>
                     </li>
 		    <li>
 			<h4>Lighttpd</h4>
 			<p>Buka dan edit file konfigurasi lighttpd, umumnya berada di:</p>
-			<code>
-			    /etc/lighttpd/lighttpd.conf
-			</code>
+			<pre>/etc/lighttpd/lighttpd.conf</pre>
 			<p>Edit pada bagian:</p>
-			<code>
-			    server.document-root  = "/www/var/your_site/"
-			</code>
+			<pre>server.document-root  = "/www/var/your_site/"</pre>
 			<p>Pastikan modul <strong>mod_rewrite</strong> sudah tersedia:</p>
-<textarea rows="8" cols="50" class="textarea">
+<pre>
 server.modules = (
     "mod_access",
     "mod_alias",
@@ -207,39 +219,46 @@ server.modules = (
     "mod_compress",
     "mod_rewrite"
 )
-</textarea>
+</pre>
 			
 			<p>Kemudian tambahkan setting url rewrite seperti berikut di bagian manapun di dalam file konfigurasi Lighttpd:</p>
-<textarea rows="6" cols="50" class="textarea">
+<pre>
 url.rewrite-once = (
     "/(.*)\.(.*)" => "$0",
     "/(css|files|img|js|stats)/" => "$0",
     "^/([^.]+)$" => "index.php/$1"
 )   
-</textarea>
+</pre>
 			<p>Restart service lighttpd.</p>
 		    </li>
 		</ul>
                
                 <p>Jika konfigurasi webserver sudah dilakukan, baik itu Apache, Nginx ataupun Lighttpd, maka "index.php" di dalam url seharusnya sudah bisa dihilangkan.</p>
-                <code>
-                    http://www.mysite.com/home
-                </code>
-	    </div>
-	    <div id="discussion" class="main">
-		<h3>Diskusi</h3>
-		<div id="disqus_thread"></div>
-	    </div>
-        </div>
-            
+                <pre>http://www.mysite.com/home</pre>
+		<p>Untuk menghilangkan secara keseluruhan dari tiap method yang menggunakan informasi dari URL seperti <strong>$this->uri->getBaseUri()</strong> dan <strong>$this->location()</strong>, edit file <strong>app/config/main.php</strong> dibagian:</p>
+		<pre>'indexFile' => INDEX_FILE . '/'</pre>
+		<p>Dirubah menjadi:</p>
+		<pre>'indexFile' => null,</pre>
+	</div>
+        <div class="row-fluid">
+            <div class="page-header" id="discussion">
+                <h2>Diskusi</h2>
+            </div>
+	    <div id="disqus_thread"></div>
+	</div>
+        
+      </div>
     </div>
-    
-    <div class="footer">
-        <span class="right">All Rights Reserved.</span>
-    </div>
+    <hr>
+    <footer>
+      <p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/id/config.html">fork dan edit</a>.</p>
+    </footer>
+</div>
 <script>
 var disqus_url = 'config.html';
 </script>
+<script src="../jquery.js"></script>
+<script src="../bootstrap/js/bootstrap.min.js"></script>
 <script src="../panada.js"></script>
 </body>
 </html>
