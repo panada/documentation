@@ -2,10 +2,6 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="../../style.css" type="text/css" media="screen" />
-<script>
-var disqus_url = 'references/vendor.html';
-</script>
-<script src="../../panada.js"></script>
 <title>Panada PHP Framework 1.0.0 Documentation - Vendor</title>
 </head>
 <body>
@@ -203,7 +199,7 @@ class Home extends Resources\Controller {
 		<h3>Composer</h3>
 		<p>Kini Panada secara natif telah mendukung penggunaan <a href="http://getcomposer.org/">composer</a>. Untuk menjalankan composer pastikan file composer.json telah tersedia.</p>
 		<p>Kita perlu menambahkan informasi folder panada/vendors ini di dalam composer.json seperti contoh berikut:</p>
-<textarea rows="18" cols="50" class="textarea">
+<textarea rows="7" cols="50" class="textarea">
 {
     "config": {
         "vendor-dir": "panada/vendors"
@@ -211,7 +207,7 @@ class Home extends Resources\Controller {
 }
 </textarea>
 		<p>Sebagi contoh jika kita ingin menggunakan library <a href="https://github.com/bobthecow/mustache.php">mustache</a> di dalam aplikasi kita, maka file composer.json-nya akan seperti:</p>
-<textarea rows="18" cols="50" class="textarea">
+<textarea rows="9" cols="50" class="textarea">
 {
     "config": {
         "vendor-dir": "panada/vendors"
@@ -223,7 +219,7 @@ class Home extends Resources\Controller {
 </textarea>
 		<p>Jalankan composer install untuk men-download library yang dibutuhkan.</p>
 		<p>Pada saat proses install, composer akan membuatkan file autoload.php di dalam folder vendor. Panada akan menggunakan file ini untuk me-load semua resource dari composer. Untuk itu pastikan file ini telah tersedia. Untuk menggunakan package yang ada di dalam vendor bisa dengan cara:</p>
-<textarea rows="18" cols="50" class="textarea">
+<textarea rows="20" cols="50" class="textarea">
 &lt;?php
 namespace Controllers;
 use Resources;
@@ -256,5 +252,9 @@ class MyController extends Resources\Controller {
     <div class="footer">
 	<span class="right">All Rights Reserved.</span>
     </div>
+<script>
+var disqus_url = 'references/vendor.html';
+</script>
+<script src="../../panada.js"></script>
 </body>
 </html>
