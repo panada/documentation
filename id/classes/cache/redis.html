@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Panada PHP Framework 1.1.0 Documentation - Redis Cache Driver</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Le styles -->
+<link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlepre.com/svn/trunk/html5.js"></script>
+<![endif]-->
+</head>
+<body>
+<div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../../../images/logosimple.png"></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="http://panadaframework.com/">Home</a></li>
+	      <li><a href="https://github.com/panada/Panada">Source</a></li>
+		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
+		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
+		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
+		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
+            </ul>
+            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
+                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
+                <div class="input-append">
+                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
+                    <button class="btn" type="button"><i class="icon-search"></i></button>
+                </div>
+            </form>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+</div>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Panada Framework 1.1.0 Documentation</h1>
+    </div>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"><a href="../../index.html" class="muted">Umum</a></li>
+                    <li><a href="../../index.html#about">Tentang Panada</a></li>
+                    <li><a href="../../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
+                    <li><a href="../../index.html#requirement">Requirement</a></li>
+                    <li><a href="../../index.html#license">Lisensi</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../../config.html" class="muted">Konfigurasi</a></li>
+                    <li><a href="../../config.html#general">Dasar</a></li>
+                    <li><a href="../../config.html#additional_config">Tambahan</a></li>
+                    <li><a href="../../config.html#webserver">Webserver</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Referensi</li>
+                    <li><a href="../../references/controller.html">Controller</a></li>
+                    <li><a href="../../references/model.html">Model</a></li>
+                    <li><a href="../../references/view.html">View</a></li>
+                    <li><a href="../../references/library.html">Library</a></li>
+                    <li><a href="../../references/autoloader.html">Auto Loader</a></li>
+                    <li><a href="../../references/global_method.html">Global Method dan Properties</a></li>
+                    <li><a href="../../references/module.html">Module</a></li>
+                    <li><a href="../../references/vendor.html">Vendor</a></li>
+                    <li><a href="../../references/upgrade.html">Upgrade</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../../classes/index.html" class="muted">Resources</a></li>
+                    <li><a href="../../classes/database/index.html">Database</a></li>
+                    <li class="active"><a href="../../classes/cache/index.html">Cache</a></li>
+		    <li>
+			<ul>
+			    <li><a href="#config">Konfigurasi</a></li>
+			    <li><a href="#init">Inisialisasi</a></li>
+			    <li><a href="#method">Method</a></li>
+			    <li><a href="#namespace">Namespace</a></li>
+			    <li>
+				<a href="#specific">API Spesifik Driver</a>
+				<ul>
+				    <li><a href="apc.html">APC</a></li>
+				    <li><a href="memcache.html">Memcache</a></li>
+				    <li><a href="memcached.html">Memcached</a></li>
+				    <li><a href="redis.html">Redis</a></li>
+				</ul>
+			    </li>
+			</ul>
+		    </li>
+                    <li><a href="../../classes/session.html">Session</a></li>
+                    <li><a href="../../classes/pagination.html">Pagination</a></li>
+                    <li><a href="../../classes/email.html">Email</a></li>
+                    <li><a href="../../classes/encryption.html">Encryption</a></li>
+                    <li><a href="../../classes/upload.html">Upload</a></li>
+                    <li><a href="../../classes/image.html">Image</a></li>
+                    <li><a href="../../classes/request.html">Request</a></li>
+                    <li><a href="../../classes/rest.html">RESTfull</a></li>
+                    <li><a href="../../classes/tools.html">Tools</a></li>
+                    <li><a href="../../classes/validation.html">Form Validation</a></li>
+                    <li class="divider"></li>
+                    <li><a href="../../contribution.html">Kontribusi</a></li>
+                    <li><a href="../../credit.html">Credit</a></li>
+                </ul>
+            </div><!--/.well -->
+        </div><!--/span-->
+      <div class="span9">
+	<div class="row-fluid">
+            <div class="page-header"><h2>Redis</h2></div>
+	    <p>Untuk menggunakan driver ini, pastikan PHP Anda telah terinstall ekstensi Redis. Panada menggunakan <a href="https://github.com/nicolasff/phpredis">phpredis</a> sebagai driver</p>
+        </div>
+	<div class="row-fluid">
+	    <div class="page-header"><h2>Konfigurasi</h2></div>
+	    <p>Konfigurasi dilakukan di file <strong>app/config/cache.php</strong></p>
+	    <p>Bagian-bagian yang harus dilengkapi adalah host, dan port.</p>
+<pre>
+return array(
+    'default' => array(
+        'driver' => 'redis',
+        'server' => array(
+            array(
+                'host' => 'localhost',
+                'port' => 6379,
+                'persistent' => false,
+                'timeout' => 2.5
+            ),
+        )
+    ),
+);
+</pre>
+        </div>
+	<div class="row-fluid">
+	    <div class="page-header"><h2 id="init">Inisialisasi</h2></div>
+	    <p>Inisialisasi driver Redis bisa dilakukan di dalam constructor ataupun method yang membutuhkan.</p>
+	    <pre>$this->cache = new Resources\Cache();</pre>
+	</div>
+        <div class="row-fluid">
+	    <div class="page-header"><h2 id="set">Matrik Method</h2></div>
+	    <p>Secara natif, Redis API datang dengan beberapa <a href="https://github.com/nicolasff/phpredis" target="_blank">method</a>. Untuk kemudahan akses, Panada menyediakan interface untuk mengkasesnya, berikut adalah matriknya:</p>
+		<table class="table table-bordered">
+		    <thead>
+			<tr>
+			    <th scope="col">Interface</th>
+			    <th scope="col">Methods</th>
+			    <th scope="col">Manual</th>
+			</tr>
+		    </thead>
+		<tbody>
+		    <tr>
+			<td>auth</td>
+			<td>$this->cache->auth()</td>
+			<td><a target="_blank" href="https://github.com/nicolasff/phpredis/#auth">https://github.com/nicolasff/phpredis/#auth</a></td>
+			
+		    </tr>
+		    <tr class="odd">
+			<td>select</td>
+			<td>$this->cache->select()</td>
+			<td><a target="_blank" href="https://github.com/nicolasff/phpredis/#select">https://github.com/nicolasff/phpredis/#select</a></td>
+		    </tr>
+		    <tr>
+			<td>close</td>
+			<td>$this->cache->close()</td>
+			<td><a target="_blank" href="https://github.com/nicolasff/phpredis/#close">https://github.com/nicolasff/phpredis/#close</a></td>
+		    </tr>
+                    <tr class="odd">
+			<td>setOption</td>
+			<td>$this->cache->setOption()</td>
+			<td><a target="_blank" href="https://github.com/nicolasff/phpredis/#setoption">https://github.com/nicolasff/phpredis/#setoption</a></td>
+		    </tr>
+		    <tr>
+			<td>getOption</td>
+			<td>$this->cache->getOption()</td>
+			<td><a target="_blank" href="https://github.com/nicolasff/phpredis/#getoption">https://github.com/nicolasff/phpredis/#getoption</a></td>
+		    </tr>
+		    <tr class="odd">
+			<td>ping</td>
+			<td>$this->cache->ping()</td>
+			<td><a target="_blank" href="https://github.com/nicolasff/phpredis/#ping">https://github.com/nicolasff/phpredis/#ping</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::cas</td>
+			<td>$this->cache->cas()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.cas.php">http://www.php.net/manual/en/memcached.cas.php</a></td>
+		    </tr>
+                    <tr class="odd">
+			<td>Memcached::casByKey</td>
+			<td>$this->cache->casByKey()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.casbykey.php">http://www.php.net/manual/en/memcached.casbykey.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::decrement</td>
+			<td>$this->cache->decrement()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.decrement.php">http://www.php.net/manual/en/memcached.decrement.php</a></td>
+		    </tr>
+                    <tr class="odd">
+			<td>Memcached::delete</td>
+			<td>$this->cache->delete()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.delete.php">http://www.php.net/manual/en/memcached.delete.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::deleteByKey</td>
+			<td>$this->cache->deleteByKey()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.deletebykey.php">http://www.php.net/manual/en/memcached.deletebykey.php</a></td>
+		    </tr>
+                    <tr class="odd">
+			<td>Memcached::fetch</td>
+			<td>$this->cache->fetch()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.fetch.php">http://www.php.net/manual/en/memcached.fetch.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::fetchAll</td>
+			<td>$this->cache->fetchAll()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.fetchall.php">http://www.php.net/manual/en/memcached.fetchall.php</a></td>
+		    </tr>
+                    <tr class="odd">
+			<td>Memcached::flush</td>
+			<td>$this->cache->flush()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.flush.php">http://www.php.net/manual/en/memcached.flush.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::get</td>
+			<td>$this->cache->get()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.get.php">http://www.php.net/manual/en/memcached.get.php</a></td>
+		    </tr>
+                    <tr class="odd">
+			<td>Memcached::getByKey</td>
+			<td>$this->cache->getByKey()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getbykey.php">http://www.php.net/manual/en/memcached.getbykey.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::getDelayed</td>
+			<td>$this->cache->getDelayed()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getdelayed.php">http://www.php.net/manual/en/memcached.getdelayed.php</a></td>
+		    </tr>
+                    <tr class="odd">
+			<td>Memcached::getDelayedByKey</td>
+			<td>$this->cache->getDelayedByKey()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getdelayedbykey.php">http://www.php.net/manual/en/memcached.getdelayedbykey.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::getMulti</td>
+			<td>$this->cache->getMulti()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getmulti.php">http://www.php.net/manual/en/memcached.getmulti.php</a></td>
+		    </tr>
+		    <tr class="odd">
+			<td>Memcached::getMultiByKey</td>
+			<td>$this->cache->getMultiByKey()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getmultibykey.php">http://www.php.net/manual/en/memcached.getmultibykey.php</a></td>
+		    </tr>
+		     <tr>
+			<td>Memcached::getOption</td>
+			<td>$this->cache->getOption()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getoption.php">http://www.php.net/manual/en/memcached.getoption.php</a></td>
+		    </tr>
+		     <tr class="odd">
+			<td>Memcached::getResultCode</td>
+			<td>$this->cache->getResultCode()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getresultcode.php">http://www.php.net/manual/en/memcached.getresultcode.php</a></td>
+		    </tr>
+		     <tr>
+			<td>Memcached::getResultMessage</td>
+			<td>$this->cache->getResultMessage()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getresultmessage.php">http://www.php.net/manual/en/memcached.getresultmessage.php</a></td>
+		    </tr>
+		    <tr class="odd">
+			<td>Memcached::getServerByKey</td>
+			<td>$this->cache->getServerByKey()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getserverbykey.php">http://www.php.net/manual/en/memcached.getserverbykey.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::getServerList</td>
+			<td>$this->cache->getServerList()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getserverlist.php">http://www.php.net/manual/en/memcached.getserverlist.php</a></td>
+		    </tr>
+		    <tr class="odd">
+			<td>Memcached::getStats</td>
+			<td>$this->cache->getStats()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getstats.php">http://www.php.net/manual/en/memcached.getstats.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::getVersion</td>
+			<td>$this->cache->getVersion()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.getversion.php">http://www.php.net/manual/en/memcached.getversion.php</a></td>
+		    </tr>
+		    <tr class="odd">
+			<td>Memcached::increment</td>
+			<td>$this->cache->increment()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.increment.php">http://www.php.net/manual/en/memcached.increment.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::prepend</td>
+			<td>$this->cache->prepend()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.prepend.php">http://www.php.net/manual/en/memcached.prepend.php</a></td>
+		    </tr>
+		    <tr class="odd">
+			<td>Memcached::prependByKey</td>
+			<td>$this->cache->prependByKey()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.prependbykey.php">http://www.php.net/manual/en/memcached.prependbykey.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::replace</td>
+			<td>$this->cache->replace()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.replace.php">http://www.php.net/manual/en/memcached.replace.php</a></td>
+		    </tr>
+		    <tr class="odd">
+			<td>Memcached::replaceByKey</td>
+			<td>$this->cache->replaceByKey()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.replacebykey.php">http://www.php.net/manual/en/memcached.replacebykey.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::set</td>
+			<td>$this->cache->set()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.set.php">http://www.php.net/manual/en/memcached.set.php</a></td>
+		    </tr>
+		    <tr class="odd">
+			<td>Memcached::setByKey</td>
+			<td>$this->cache->setByKey()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.setbykey.php">http://www.php.net/manual/en/memcached.setbykey.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::setMulti</td>
+			<td>$this->cache->setMulti()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.setmulti.php">http://www.php.net/manual/en/memcached.setmulti.php</a></td>
+		    </tr>
+                    <tr class="odd">
+			<td>Memcached::setMultiByKey</td>
+			<td>$this->cache->setMultiByKey()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.setmultibykey.php">http://www.php.net/manual/en/memcached.setmultibykey.php</a></td>
+		    </tr>
+		    <tr>
+			<td>Memcached::setOption</td>
+			<td>$this->cache->setOption()</td>
+			<td><a target="_blank" href="http://www.php.net/manual/en/memcached.setoption.php">http://www.php.net/manual/en/memcached.setoption.php</a></td>
+		    </tr>
+		</tbody>
+	    </table>
+        </div>
+        <div class="row-fluid">
+            <div class="page-header" id="discussion">
+                <h2>Diskusi</h2>
+            </div>
+	    <div id="disqus_thread"></div>
+	</div>
+      </div><!--/span-->
+    </div><!--/row-->
+    <hr>
+    <footer>
+      <p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/id/classes/cache/redis.html">fork dan edit</a>.</p>
+    </footer>
+</div><!--/.fluid-container-->
+<script>
+var disqus_url = 'classes/cache/redis.html';
+</script>
+<script src="../../../jquery.js"></script>
+<script src="../../../bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../panada.js"></script>
+</body>
+</html>
