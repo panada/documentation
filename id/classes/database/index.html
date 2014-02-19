@@ -1,105 +1,115 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Panada PHP Framework 1.0.0 Documentation - Database Configuration</title>
-    <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen" />
+<meta charset="utf-8">
+<title>Panada PHP Framework 1.1.0 Documentation - Database Configuration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
-    <div class="header">
-	<div class="logo">
-	    <a target="_blank" href="http://panadaframework.com/"><img src="../../../images/logo.png" height="21" border="0" /></a>
-	</div>
-        <div class="menu">
-            <form action="http://www.google.com/search" method="get">
-	    <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
-            <input class="search-input" type="text" name="q" /><button class="search-button" type="submit">Search</button>
+<div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../../../images/logosimple.png"></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="http://panadaframework.com/">Home</a></li>
+	      <li><a href="https://github.com/panada/Panada">Source</a></li>
+		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
+		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
+		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
+		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
+            </ul>
+            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
+                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
+                <div class="input-append">
+                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
+                    <button class="btn" type="button"><i class="icon-search"></i></button>
+                </div>
             </form>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
+</div>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Panada Framework 1.1.0 Documentation</h1>
     </div>
-    
-    <div class="subheader">
-        <h1>Panada Framework 1.0.0 Documentation</h1>
-    </div>
-    
-    <div class="wrapper">
-        <div class="sidebar">
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="../../index.html">Umum</a>
-                        <ul>
-                            <li><a href="../../index.html#about">Tentang Panada</a></li>
-                            <li><a href="../../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
-                            <li><a href="../../index.html#license">Lisensi</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="../../config.html">Konfigurasi</a>
-                        <ul>
-                            <li><a href="../../config.html#general">Dasar</a></li>
-                            <li><a href="../../config.html#additional_config">Tambahan</a></li>
-                            <li><a href="../../config.html#webserver">Webserver</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Referensi
-                        <ul>
-                            <li><a href="../../references/controller.html">Controller</a></li>
-                            <li><a href="../../references/model.html">Model</a></li>
-                            <li><a href="../../references/view.html">View</a></li>
-                            <li><a href="../../references/library.html">Library</a></li>
-                            <li><a href="../../references/autoloader.html">Auto Loader</a></li>
-                            <li><a href="../../references/global_method.html">Global Method dan Properties</a></li>
-			    <li><a href="../../references/module.html">Module</a></li>
-			    <li><a href="../../references/vendor.html">Vendor</a></li>
-			    <li><a href="../../references/upgrade.html">Upgrade</a></li>
-                        </ul>
-                            
-                    </li>
-                    <li>
-                        <a href="../../index.html">Resources</a>
-                        <ul>
-                            <li>
-				<a href="index.html">Database</a>
-				<ul>
-				    
-				    <li><a href="query_builder.html">Query Builder</a></li>
-				    <li><a href="activerecord.html">Active Record</a></li>
-				    <li><a href="manual_query.html">Manual Query</a></li>
-				    <li><a href="mongodb.html">Mongodb</a></li>
-				</ul>
-			    </li>
-			    <li><a href="../cache/index.html">Cache</a></li>
-                            <li><a href="../session.html">Session</a></li>
-                            <li><a href="../pagination.html">Pagination</a></li>
-                            <li><a href="../email.html">Email</a></li>
-                            <li><a href="../encryption.html">Encryption</a></li>
-                            <li><a href="../upload.html">Upload</a></li>
-                            <li><a href="../image.html">Image</a></li>
-                            <li><a href="../request.html">Request</a></li>
-                            <li><a href="../rest.html">RESTfull</a></li>
-			    <li><a href="../tools.html">Tools</a></li>
-			    <li><a href="../validation.html">Form Validation</a></li>
-                        </ul>
-                    </li>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"><a href="../../index.html" class="muted">Umum</a></li>
+                    <li><a href="../../index.html#about">Tentang Panada</a></li>
+                    <li><a href="../../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
+                    <li><a href="../../index.html#requirement">Requirement</a></li>
+                    <li><a href="../../index.html#license">Lisensi</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../../config.html" class="muted">Konfigurasi</a></li>
+                    <li><a href="../../config.html#general">Dasar</a></li>
+                    <li><a href="../../config.html#additional_config">Tambahan</a></li>
+                    <li><a href="../../config.html#webserver">Webserver</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Referensi</li>
+                    <li><a href="../../references/controller.html">Controller</a></li>
+                    <li><a href="../../references/model.html">Model</a></li>
+                    <li><a href="../../references/view.html">View</a></li>
+                    <li><a href="../../references/library.html">Library</a></li>
+                    <li><a href="../../references/autoloader.html">Auto Loader</a></li>
+                    <li><a href="../../references/global_method.html">Global Method dan Properties</a></li>
+                    <li><a href="../../references/module.html">Module</a></li>
+                    <li><a href="../../references/vendor.html">Vendor</a></li>
+                    <li><a href="../../references/upgrade.html">Upgrade</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../../classes/index.html" class="muted">Resources</a></li>
+                    <li class="active"><a href="index.html">Database</a></li>
+		    <li>
+			<ul>
+			    <li><a href="query_builder.html">Query Builder</a></li>
+			    <li><a href="activerecord.html">Active Record</a></li>
+			    <li><a href="manual_query.html">Manual Query</a></li>
+			    <li><a href="mongodb.html">Mongodb</a></li>
+			</ul>
+		    </li>
+                    <li><a href="../../classes/cache/index.html">Cache</a></li>
+                    <li><a href="../../classes/session.html">Session</a></li>
+                    <li><a href="../../classes/pagination.html">Pagination</a></li>
+                    <li><a href="../../classes/email.html">Email</a></li>
+                    <li><a href="../../classes/encryption.html">Encryption</a></li>
+                    <li><a href="../../classes/upload.html">Upload</a></li>
+                    <li><a href="../../classes/image.html">Image</a></li>
+                    <li><a href="../../classes/request.html">Request</a></li>
+                    <li><a href="../../classes/rest.html">RESTfull</a></li>
+                    <li><a href="../../classes/tools.html">Tools</a></li>
+                    <li><a href="../../classes/validation.html">Form Validation</a></li>
+                    <li class="divider"></li>
                     <li><a href="../../contribution.html">Kontribusi</a></li>
                     <li><a href="../../credit.html">Credit</a></li>
                 </ul>
-	    </div>
-            
-        </div>
-        
-        <div class="content">
-            <div class="lead">
-                <h2>Database</h2>
-                <p>Sebelum menggunakan resource database, terlebih dahulu harus dilakukan konfigurasi. Bagian konfigurasi database terletak pada file <strong>app/config/database.php</strong>.</p>
             </div>
-            
-            <div class="main">
-                <h3 id="config">Konfigurasi</h3>
-                
+        </div>
+      <div class="span9">
+        <div class="row-fluid">
+	    <div class="page-header">
+                <h2>Database</h2>
+	    </div>
+                <p>Sebelum menggunakan resource database, terlebih dahulu harus dilakukan konfigurasi. Bagian konfigurasi database terletak pada file <strong>app/config/database.php</strong>.</p>
+	</div>            
+        <div class="main">
+	    <div class="page-header">
+                <h2 id="config">Konfigurasi</h2>
+	    </div>
 		<p>Bagian-bagian yang harus dilengkapi adalah host, user, password dan nama database.</p>
-<textarea rows="13" cols="50" class="textarea">
+<pre rows="13" cols="50" class="pre">
 'default' => array(
     'driver' => 'mysql',
     'host' => 'localhost',
@@ -112,10 +122,10 @@
     'collate' => 'utf8_general_ci',
     'persistent' => false,
 ),
-</textarea>
+</pre>
 		
 		<h4>Keterangan</h4>
-                <table>
+                <table class="table table-bordered">
 		    <thead>
 			<tr>
 			    <th scope="col">Variable</th>
@@ -155,7 +165,7 @@
 		
 		<p>Nilai <strong>default</strong> pada konfigurasi di atas menunjukan koneksi database default. Jika Anda menginginkan koneksi database yang lain silahkan tambahkan nama baru pada bagian ini. Sebagai contoh:</p>
 
-<textarea rows="24" cols="50" class="textarea">
+<pre rows="24" cols="50" class="pre">
 'db2' => array(
     'driver' => 'pgsql',
     'host' => 'localhost',
@@ -178,18 +188,18 @@
     'collate' => '',
     'persistent' => false,
 ),
-</textarea>
+</pre>
 		<h4>Inisialisasi</h4>
 		<p>Berikut adalah contoh membuat <em>instance</em> untuk DB baik itu di dalam model ataupun controller:</p>
-<textarea rows="17" cols="50" class="textarea">
+<pre rows="17" cols="50" class="pre">
 &lt;?php
 namespace Models;
 use Resources;
 
-class Comments {
-    
-    public function __construct(){
-        
+class Comments
+{    
+    public function __construct()
+    {
 	// DB koneksi default
 	$this->db = new Resources\Database;
 	// DB koneksi 2
@@ -198,8 +208,7 @@ class Comments {
 	$this->db3 = new Resources\Database('db3');
     }
 }
-</textarea>
-		
+</pre>
 		<h4>Database APIs</h4>
 		
 		<p>Untuk berinteraksi dengan database, setidaknya bisa dilakukan dengan tiga cara yaitu:</p>
@@ -209,22 +218,24 @@ class Comments {
 		    <li><a href="manual_query.html">Manual Query</a></li>
 		</ul>
             </div>
-	    
-	    <div id="discussion" class="main">
-		<h3>Diskusi</h3>
-		<div id="disqus_thread"></div>
-	    </div>
-        
-        </div>
-        
+	<div class="row-fluid">
+            <div class="page-header" id="discussion">
+                <h2>Diskusi</h2>
+            </div>
+	    <div id="disqus_thread"></div>
+	</div>
+      </div>
     </div>
-          
-    <div class="footer">
-        <span class="right">All Rights Reserved.</span>
-    </div>
+    <hr>
+    <footer>
+	<p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/classes/database/index.html">fork dan edit</a>.</p>
+    </footer>
+</div>
 <script>
 var disqus_url = 'classes/database/index.html';
 </script>
+<script src="../../../jquery.js"></script>
+<script src="../../../bootstrap/js/bootstrap.min.js"></script>
 <script src="../../../panada.js"></script>
 </body>
 </html>

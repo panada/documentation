@@ -1,106 +1,125 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Panada PHP Framework 1.0.0 Documentation - Cache Configuration</title>
-    <link rel="stylesheet" href="../../../style.css" type="text/css" media="screen" />
+<meta charset="utf-8">
+<title>Panada PHP Framework 1.1.0 Documentation - Database Configuration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlepre.com/svn/trunk/html5.js"></script>
+<![endif]-->
 </head>
 <body>
-    <div class="header">
-	<div class="logo">
-	    <a target="_blank" href="http://panadaframework.com/"><img src="../../../images/logo.png" height="21" border="0" /></a>
-	</div>
-        <div class="menu">
-            <form action="http://www.google.com/search" method="get">
-	    <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
-            <input class="search-input" type="text" name="q" /><button class="search-button" type="submit">Search</button>
+<div class="navbar navbar-static-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../../../images/logosimple.png"></a>
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+              <li><a href="http://panadaframework.com/">Home</a></li>
+	      <li><a href="https://github.com/panada/Panada">Source</a></li>
+		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
+		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
+		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
+		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
+            </ul>
+            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
+                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
+                <div class="input-append">
+                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
+                    <button class="btn" type="button"><i class="icon-search"></i></button>
+                </div>
             </form>
+          </div><!--/.nav-collapse -->
         </div>
+      </div>
+</div>
+<div class="container-fluid">
+    <div class="page-header">
+        <h1>Panada Framework 1.1.0 Documentation</h1>
     </div>
-    
-    <div class="subheader">
-        <h1>Panada Framework 1.0.0 Documentation</h1>
-    </div>
-    
-    <div class="wrapper">
-        <div class="sidebar">
-            <div class="navigation">
-                <ul>
-                    <li>
-                        <a href="../index.html">Umum</a>
-                        <ul>
-                            <li><a href="../../index.html#about">Tentang Panada</a></li>
-                            <li><a href="../../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
-                            <li><a href="../../index.html#license">Lisensi</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="../../config.html">Konfigurasi</a>
-                        <ul>
-                            <li><a href="../../config.html#general">Dasar</a></li>
-                            <li><a href="../../config.html#additional_config">Tambahan</a></li>
-                            <li><a href="../../config.html#webserver">Webserver</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        Referensi
-                        <ul>
-                            <li><a href="../../references/controller.html">Controller</a></li>
-                            <li><a href="../../references/model.html">Model</a></li>
-                            <li><a href="../../references/view.html">View</a></li>
-                            <li><a href="../../references/library.html">Library</a></li>
-                            <li><a href="../../references/autoloader.html">Auto Loader</a></li>
-                            <li><a href="../../references/global_method.html">Global Method dan Properties</a></li>
-			    <li><a href="../../references/module.html">Module</a></li>
-			    <li><a href="../../references/vendor.html">Vendor</a></li>
-			    <li><a href="../../references/upgrade.html">Upgrade</a></li>
-                        </ul>
-                            
-                    </li>
-                    <li>
-                        <a href="../index.html">Resources</a>
-                        <ul>
-                            <li><a href="../database/index.html">Database</a></li>
-                            <li>
-				<a href="index.html">Cache</a>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="sidebar-nav">
+                <ul class="nav nav-list">
+                    <li class="nav-header"><a href="../../index.html" class="muted">Umum</a></li>
+                    <li><a href="../../index.html#about">Tentang Panada</a></li>
+                    <li><a href="../../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
+                    <li><a href="../../index.html#requirement">Requirement</a></li>
+                    <li><a href="../../index.html#license">Lisensi</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../../config.html" class="muted">Konfigurasi</a></li>
+                    <li><a href="../../config.html#general">Dasar</a></li>
+                    <li><a href="../../config.html#additional_config">Tambahan</a></li>
+                    <li><a href="../../config.html#webserver">Webserver</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header">Referensi</li>
+                    <li><a href="../../references/controller.html">Controller</a></li>
+                    <li><a href="../../references/model.html">Model</a></li>
+                    <li><a href="../../references/view.html">View</a></li>
+                    <li><a href="../../references/library.html">Library</a></li>
+                    <li><a href="../../references/autoloader.html">Auto Loader</a></li>
+                    <li><a href="../../references/global_method.html">Global Method dan Properties</a></li>
+                    <li><a href="../../references/module.html">Module</a></li>
+                    <li><a href="../../references/vendor.html">Vendor</a></li>
+                    <li><a href="../../references/upgrade.html">Upgrade</a></li>
+                    <li class="divider"></li>
+                    <li class="nav-header"><a href="../../classes/index.html" class="muted">Resources</a></li>
+                    <li><a href="../../classes/database/index.html">Database</a></li>
+                    <li class="active"><a href="index.html">Cache</a></li>
+		    <li>
+			<ul>
+			    <li><a href="#config">Konfigurasi</a></li>
+			    <li><a href="#init">Inisialisasi</a></li>
+			    <li><a href="#method">Method</a></li>
+			    <li><a href="#namespace">Namespace</a></li>
+			    <li>
+				<a href="#specific">API Spesifik Driver</a>
 				<ul>
-				    <li><a href="#config">Konfigurasi</a></li>
-				    <li><a href="#init">Inisialisasi</a></li>
-				    <li><a href="#method">Method</a></li>
-				    <li><a href="#namespace">Namespace</a></li>
-				    <li><a href="#specific">API Spesifik Driver</a></li>
+				    <li><a href="apc.html">APC</a></li>
+				    <li><a href="memcache.html">Memcache</a></li>
+				    <li><a href="memcached.html">Memcached</a></li>
+				    <li><a href="redis.html">Redis</a></li>
 				</ul>
 			    </li>
-                            <li><a href="../session.html">Session</a></li>
-                            <li><a href="../pagination.html">Pagination</a></li>
-                            <li><a href="../email.html">Email</a></li>
-                            <li><a href="../encryption.html">Encryption</a></li>
-                            <li><a href="../upload.html">Upload</a></li>
-                            <li><a href="../image.html">Image</a></li>
-                            <li><a href="../request.html">Request</a></li>
-                            <li><a href="../rest.html">RESTfull</a></li>
-			    <li><a href="../tools.html">Tools</a></li>
-			    <li><a href="../../classes/validation.html">Form Validation</a></li>
-                        </ul>
-                    </li>
+			</ul>
+		    </li>
+                    <li><a href="../../classes/session.html">Session</a></li>
+                    <li><a href="../../classes/pagination.html">Pagination</a></li>
+                    <li><a href="../../classes/email.html">Email</a></li>
+                    <li><a href="../../classes/encryption.html">Encryption</a></li>
+                    <li><a href="../../classes/upload.html">Upload</a></li>
+                    <li><a href="../../classes/image.html">Image</a></li>
+                    <li><a href="../../classes/request.html">Request</a></li>
+                    <li><a href="../../classes/rest.html">RESTfull</a></li>
+                    <li><a href="../../classes/tools.html">Tools</a></li>
+                    <li><a href="../../classes/validation.html">Form Validation</a></li>
+                    <li class="divider"></li>
                     <li><a href="../../contribution.html">Kontribusi</a></li>
                     <li><a href="../../credit.html">Credit</a></li>
                 </ul>
-	    </div>
-            
-        </div>
-        
-        <div class="content">
-            <div class="lead">
-                <h2>Cache</h2>
-		<p>Saat ini, driver Obeject Cache yang sudah tersedia adalah <a href="http://php.net/manual/en/book.apc.php">APC</a>, <a href="http://www.php.net/manual/en/book.memcache.php">Memcache</a> dan <a href="http://www.php.net/manual/en/book.memcached.php">Memcached</a>.</p>
-                <p>Sebelum menggunakan library cache, terlebih dahulu harus dilakukan konfigurasi. Bagian konfigurasi database terletak pada file <strong>app/config/cache.php</strong>.</p>
             </div>
-            
-            <div class="main">
-                <h3 id="config">Konfigurasi</h3>
-                
+        </div>
+      <div class="span9">
+        <div class="row-fluid">
+            <div class="page-header">
+                <h2>Cache</h2>
+            </div>
+	    <p>Saat ini, driver Obeject Cache yang sudah tersedia adalah <a href="https://github.com/nicolasff/phpredis">Redis</a>, <a href="http://php.net/manual/en/book.apc.php">APC</a>, <a href="http://www.php.net/manual/en/book.memcache.php">Memcache</a> dan <a href="http://www.php.net/manual/en/book.memcached.php">Memcached</a>.</p>
+            <p>Sebelum menggunakan library cache, terlebih dahulu harus dilakukan konfigurasi. Bagian konfigurasi database terletak pada file <strong>app/config/cache.php</strong>.</p>
+        </div>
+	<div class="row-fluid">
+	    <div class="page-header">
+                <h2 id="config">Konfigurasi</h2>
+	    </div>
 		<p>Bagian-bagian yang harus dilengkapi <strong>namaKoneksi</strong> dan <strong>driver</strong>.</p>
-<textarea rows="9" cols="50" class="textarea">
+<pre rows="9" cols="50" class="pre">
 return array(
     
     'namaKoneksi' => array(
@@ -108,13 +127,13 @@ return array(
         'driver' => 'apc',
     ),
 );
-</textarea>
+</pre>
 		<p>Saat ini pilihan driver yang tersedia adalah <strong>apc</strong>, <strong>memcache</strong> dan <strong>memcached</strong>.</p>
 		<p>Sebagai contoh, konfigurasi di atas adalah jika ingin mengunakan APC sebagai cache.</p>
 		
 		<p>Nilai <strong>default</strong> pada konfigurasi menunjukan koneksi cache default. Jika Anda menginginkan koneksi cache yang lain silahkan tambahkan nama baru pada bagian ini. Sebagai contoh:</p>
 
-<textarea rows="26" cols="50" class="textarea">
+<pre rows="26" cols="50" class="pre">
 return array(
     
     'default' => array(
@@ -140,18 +159,18 @@ return array(
         )
     ),
 );
-</textarea>
+</pre>
 		<h4 id="init">Inisialisasi</h4>
 		<p>Berikut adalah contoh membuat <em>instance</em> untuk Cache baik itu di dalam model ataupun controller:</p>
-<textarea rows="16" cols="50" class="textarea">
+<pre rows="16" cols="50" class="pre">
 &lt;?php
 namespace Models;
 Use Resources;
 
-class Comments {
-    
-    public function __construct(){
-        
+class Comments
+{    
+    public function __construct()
+    {
 	// Cache koneksi default
 	$this->cache = new Resources\Cache;
 	
@@ -159,21 +178,21 @@ class Comments {
 	$this->cache2 = new Resources\Cache('memcached');
     }
 }
-</textarea>
+</pre>
 		
             </div>
-	    <div class="main">
-		<h3 id="method">Method</h3>
+	    <div class="row-fluid">
+		<div class="page-header">
+		    <h2 id="method">Method</h2>
+		</div>
 		
 		<p>Untuk berinteraksi dengan cache driver, berikut adalah API yang tersedia:</p>
 		
 		<h4>setValue</h4>
 		<p>Melakukan penyimpanan data yang akan di-cache.</p>
-		<code>
-		    <strong>mix</strong> $this->cache-><strong>setValue</strong>($key, $value, $expire = 0, $namespace = false);
-		</code>
+		<pre class="prettyprint"><strong>mix</strong> $this->cache-><strong>setValue</strong>($key, $value, $expire = 0, $namespace = false);</pre>
 		<p>Parameter</p>
-                <table>
+                <table class="table table-bordered">
 		    <thead>
 			<tr>
 			    <th scope="col">Variable</th>
@@ -208,11 +227,9 @@ class Comments {
 		
 		<h4>addValue</h4>
 		<p>Melakukan penyimpanan data yang akan di-cache hanya jika key yang diberikan belum pernah digunakan sebelumnya. Jika ternyata key-nya sudah digunakan maka nilai returnnya adalah <strong>false</strong>.</p>
-		<code>
-		    <strong>mix</strong> $this->cache-><strong>addValue</strong>($key, $value, $expire = 0, $namespace = false);
-		</code>
+		<pre class="prettyprint"><strong>mix</strong> $this->cache-><strong>addValue</strong>($key, $value, $expire = 0, $namespace = false);</pre>
 		<p>Parameter</p>
-                <table>
+                <table class="table table-bordered">
 		    <thead>
 			<tr>
 			    <th scope="col">Variable</th>
@@ -247,11 +264,9 @@ class Comments {
 		
 		<h4>updateValue</h4>
 		<p>Melakukan update data yang sudah di-cache berdasarkan key yang diberikan.</p>
-		<code>
-		    <strong>mix</strong> $this->cache-><strong>updateValue</strong>($key, $value, $expire = 0, $namespace = false);
-		</code>
+		<pre class="prettyprint"><strong>mix</strong> $this->cache-><strong>updateValue</strong>($key, $value, $expire = 0, $namespace = false);</pre>
 		<p>Parameter</p>
-                <table>
+                <table class="table table-bordered">
 		    <thead>
 			<tr>
 			    <th scope="col">Variable</th>
@@ -286,11 +301,9 @@ class Comments {
 		
 		<h4>getValue</h4>
 		<p>Mendapatkan data yang sudah di-cache berdasarkan key yang diberikan.</p>
-		<code>
-		    <strong>mix</strong> $this->cache-><strong>getValue</strong>($key, $namespace = false);
-		</code>
+		<pre class="prettyprint"><strong>mix</strong> $this->cache-><strong>getValue</strong>($key, $namespace = false);</pre>
 		<p>Parameter</p>
-                <table>
+                <table class="table table-bordered">
 		    <thead>
 			<tr>
 			    <th scope="col">Variable</th>
@@ -315,11 +328,9 @@ class Comments {
 		
 		<h4>deleteValue</h4>
 		<p>Menghapus data yang sudah di-cache berdasarkan key yang diberikan.</p>
-		<code>
-		    <strong>mix</strong> $this->cache-><strong>deleteValue</strong>($key, $namespace = false);
-		</code>
+		<pre class="prettyprint"><strong>mix</strong> $this->cache-><strong>deleteValue</strong>($key, $namespace = false);</pre>
 		<p>Parameter</p>
-                <table>
+                <table class="table table-bordered">
 		    <thead>
 			<tr>
 			    <th scope="col">Variable</th>
@@ -344,17 +355,13 @@ class Comments {
 		
 		<h4>flushValues</h4>
 		<p>Menghapus semua data yang sudah di-cache.</p>
-		<code>
-		    <strong>bool</strong> $this->cache-><strong>flushValues</strong>();
-		</code>
+		<pre class="prettyprint"><strong>bool</strong> $this->cache-><strong>flushValues</strong>();</pre>
 		
 		<h4>incrementBy</h4>
 		<p>Melakukan penambahan secara interval dengan nilai tertentu.</p>
-		<code>
-		    <strong>int</strong> $this->cache-><strong>incrementBy</strong>($key, $offset = 1);
-		</code>
+		<pre class="prettyprint"><strong>int</strong> $this->cache-><strong>incrementBy</strong>($key, $offset = 1);</pre>
 		<p>Parameter</p>
-                <table>
+                <table class="table table-bordered">
 		    <thead>
 			<tr>
 			    <th scope="col">Variable</th>
@@ -379,11 +386,9 @@ class Comments {
 		
 		<h4>decrementBy</h4>
 		<p>Melakukan pengurangan secara interval dengan nilai tertentu.</p>
-		<code>
-		    <strong>int</strong> $this->cache-><strong>decrementBy</strong>($key, $offset = 1);
-		</code>
+		<pre class="prettyprint"><strong>int</strong> $this->cache-><strong>decrementBy</strong>($key, $offset = 1);</pre>
 		<p>Parameter</p>
-                <table>
+                <table class="table table-bordered">
 		    <thead>
 			<tr>
 			    <th scope="col">Variable</th>
@@ -408,29 +413,31 @@ class Comments {
 		
 	    </div>
 	    
-	    <div class="main">
-		<h3 id="namespace">Namespace</h3>
+	    <div class="row-fluid">
+		<div class="page-header">
+		    <h2 id="namespace">Namespace</h2>
+		</div>
 		<p>Namespace bisa dignakan jika Anda ingin melakukan modifikasi data cache dengan beberapa key yang berbeda-beda secara bersamaan.</p>
 		<p>Sebagai contoh jika ada sebuah data yang Anda tampilkan dengan cara paging.
 		Setiap halaman dapat menampung 10 data dimana data ini kemudian disimpan ke dalam cache. Key dari masing-masing halaman misalnya <strong>comment_page_1</strong>, <strong>comment_page_2</strong>, <strong>comment_page_3</strong> ... dst.
 		Jika ada data baru yang ingin ditambahkan dan semua data ini perlu di flush, maka untuk melakukan hal ini cukup dengan menghapus namespace-nya saja. Berikut adalah contohnya:</p>
 		
-<textarea rows="51" cols="50" class="textarea">
+<pre class="prettyprint">
 &lt;?php
 namespace Controllers;
 use Resources;
 
-class Home extends Resources\Controller {
-    
-    public function __construct(){
-        
+class Home extends Resources\Controller
+{    
+    public function __construct()
+    {
         parent::__construct();
         
         $this->cache = new Resources\Cache();
     }
     
-    public function index(){
-        
+    public function index()
+    {
 	$namespace = 'comment_id_29';
 	
         $key = 'comment_page_1';
@@ -440,8 +447,8 @@ class Home extends Resources\Controller {
 	print_r( $this->cache->getValue($key, $namespace) );
     }
     
-    public function addCacheComment(){
-	
+    public function addCacheComment()
+    {
 	$namespace = 'comment_id_29';
 	$key = 'comment_page_3';
 	
@@ -459,40 +466,47 @@ class Home extends Resources\Controller {
 	$this->cache->setValue( $key, $comments, 0, $namespace );
     }
     
-    public function deleteNamespace(){
-	
+    public function deleteNamespace()
+    {
 	$namespace = 'comment_id_29';
 	$this->cache->deleteValue($namespace);
     }
 }
-</textarea>
+</pre>
 
 	    </div>
-	    <div class="main">
-		<h3 id="specific">API Spesifik Driver</h3>
+	    <div class="row-fluid">
+		<div class="page-header">
+		    <h2 id="specific">API Spesifik Driver</h2>
+		</div>
 		<p>Selain dari API yang sudah disediakan, Anda juga bisa menggunakan API yang tersedia dari masing-masing driver.</p>
 		<ul>
+		    <li><a href="redis.html">Redis</a></li>
 		    <li><a href="apc.html">APC</a></li>
 		    <li><a href="memcache.html">Memcache</a></li>
 		    <li><a href="memcached.html">Memcached</a></li>
 		</ul>
 	    </div>
 	    
-	    <div id="discussion" class="main">
-		<h3>Diskusi</h3>
-		<div id="disqus_thread"></div>
-	    </div>
-        
-        </div>
-        
+	    
+	<div class="row-fluid">
+            <div class="page-header" id="discussion">
+                <h2>Diskusi</h2>
+            </div>
+	    <div id="disqus_thread"></div>
+	</div>
+      </div>
     </div>
-          
-    <div class="footer">
-        <span class="right">All Rights Reserved.</span>
-    </div>
+    <hr>
+    <footer>
+	<p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/classes/cache/index.html">fork dan edit</a>.</p>
+    </footer>
+</div>
 <script>
 var disqus_url = 'classes/cache/index.html';
 </script>
+<script src="../../../jquery.js"></script>
+<script src="../../../bootstrap/js/bootstrap.min.js"></script>
 <script src="../../../panada.js"></script>
 </body>
 </html>
