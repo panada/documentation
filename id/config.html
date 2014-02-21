@@ -163,9 +163,13 @@ class Home extends Resources\Controller {
             <div class="page-header" id="webserver">
                 <h2>Webserver</h2>
             </div>
-	    <p>Berikutnya Anda juga perlu melakukan konfigurasi pada sisi webserver. Berikut ini penjelasan pengaturannya untuk webserver <a href="http://httpd.apache.org/" target="_blank">Apache</a>, <a href="http://wiki.nginx.org/Main" target="_blank">Nginx</a> dan <a href="http://www.lighttpd.net/" target="_blank">Lighttpd</a>.
-                <ul>
-                    <li>
+	    <p>Berikutnya Anda juga perlu melakukan konfigurasi pada sisi webserver. Berikut ini penjelasan pengaturannya untuk webserver <a target="_blank" href="http://www.php.net/manual/en/features.commandline.webserver.php">PHP Built-in web server</a>, <a href="http://httpd.apache.org/" target="_blank">Apache</a>, <a href="http://wiki.nginx.org/Main" target="_blank">Nginx</a> dan <a href="http://www.lighttpd.net/" target="_blank">Lighttpd</a>.
+            <br>
+	    <h4>PHP Built-in web server</h4>
+	    <p>Untuk menjalankan webserver natif PHP silahkan masuk ke dalam docroot aplikasi (tempat di mana file index.php berada) dan jalankan:</p>
+	    <pre>php -S localhost:8000</pre>
+	    <p>Kemudan buka browser <a href="http://localhost:8000">http://localhost:8000</a></p>
+	    <br>
                         <h4>Apache</h4>
                         <p>Tambahkan file <strong>.htaccess</strong> di root aplikasi yang isinya:</p>
 <pre>
@@ -179,8 +183,7 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ index.php/$1 [L]
 </pre>
-                    </li>
-                    <li>
+		        <br>
                         <h4>Nginx</h4>
                         <p>Untuk webserver Nginx, gunakan konfigurasi berikut:</p>
 <pre>
@@ -203,8 +206,7 @@ location ~ \.php(.*)$ {
 }
 </pre>
 			<p>Pastikan selalu melakukan reload/restart service Nginx setelah melakukan perubahan.</p>
-                    </li>
-		    <li>
+			<br>
 			<h4>Lighttpd</h4>
 			<p>Buka dan edit file konfigurasi lighttpd, umumnya berada di:</p>
 			<pre>/etc/lighttpd/lighttpd.conf</pre>
@@ -230,8 +232,7 @@ url.rewrite-once = (
 )   
 </pre>
 			<p>Restart service lighttpd.</p>
-		    </li>
-		</ul>
+		    
                
                 <p>Jika konfigurasi webserver sudah dilakukan, baik itu Apache, Nginx ataupun Lighttpd, maka "index.php" di dalam url seharusnya sudah bisa dihilangkan.</p>
                 <pre>http://www.mysite.com/home</pre>
