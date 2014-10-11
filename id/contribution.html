@@ -1,139 +1,100 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Panada PHP Framework 1.1.0 Documentation - Contribution</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-<!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>Panada PHP Framework 1.1.0 Documentation - About Panada</title>
+<link rel="stylesheet" href="../css/pure/0.5.0/pure.css">
+<link rel="stylesheet" href="../css/layouts/side-menu.css">
 </head>
 <body>
-<div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../images/logosimple.png"></a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="http://panadaframework.com/">Home</a></li>
-	      <li><a href="https://github.com/panada/Panada">Source</a></li>
-		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
-		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
-		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
-		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+    <div id="menu">
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading" href="http://panadaframework.com">
+                <img src="../img/logo.svg">
+            </a>
+            <ul>
+		<li><a href="index.html#about">Tentang Panada</a></li>
+		<li><a href="index.html#feature">Feature</a></li>
+		<li><a href="index.html#requirement">Requirement</a></li>
+		<li><a href="index.html#license">Lisensi</a></li>
+		<li class="menu-item-divided"><a href="config.html">Konfigurasi</a></li>
+		<li><a href="config.html#general">Dasar</a></li>
+		<li><a href="config.html#additional_config">Tambahan</a></li>
+		<li><a href="config.html#webserver">Webserver</a></li>
+		<li class="menu-item-divided"><a href="references/controller.html">Referensi</a></li>
+		<li><a href="references/controller.html">Controller</a></li>
+		<li><a href="references/model.html">Model</a></li>
+		<li><a href="references/view.html">View</a></li>
+		<li><a href="references/library.html">Library</a></li>
+		<li><a href="references/autoloader.html">Auto Loader</a></li>
+		<li><a href="#">Global Resources</a></li>
+		<li><a href="references/module.html">Module</a></li>
+		<li><a href="references/vendor.html">Vendor</a></li>
+		<li><a href="references/upgrade.html">Upgrade</a></li>
+		<li class="menu-item-divided"><a href="classes/index.html">Resources</a></li>
+		<li><a href="classes/database/index.html">Database</a></li>
+		<li><a href="classes/cache/index.html">Cache</a></li>
+		<li><a href="classes/session.html">Session</a></li>
+		<li><a href="classes/pagination.html">Pagination</a></li>
+		<li><a href="classes/email.html">Email</a></li>
+		<li><a href="classes/encryption.html">Encryption</a></li>
+		<li><a href="classes/upload.html">Upload</a></li>
+		<li><a href="classes/image.html">Image</a></li>
+		<li><a href="classes/request.html">Request</a></li>
+		<li><a href="classes/rest.html">RESTfull</a></li>
+		<li><a href="classes/tools.html">Tools</a></li>
+		<li><a href="classes/validation.html">Form Validation</a></li>
+		<li class="pure-menu-selected menu-item-divided"><a href="contribution.html">Kontribusi</a></li>
+		<li class="menu-item-divided"><a href="credit.html">Credit</a></li>
             </ul>
-            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
-                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
-                <div class="input-append">
-                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
-                    <button class="btn" type="button"><i class="icon-search"></i></button>
-                </div>
-            </form>
-          </div><!--/.nav-collapse -->
         </div>
-      </div>
-</div>
-<div class="container-fluid">
-    <div class="page-header">
-        <h1>Panada Framework 1.1.0 Documentation</h1>
     </div>
-    <div class="row-fluid">
-        <div class="span3">
-            <div class="sidebar-nav">
-                <ul class="nav nav-list">
-                    <li class="nav-header"><a href="index.html" class="muted">Umum</a></li>
-                    <li><a href="index.html#about">Tentang Panada</a></li>
-                    <li><a href="index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
-                    <li><a href="index.html#requirement">Requirement</a></li>
-                    <li><a href="index.html#license">Lisensi</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header"><a href="config.html" class="muted">Konfigurasi</a></li>
-                    <li><a href="config.html#general">Dasar</a></li>
-                    <li><a href="config.html#additional_config">Tambahan</a></li>
-                    <li><a href="config.html#webserver">Webserver</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header">Referensi</li>
-                    <li><a href="references/controller.html">Controller</a></li>
-                    <li><a href="references/model.html">Model</a></li>
-                    <li><a href="references/view.html">View</a></li>
-                    <li><a href="references/library.html">Library</a></li>
-                    <li><a href="references/autoloader.html">Auto Loader</a></li>
-                    <li><a href="references/global_method.html">Global Method dan Properties</a></li>
-                    <li><a href="references/module.html">Module</a></li>
-                    <li><a href="references/vendor.html">Vendor</a></li>
-                    <li><a href="references/upgrade.html">Upgrade</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header"><a href="classes/index.html" class="muted">Resources</a></li>
-                    <li><a href="classes/database/index.html">Database</a></li>
-                    <li><a href="classes/cache/index.html">Cache</a></li>
-                    <li><a href="classes/session.html">Session</a></li>
-                    <li><a href="classes/pagination.html">Pagination</a></li>
-                    <li><a href="classes/email.html">Email</a></li>
-                    <li><a href="classes/encryption.html">Encryption</a></li>
-                    <li><a href="classes/upload.html">Upload</a></li>
-                    <li><a href="classes/image.html">Image</a></li>
-                    <li><a href="classes/request.html">Request</a></li>
-                    <li><a href="classes/rest.html">RESTfull</a></li>
-                    <li><a href="classes/tools.html">Tools</a></li>
-                    <li><a href="classes/validation.html">Form Validation</a></li>
-                    <li class="divider"></li>
-                    <li class="active"><a href="contribution.html">Kontribusi</a></li>
-                    <li><a href="credit.html">Credit</a></li>
-                </ul>
-            </div><!--/.well -->
-        </div><!--/span-->
-      <div class="span9">
-        <div class="row-fluid">
-            <div class="page-header">
-                <h2>Kontribusi</h2>
-            </div>
-            <p>Panada adalah aplikasi Open Source. Hal ini berarti, semua orang termasuk Anda didorong untuk berkontribusi dalam mengembangkan aplikasi ini bersama-sama untuk menjadikannya lebih baik.</p>
+
+    <div id="main">
+        <div class="header">
+	    <h1>Kontribusi</h1>
         </div>
-        <div class="row-fluid">
-            <div class="page-header">
-                <h2>Patch Contributor</h2>
-            </div>
-            <p>Ingin memperbaiki bug yang Anda temukan? atau memperbaiki algoritma sehingga membuat Panada
+        <div class="content">
+	    <p>Panada adalah aplikasi Open Source. Hal ini berarti, semua orang termasuk Anda didorong untuk berkontribusi dalam mengembangkan aplikasi ini bersama-sama untuk menjadikannya lebih baik.</p>
+	    
+	    <h2 class="content-subhead">Patch Contributor</h2>
+	    
+	    <p>Ingin memperbaiki bug yang Anda temukan? atau memperbaiki algoritma sehingga membuat Panada
                         menjadi lebih baik? <em>Fork</em> source code Panada di <a href="http://github.com/panada/Panada" target="_blank">http://github.com/panada/Panada</a></p>
-		
-		<p>Berikut panduan singkat <em>Forking</em> project di <a href="https://github.com/">Github</a>:</p>
-		<p>Pastikan komputer Anda sudah terinstall <a href="<em>Fork</em>">Git</a>.</p>
-		<pre>sudo apt-get install git-core</pre>
-		<p><a href="https://github.com/login">Login</a> dan fork Panada <a href="http://github.com/panada/Panada" target="_blank">http://github.com/panada/Panada</a>.</p>
-		
-		<p>Setelah project sudah ter-fork ke account Anda, silahkan <em>clone</em> ke komputer local.</p>
-		<pre>git clone git@github.com:USERNAME_ANDA/Panada.git</pre>
-		<p>Selesai ter-clone, secara default remote repository akan terbuat dengan nama <strong>origin</strong> yang lokasinya mengarah ke https://github.com/USERNAME_ANDA/Panada.</p>
-		<p>Untuk selalu mendapatkan update source terbaru dari repository utama, tambahkan sebuah remote repository dengan nama <strong>upstream</strong>. Untuk menambahkannya silahkan jalankan perintah:</p>
-		<pre>git remote add upstream git://github.com/panada/Panada.git</pre>
-		<p>Silahkan modifikasi sesuai yang Anda inginkan. Jika perubahan yang dilakukan cukup besar pastikan Anda memberikan deskripsi yang jelas di file <strong>README</strong> apa dan kenapa perubahan ini dilakukan.</p>
-		<p>Selesai melakukan modifikasi jalankan perintah berikut di dalam working directory:</p>
-		<pre>git add NAMAFILE</pre>
-		<P>Commit perubahan yang baru saja dilakukan:</P>
-		<pre>git commit -m 'ISIKAN_PESAN_COMMIT'</pre>
-		<p>Anda bisa melakukan perubahan lainnya dan kemudian kembali melakukan perintah <strong>git add</strong> dan <strong>git commit</strong> atau langsung melakukan push ke repositoy Anda di Github. Untuk melakukan push gunakan perintah:</p>
-		<pre>git push origin master</pre>
-		<p>Jika proses <strong>push</strong> berhasil silahkan melakukan <strong>Pull Request</strong>. Halaman Pull Request berada di pojok kanan atas halaman repositoy Anda (https://github.com/USERNAME_ANDA/Panada).</p>
-		<p>Jika sebelumnya Anda sudah pernah melakukan fork dan kembali ingin memberikan patch, pertama-tama update project Anda dan <strong>merge</strong> dengan repository utama.</p>
-<pre>
-git fetch upstream
+	    <p>Berikut panduan singkat <em>Forking</em> project di <a href="https://github.com/">Github</a>:</p>
+	    <p>Pastikan komputer Anda sudah terinstall <a href="<em>Fork</em>">Git</a>.</p>
+	    <pre class="code" data-language="html"><code>sudo apt-get install git-core</code></pre>
+	    <p><a href="https://github.com/login">Login</a> dan fork Panada <a href="http://github.com/panada/Panada" target="_blank">http://github.com/panada/Panada</a>.</p>
+	    
+	    <p>Setelah project sudah ter-fork ke account Anda, silahkan <em>clone</em> ke komputer local.</p>
+	    <pre class="code" data-language="html"><code>git clone git@github.com:USERNAME_ANDA/Panada.git</code></pre>
+	    <p>Selesai ter-clone, secara default remote repository akan terbuat dengan nama <strong>origin</strong> yang lokasinya mengarah ke https://github.com/USERNAME_ANDA/Panada.</p>
+	    <p>Untuk selalu mendapatkan update source terbaru dari repository utama, tambahkan sebuah remote repository dengan nama <strong>upstream</strong>. Untuk menambahkannya silahkan jalankan perintah:</p>
+	    <pre class="code" data-language="html"><code>git remote add upstream git://github.com/panada/Panada.git</code></pre>
+	    <p>Silahkan modifikasi sesuai yang Anda inginkan. Jika perubahan yang dilakukan cukup besar pastikan Anda memberikan deskripsi yang jelas di file <strong>README</strong> apa dan kenapa perubahan ini dilakukan.</p>
+	    <p>Selesai melakukan modifikasi jalankan perintah berikut di dalam working directory:</p>
+	    <pre class="code" data-language="html"><code>git add NAMAFILE</code></pre>
+	    <P>Commit perubahan yang baru saja dilakukan:</P>
+	    <pre class="code" data-language="html"><code>git commit -m 'ISIKAN_PESAN_COMMIT'</code></pre>
+	    <p>Anda bisa melakukan perubahan lainnya dan kemudian kembali melakukan perintah <strong>git add</strong> dan <strong>git commit</strong> atau langsung melakukan push ke repositoy Anda di Github. Untuk melakukan push gunakan perintah:</p>
+	    <pre class="code" data-language="html"><code>git push origin master</code></pre>
+	    <p>Jika proses <strong>push</strong> berhasil silahkan melakukan <strong>Pull Request</strong>. Halaman Pull Request berada di pojok kanan atas halaman repositoy Anda (https://github.com/USERNAME_ANDA/Panada).</p>
+	    <p>Jika sebelumnya Anda sudah pernah melakukan fork dan kembali ingin memberikan patch, pertama-tama update project Anda dan <strong>merge</strong> dengan repository utama.</p>
+	    <pre class="code" data-language="html"><code>git fetch upstream
 git merge upstream/master
-</pre>
-		<p>Silahkan lakukan perubahan seperti yang diinginkan kemudian jalankan perintah <strong>git add</strong>, <strong>git commit</strong>, <strong>git push</strong> dan kemudian <strong>Pull Request</strong> seperti yang sudah dijelaskan sebelumnya.</p>
-        </div>
-        
-        <div class="row-fluid">
-            <div class="page-header">
-                <h2>Kontribusi Lainnya</h2>
-            </div>
-            <p>Anda bisa melakukan banyak hal untuk berkontribusi di proyek Panada, diantaranya:</p>
+</code></pre>
+	    <p>Silahkan lakukan perubahan seperti yang diinginkan kemudian jalankan perintah <strong>git add</strong>, <strong>git commit</strong>, <strong>git push</strong> dan kemudian <strong>Pull Request</strong> seperti yang sudah dijelaskan sebelumnya.</p>
+		
+	    <h2 class="content-subhead">Kontribusi Lainnya</h2>
+	    <p>Anda bisa melakukan banyak hal untuk berkontribusi di proyek Panada, diantaranya:</p>
 	    <ul>
 		<li><strong>Tester Contributor</strong>
 		    <p>Install dan test Panada pada komputer Anda dan informasikan bug ataupun apa saja yang Anda alami
@@ -150,27 +111,16 @@ git merge upstream/master
 		    Selamat menikmati Panada!</p>
 		</li>
 	    </ul>
-        </div>
-        <div class="row-fluid">
-            <div class="page-header" id="discussion">
-                <h2>Diskusi</h2>
-            </div>
+	    
+	    <h2 id="discussion" class="content-subhead">Diskusi</h2>
 	    <div id="disqus_thread"></div>
 	</div>
-        
-        
-      </div>
     </div>
-    <hr>
-    <footer>
-      <p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/id/contribution.html">fork dan edit</a>.</p>
-    </footer>
 </div>
 <script>
 var disqus_url = 'contribution.html';
-</script>
-<script src="../jquery.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<script src="../panada.js"></script>
+</script
+<script src="../js/ui.js"></script>
+<script src="../js/panada.js"></script>
 </body>
 </html>

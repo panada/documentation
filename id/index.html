@@ -21,7 +21,7 @@
                 <img src="../img/logo.svg">
             </a>
             <ul>
-		<li><a href="index.html#about">Tentang Panada</a></li>
+		<li class="pure-menu-selected"><a href="index.html#about">Tentang Panada</a></li>
 		<li><a href="index.html#feature">Feature</a></li>
 		<li><a href="index.html#requirement">Requirement</a></li>
 		<li><a href="index.html#license">Lisensi</a></li>
@@ -102,9 +102,9 @@
                         <p>Dalam pengambilan sebuah komponen baik itu model ataupun library, Anda hanya
     cukup melakukan sekali pendeklarasian sebagaimana umumnya dalam mendeklarasikan
     sebuah class. Contohnya:</p>
-    <pre>$this->namaInstance = new Libraries\NamaClass;</pre>
+    <pre class="code" data-language="html"><code>$this->namaInstance = new Libraries\NamaClass;</code></pre>
     <p>Atau:</p>
-    <pre>$this->namaInstance = new Models\NamaClass;</pre>
+    <pre class="code" data-language="html"><code>$this->namaInstance = new Models\NamaClass;</code></pre>
     <p>Baik dalam pengambilan library ataupun model cara yang dilakukan adalah sama.
     Perbedaaanya hanya terletak pada prefix <a target="_blank" href="http://php.net/manual/en/language.namespaces.php">Namespace</a> ('Libraries' atau 'Models') nama class
     yang menunjukan tugas dan lokasi folder.</p>
@@ -150,5 +150,6 @@
     </div>
 </div>
 <script src="../js/ui.js"></script>
+<script src="../js/panada.js"></script>
 </body>
 </html>
