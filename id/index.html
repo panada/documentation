@@ -1,119 +1,84 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Panada PHP Framework 1.1.0 Documentation - About Panada</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- Le styles -->
-<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-<!--[if lt IE 9]>
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+<meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+<title>Panada PHP Framework 1.1.0 Documentation - About Panada</title>
+<link rel="stylesheet" href="../css/pure/0.5.0/pure.css">
+<link rel="stylesheet" href="../css/layouts/side-menu.css">
 </head>
 <body>
-<div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../images/logosimple.png"></a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="http://panadaframework.com/">Home</a></li>
-	      <li><a href="https://github.com/panada/Panada">Source</a></li>
-		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
-		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
-		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
-		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
-            </ul>
-            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
-                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
-                <div class="input-append">
-                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
-                    <button class="btn" type="button"><i class="icon-search"></i></button>
-                </div>
-            </form>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-</div>
-<div class="container-fluid">
-    <div class="page-header">
-        <h1>Panada Framework 1.1.0 Documentation</h1>
-    </div>
-    <div class="row-fluid">
-        <div class="span3">
-            <div class="sidebar-nav">
-                <ul class="nav nav-list">
-                    <li class="nav-header"><a href="index.html" class="muted">Umum</a></li>
-                    <li class="active"><a href="index.html#about">Tentang Panada</a></li>
-                    <li><a href="index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
-                    <li><a href="index.html#requirement">Requirement</a></li>
-                    <li><a href="index.html#license">Lisensi</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header"><a href="config.html" class="muted">Konfigurasi</a></li>
-                    <li><a href="config.html#general">Dasar</a></li>
-                    <li><a href="config.html#additional_config">Tambahan</a></li>
-                    <li><a href="config.html#webserver">Webserver</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header">Referensi</li>
-                    <li><a href="references/controller.html">Controller</a></li>
-                    <li><a href="references/model.html">Model</a></li>
-                    <li><a href="references/view.html">View</a></li>
-                    <li><a href="references/library.html">Library</a></li>
-                    <li><a href="references/autoloader.html">Auto Loader</a></li>
-                    <li><a href="references/global_method.html">Global Method dan Properties</a></li>
-                    <li><a href="references/module.html">Module</a></li>
-                    <li><a href="references/vendor.html">Vendor</a></li>
-                    <li><a href="references/upgrade.html">Upgrade</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header"><a href="classes/index.html" class="muted">Resources</a></li>
-                    <li><a href="classes/database/index.html">Database</a></li>
-                    <li><a href="classes/cache/index.html">Cache</a></li>
-                    <li><a href="classes/session.html">Session</a></li>
-                    <li><a href="classes/pagination.html">Pagination</a></li>
-                    <li><a href="classes/email.html">Email</a></li>
-                    <li><a href="classes/encryption.html">Encryption</a></li>
-                    <li><a href="classes/upload.html">Upload</a></li>
-                    <li><a href="classes/image.html">Image</a></li>
-                    <li><a href="classes/request.html">Request</a></li>
-                    <li><a href="classes/rest.html">RESTfull</a></li>
-                    <li><a href="classes/tools.html">Tools</a></li>
-                    <li><a href="classes/validation.html">Form Validation</a></li>
-                    <li class="divider"></li>
-                    <li><a href="contribution.html">Kontribusi</a></li>
-                    <li><a href="credit.html">Credit</a></li>
-                </ul>
-            </div><!--/.well -->
-        </div><!--/span-->
-      <div class="span9">
-        <div class="row-fluid">
-            <div class="page-header" id="about">
-                <h2>Tentang Panada</h2>
-            </div>
-            <p>Panada adalah high performance PHP development framework namun tetap sederhana. Tidak hanya sederhana dalam pengertian cara penggunaanya, tetapi juga bagaimana core system-nya bekerja.</p>
-                <p>Dari awal dikembangkan, Panada secara khusus ditujukan untuk membantu para PHP developer yang ingin mengembangkan aplikasi web  berperforma tinggi (<em>high performance web application</em>). Namun demikian, prinsip kesederhanaan <strong>KISS</strong> atau <em><strong>Keep it Simple Son!</strong></em> selalu menjadi prinsip utama dalam setiap pengembangan.</p>
-		<p>Panada adalah framework sederhana dan simpel untuk pembuatan website berbasiskan
-                        PHP 5.3 ke atas. Framework ini dikembangkan dengan tujuan membantu para pengembang website untuk
-                        bekerja lebih cepat, lebih mudah dan lebih alamiah dalam penulisan kode.</p>
-                <p>Setiap
-                        komponen didesign untuk bisa saling memanfaatkan sumberdaya (<em>resource</em>) dari komponen-komponen
-                        lainnya secara otomatis. Hal ini memudahkan pengembang dalam memanfaatkan sumberdaya
-                        secara cepat dan efisien.
-                </p>
-		
-		<p>Untuk mendapatkan update terbaru, follow twitter Panada di <a href="http://twitter.com/panadaframework" target="_blank">@panadaframework</a>.</p>
-        </div>
-        <div class="row-fluid">
-            <div class="page-header" id="feature">
-                <h2>Features</h2>
-            </div>
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+    <div id="menu">
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading" href="http://panadaframework.com">
+                <img src="../img/logo.svg">
+            </a>
             <ul>
+		<li><a href="index.html#about">Tentang Panada</a></li>
+		<li><a href="index.html#feature">Feature</a></li>
+		<li><a href="index.html#requirement">Requirement</a></li>
+		<li><a href="index.html#license">Lisensi</a></li>
+		<li class="menu-item-divided"><a href="config.html">Konfigurasi</a></li>
+		<li><a href="config.html#general">Dasar</a></li>
+		<li><a href="config.html#additional_config">Tambahan</a></li>
+		<li><a href="config.html#webserver">Webserver</a></li>
+		<li class="menu-item-divided"><a href="references/controller.html">Referensi</a></li>
+		<li><a href="references/controller.html">Controller</a></li>
+		<li><a href="references/model.html">Model</a></li>
+		<li><a href="references/view.html">View</a></li>
+		<li><a href="references/library.html">Library</a></li>
+		<li><a href="references/autoloader.html">Auto Loader</a></li>
+		<li><a href="#">Global Resources</a></li>
+		<li><a href="references/module.html">Module</a></li>
+		<li><a href="references/vendor.html">Vendor</a></li>
+		<li><a href="references/upgrade.html">Upgrade</a></li>
+		<li class="menu-item-divided"><a href="classes/index.html">Resources</a></li>
+		<li><a href="classes/database/index.html">Database</a></li>
+		<li><a href="classes/cache/index.html">Cache</a></li>
+		<li><a href="classes/session.html">Session</a></li>
+		<li><a href="classes/pagination.html">Pagination</a></li>
+		<li><a href="classes/email.html">Email</a></li>
+		<li><a href="classes/encryption.html">Encryption</a></li>
+		<li><a href="classes/upload.html">Upload</a></li>
+		<li><a href="classes/image.html">Image</a></li>
+		<li><a href="classes/request.html">Request</a></li>
+		<li><a href="classes/rest.html">RESTfull</a></li>
+		<li><a href="classes/tools.html">Tools</a></li>
+		<li><a href="classes/validation.html">Form Validation</a></li>
+		<li class="menu-item-divided"><a href="contribution.html">Kontribusi</a></li>
+		<li class="menu-item-divided"><a href="credit.html">Credit</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="main">
+        <div class="header">
+	    <h1>Panada 1.1.0 Documentation</h1>
+        </div>
+
+        <div class="content">
+            <h2 class="content-subhead">Tentang Panada</h2>
+            <p>Panada adalah high performance PHP development framework namun tetap sederhana. Tidak hanya sederhana dalam pengertian cara penggunaanya, tetapi juga bagaimana core system-nya bekerja.</p>
+	    <p>Dari awal dikembangkan, Panada secara khusus ditujukan untuk membantu para PHP developer yang ingin mengembangkan aplikasi web  berperforma tinggi (<em>high performance web application</em>). Namun demikian, prinsip kesederhanaan <strong>KISS</strong> atau <em><strong>Keep it Simple Son!</strong></em> selalu menjadi prinsip utama dalam setiap pengembangan.</p>
+	    <p>Panada adalah framework sederhana dan simpel untuk pembuatan website berbasiskan
+		    PHP 5.3 ke atas. Framework ini dikembangkan dengan tujuan membantu para pengembang website untuk
+		    bekerja lebih cepat, lebih mudah dan lebih alamiah dalam penulisan kode.</p>
+	    <p>Setiap
+		    komponen didesign untuk bisa saling memanfaatkan sumberdaya (<em>resource</em>) dari komponen-komponen
+		    lainnya secara otomatis. Hal ini memudahkan pengembang dalam memanfaatkan sumberdaya
+		    secara cepat dan efisien.
+	    </p>
+	    <p>Untuk mendapatkan update terbaru, follow twitter Panada di <a href="http://twitter.com/panadaframework" target="_blank">@panadaframework</a>.</p>
+            
+	    <h2 id="feature" class="content-subhead">Features</h2>
+	    <ul>
                     <li>
                         <h4>Sederhana dan Simpel</h4>
                         <p>Sistem utama (<em>core system</em>) Panada hanya terdiri dari sebuah file, yaitu <strong>gear.php</strong>
@@ -154,23 +119,21 @@
 			<p>Mulai versi 0.3.1 Panada sudah mendukung feature modulasi. Hal ini akan mempermudah terutama dalam pembuatan aplikasi bersekala besar. Setiap module dapat dibuat dan dikelola secara terpisah tanpa harus mempengaruhi module yang lain.</p>
 		    </li>
             </ul>
-        </div>
-	
-	<div class="row-fluid">
-            <div class="page-header" id="requirement">
-                <h2>Install</h2>
-            </div>
+        
+            
+        
+	    <h2 id="requirement">Install</h2>
 	    <p>Untuk install Panda bisa dilakukan dengan beberapa cara. Pertama via <a target="_blank" href="https://getcomposer.org/">Composer</a>, atau langsung download dari Github.</p>
 	    <p>Untuk install via composer, silahkan jalankan perintah berikut di docroot project anda:</p>
-	    <input class="input-block-level" type="text" id="composer" value='composer create-project panada/panada --prefer-dist --stability="dev" --no-install'>
+	    
+	    <form class="pure-form">
+	    <input class="pure-input-1" type="text" id="composer" value='composer create-project panada/panada --prefer-dist --stability="dev" --no-install' readonly>
+	    </form>
+	    
 	    <p>Untuk men-download langsung dari Github silahkan menggunakan url <a id="github-download" target="_blank" href="https://github.com/panada/Panada/archive/master.zip">https://github.com/panada/Panada/archive/master.zip</a></p>
-	</div>
-        
-        <div class="row-fluid">
-            <div class="page-header" id="requirement">
-                <h2>Requirement</h2>
-            </div>
-            <p>Panada setidaknya membutuhkan:</p>
+	    
+            <h2 id="requirement">Requirement</h2>
+	    <p>Panada setidaknya membutuhkan:</p>
             <ul>
                 <li><a href="http://php.net/" target="_blank">PHP</a> versi 5.3 atau yang lebih baru.</li>
                 <li>Web server seperti <a href="http://httpd.apache.org/" target="_blank">Apache</a>, <a href="http://wiki.nginx.org/Main" target="_blank">Nginx</a> ataupun <a href="www.lighttpd.net/" target="_blank">Lighttpd</a> untuk menjalankan PHP.</li>
@@ -180,38 +143,12 @@
                 <li><a href="http://php.net/manual/en/book.apc.php" target="_blank">APC</a> ataupun <a href="http://eaccelerator.net/" target="_blank">eAccelerator</a> untuk eksekusi script PHP yang lebih cepat.</li>
                 <li><a href="http://memcached.org/" target="_blank"> Memcached</a> untuk meminimalisir overhead pada database.</li>
             </ul>
-        </div>
-        
-        <div class="row-fluid">
-            <div class="page-header" id="license">
-                <h2>Lisensi</h2>
-            </div>
+	    
+            <h2 id="license">Lisensi</h2>
             <p>Lisensi Panada menggunakan BSD-License (<a href="http://www.opensource.org/licenses/bsd-license.php" target="_blank">http://www.opensource.org/licenses/bsd-license.php</a>). Dengan lisensi ini artinya setiap orang bisa dengan bebas menggunakan aplikasi ini baik itu untuk keperluan komersial ataupun non-komersial.</p>
-        </div>
-        
-      </div>
+	</div>
     </div>
-    <hr>
-    <footer>
-      <p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/id/index.html">fork dan edit</a>.</p>
-    </footer>
 </div>
-<script>
-var disqus_url = 'index.html';
-</script>
-<script src="../jquery.js"></script>
-<script src="../bootstrap/js/bootstrap.min.js"></script>
-<script src="../panada.js"></script>
-<script>
-$(function(){
-    $('#github-download').click(function(){
-	_gaq.push(['_trackEvent', 'Download', 'Downloaded', 'Doc Home']);
-	return true;
-    });
-    $('#composer').select(function(){
-	_gaq.push(['_trackEvent', 'Download', 'Composer selected', 'Doc Home']);
-    });
-});
-</script>
+<script src="../js/ui.js"></script>
 </body>
 </html>
