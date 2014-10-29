@@ -282,3 +282,12 @@ code {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
+aside {
+    background: #1f8dd6; /* same color as selected state on site menu */
+    padding: 0.3em 1em;
+    border-radius: 3px;
+    color: #fff;
+}
+aside a, aside a:visited {
+    color: rgb(169, 226, 255);
+}

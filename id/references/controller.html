@@ -1,151 +1,97 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Panada PHP Framework 1.1.0 Documentation - Controller</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../../bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../../bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
-<!--[if lt IE 9]>
-<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
+<title>Panada PHP Framework 1.1.0 Documentation - Controller</title>
+<link rel="stylesheet" href="../../css/pure/0.5.0/pure.css">
+<link rel="stylesheet" href="../../css/layouts/side-menu.css">
 </head>
 <body>
-<div class="navbar navbar-static-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="http://panadaframework.com/" style="padding: 10px 20px 0px;"><img src="../../images/logosimple.png"></a>
-          <div class="nav-collapse collapse">
-            <ul class="nav">
-              <li><a href="http://panadaframework.com/">Home</a></li>
-	      <li><a href="https://github.com/panada/Panada">Source</a></li>
-		<li class="active"><a href="http://panadaframework.com/documentation/id/">Doc</a></li>
-		<li><a href="https://github.com/panada/Panada">Help and Report</a></li>
-		<li><a href="http://panadaframework.com/blog/">Blog</a></li>
-		<li><a href="http://twitter.com/panadaframework">Twitter</a></li>
+<div id="layout">
+    <!-- Menu toggle -->
+    <a href="#menu" id="menuLink" class="menu-link">
+        <!-- Hamburger icon -->
+        <span></span>
+    </a>
+    <div id="menu">
+        <div class="pure-menu pure-menu-open">
+            <a class="pure-menu-heading" href="http://panadaframework.com">
+                <img src="../../img/logo.svg">
+            </a>
+            <ul>
+		<li><a href="../index.html#about">Tentang Panada</a></li>
+		<li><a href="../index.html#feature">Feature</a></li>
+		<li><a href="../index.html#requirement">Requirement</a></li>
+		<li><a href="../index.html#license">Lisensi</a></li>
+		<li class="menu-item-divided"><a href="../config.html">Konfigurasi</a></li>
+		<li><a href="../config.html#general">Dasar</a></li>
+		<li><a href="../config.html#additional_config">Tambahan</a></li>
+		<li><a href="../config.html#webserver">Webserver</a></li>
+		<li class="menu-item-divided"><a href="../references/controller.html">Referensi</a></li>
+		<li class="pure-menu-selected "><a href="../references/controller.html">Controller</a></li>
+		<li><a href="../references/model.html">Model</a></li>
+		<li><a href="../references/view.html">View</a></li>
+		<li><a href="../references/library.html">Library</a></li>
+		<li><a href="../references/autoloader.html">Auto Loader</a></li>
+		<li><a href="../#">Global Resources</a></li>
+		<li><a href="../references/module.html">Module</a></li>
+		<li><a href="../references/vendor.html">Vendor</a></li>
+		<li><a href="../references/upgrade.html">Upgrade</a></li>
+		<li class="menu-item-divided"><a href="../classes/index.html">Resources</a></li>
+		<li><a href="../classes/database/index.html">Database</a></li>
+		<li><a href="../classes/cache/index.html">Cache</a></li>
+		<li><a href="../classes/session.html">Session</a></li>
+		<li><a href="../classes/pagination.html">Pagination</a></li>
+		<li><a href="../classes/email.html">Email</a></li>
+		<li><a href="../classes/encryption.html">Encryption</a></li>
+		<li><a href="../classes/upload.html">Upload</a></li>
+		<li><a href="../classes/image.html">Image</a></li>
+		<li><a href="../classes/request.html">Request</a></li>
+		<li><a href="../classes/rest.html">RESTfull</a></li>
+		<li><a href="../classes/tools.html">Tools</a></li>
+		<li><a href="../classes/validation.html">Form Validation</a></li>
+		<li class="menu-item-divided"><a href="../contribution.html">Kontribusi</a></li>
+		<li class="menu-item-divided"><a href="../credit.html">Credit</a></li>
             </ul>
-            <form class="navbar-form pull-right" action="http://www.google.com/search" method="get">
-                <input type="hidden" value="panadaframework.com/documentation/" id="as_sitesearch" name="as_sitesearch">
-                <div class="input-append">
-                    <input class="span2" id="appendedInputButton" type="text" name="q" placeholder="Search...">
-                    <button class="btn" type="button"><i class="icon-search"></i></button>
-                </div>
-            </form>
-          </div><!--/.nav-collapse -->
         </div>
-      </div>
-</div>
-<div class="container-fluid">
-    <div class="page-header">
-        <h1>Panada Framework 1.1.0 Documentation</h1>
     </div>
-    <div class="row-fluid">
-        <div class="span3">
-            <div class="sidebar-nav">
-                <ul class="nav nav-list">
-                    <li class="nav-header"><a href="../index.html" class="muted">Umum</a></li>
-                    <li><a href="../index.html#about">Tentang Panada</a></li>
-                    <li><a href="../index.html#feature">Keunggulan (<em>Feature</em>)</a></li>
-                    <li><a href="../index.html#requirement">Requirement</a></li>
-                    <li><a href="../index.html#license">Lisensi</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header"><a href="../config.html" class="muted">Konfigurasi</a></li>
-                    <li><a href="../config.html#general">Dasar</a></li>
-                    <li><a href="../config.html#additional_config">Tambahan</a></li>
-                    <li><a href="../config.html#webserver">Webserver</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header">Referensi</li>
-                    <li class="active"><a href="controller.html">Controller</a></li>
-		    <li>
-			<ul>
-			    <li><a href="#controller_acces">Mengakses Controller</a></li>
-			    <li><a href="#default_controller">Default Controller</a></li>
-			    <li><a href="#create_controller">Membuat Controller</a></li>
-			    <li><a href="#controllers_method">Controller Method</a></li>
-			    <li><a href="#methods_parameter">Method Parameter</a></li>
-			    <li><a href="#load_components">Load Component</a></li>
-			    <li><a href="#alias_controller">Alias Controller</a></li>
-			    <li><a href="#alias_method">Alias Method</a></li>
-			    <li><a href="#sub_controller">Sub Controller</a></li>
-			    <li><a href="#discussion">Diskusi</a></li>
-			</ul>
-		    </li>
-                    <li><a href="model.html">Model</a></li>
-                    <li><a href="view.html">View</a></li>
-                    <li><a href="library.html">Library</a></li>
-                    <li><a href="autoloader.html">Auto Loader</a></li>
-                    <li><a href="global_method.html">Global Method dan Properties</a></li>
-                    <li><a href="module.html">Module</a></li>
-                    <li><a href="vendor.html">Vendor</a></li>
-                    <li><a href="upgrade.html">Upgrade</a></li>
-                    <li class="divider"></li>
-                    <li class="nav-header"><a href="../classes/index.html" class="muted">Resources</a></li>
-                    <li><a href="../classes/database/index.html">Database</a></li>
-                    <li><a href="../classes/cache/index.html">Cache</a></li>
-                    <li><a href="../classes/session.html">Session</a></li>
-                    <li><a href="../classes/pagination.html">Pagination</a></li>
-                    <li><a href="../classes/email.html">Email</a></li>
-                    <li><a href="../classes/encryption.html">Encryption</a></li>
-                    <li><a href="../classes/upload.html">Upload</a></li>
-                    <li><a href="../classes/image.html">Image</a></li>
-                    <li><a href="../classes/request.html">Request</a></li>
-                    <li><a href="../classes/rest.html">RESTfull</a></li>
-                    <li><a href="../classes/tools.html">Tools</a></li>
-                    <li><a href="../classes/validation.html">Form Validation</a></li>
-                    <li class="divider"></li>
-                    <li><a href="../contribution.html">Kontribusi</a></li>
-                    <li><a href="../credit.html">Credit</a></li>
-                </ul>
-            </div><!--/.well -->
-        </div><!--/span-->
-      <div class="span9">
-        <div class="row-fluid">
-            <div class="page-header">
-                <h2>Controller</h2>
-            </div>
+
+    <div id="main">
+        <div class="header">
+	    <h1>Controller</h1>
+        </div>
+
+        <div class="content">
             <p>Dalam terminologi MVC, controller adalah file yang menghubungkan request dari view ke model. Di dalam controller ini pula dilakukan pengolahan logic sebelum dikirimkan ke file view untuk ditampilkan ke user.</p>
-        </div>
-	<div class="row-fluid">
-            <div class="page-header" id="controller_acces">
-                <h2>Mengakses Controller</h2>
-            </div>
+            
+            <h2 class="content-subhead" id="controller_acces">Mengakses Controller</h2>
 	    <p>Controller di Panada adalah sebuah class yang dalam mengaksesnya menggunakan path url tertentu. Nama path url mewakili nama controller. Sebagai contoh, jika Anda akses alamat:</p>
-	    <pre>http://www.mysite.com/index.php/welcome</pre>
+	    <pre class="code" data-language="html"><code>http://www.mysite.com/index.php/welcome</code></pre>
 	    <p>maka yang menjadi controller-nya adalah <strong>welcome</strong>. Atau:</p>
-	    <pre>http://www.mysite.com/home</pre>
+	    <pre class="code" data-language="html"><code>http://www.mysite.com/home</code></pre>
 	    <p>maka yang menjadi controller-nya adalah <strong>home</strong>.</p>
-        </div>
-	<div id="default_controller" class="row-fluid">
-                <div class="page-header"><h2>Default Controller</h2></div>
-                <p>Jika pada alamat url tidak ditambahkan argumen nama controller, maka Panada akan mengakses controller default yang bernama <strong>home</strong>.</p>
-                <pre>http://www.mysite.com/</pre>
-                <p>Hasilnya akan sama dengan:</p>
-                <pre>http://www.mysite.com/index.php/home</pre>
-                <p>Atau jika mod_rewrite telah diaktifkan (dengan setting .htaccess file yang benar):</p>
-                <pre>http://www.mysite.com/home</pre>
-		<p>Untuk merubah nama default controller dari <strong>home</strong> menjadi controller lainnya, Anda perlu merubahnya di halaman <strong>app/config/main.php</strong> pada bagian <strong>defaultController</strong>.</p>
-<pre>
-array(
+	    
+            <h2 id="default_controller" class="content-subheadr">Default Controller</h2>
+            <p>Jika pada alamat url tidak ditambahkan argumen nama controller, maka Panada akan mengakses controller default yang bernama <strong>home</strong>.</p>
+	    <pre class="code" data-language="html"><code>http://www.mysite.com/</code></pre>
+	    <p>Hasilnya akan sama dengan:</p>
+	    <pre class="code" data-language="html"><code>http://www.mysite.com/index.php/home</code></pre>
+	    <p>Atau jika mod_rewrite telah diaktifkan (dengan setting .htaccess file yang benar):</p>
+	    <pre>http://www.mysite.com/home</pre>
+	    <p>Untuk merubah nama default controller dari <strong>home</strong> menjadi controller lainnya, Anda perlu merubahnya di halaman <strong>app/config/main.php</strong> pada bagian <strong>defaultController</strong>.</p>
+<pre class="code" data-language="html">
+<code>array(
     'defaultController' => 'Home',
 ),
-</pre>
+</code></pre>
 		<p>Perubahan nama default controller ini juga akan berlaku terhadap default controller <a href="#sub_controller">sub-controller</a> dan <a href="module.html">module</a>.</p>
-            </div>
-            
-	<div id="create_controller" class="row-fluid">
-	    <div class="page-header"><h2>Membuat Controller</h2></div>
-	    <p>Untuk membuat controller tambahkan sebuah file baru di dalam folder <strong>app/Controllers/</strong>
-dan beri nama sesuai dengan yang diinginkan, misalnya <strong>Home.php</strong>.</p>
-	    <p>Buat sebuah class baru di dalam file ini di mana class tersebut menjadi <strong><em>subclass inherits</em></strong>
-dari class Resources\Controllers, berikut adalah contohnya:</p>
-
-<pre>
-&lt;?php
+		
+		<h2 class="content-subhead" id="create_controller">Membuat Controller</h2>
+		<p>Untuk membuat controller tambahkan sebuah file baru di dalam folder <strong>app/Controllers/</strong> dan beri nama sesuai dengan yang diinginkan, misalnya <strong>Home.php</strong>.</p>
+		<p>Buat sebuah class baru di dalam file ini di mana class tersebut menjadi <strong><em>subclass inherits</em></strong> dari class Resources\Controllers, berikut adalah contohnya:</p>
+<pre class="code" data-language="html">
+<code>&lt;?php
 namespace Controllers;
 use Resources;
 
@@ -156,298 +102,19 @@ class Home extends Resources\Controllers
 	echo 'Hello world!';
     }
 }
-</pre>
-	    <div class="alert alert-info alert-block">
-		Yang harus diperhatikan adalah <strong>namespace</strong> nama class. Di mana namespace ini menunjukan lokasi folder class
-tersebut. Untuk controller, namespace-nya adalah <strong>"Controllers"</strong>. Hal yang sama juga berlaku pada class untuk library, dengan namespace <strong>"Libraries"</strong>
-dan class untuk model dengan namespace <strong>"Models"</strong>
-	    </div>
+</code></pre>
+		<aside>
+		    <p>Yang harus diperhatikan adalah <strong>namespace</strong> nama class. Di mana namespace ini menunjukan lokasi folder classtersebut. Untuk controller, namespace-nya adalah <strong>"Controllers"</strong>. Hal yang sama juga berlaku pada class untuk library, dengan namespace <strong>"Libraries"</strong>dan class untuk model dengan namespace <strong>"Models"</strong></p>
+		</aside>
+		
+		<h2 class="content-subhead">Diskusi</h2>
+		<div id="disqus_thread"></div>
 	</div>
-	
-	<div id="controllers_method" class="row-fluid">
-	    <div class="page-header"><h2>Controller Method</h2></div>
-	    <p>Sebuah controller setidak-tidaknya harus menggunakan namespace <strong>Resources</strong> yang akan digunakan untuk melakukan extend terhadap class Controllers. Jika controller
-ini dikases tanpa argumen apapun, maka method yang akan diakses adalah index.</p>
-	
-	    <p>Jika aplikasi diakses dengan alamat:</p>
-	    <pre>http://www.mysite.com/home</pre>
-	    <p>Hasilnya akan sama jika diakses dengan alamat:</p>
-	    <pre>http://www.mysite.com/home/index</pre>
-	    <p>Untuk mengakses method di dalam class controller, tambahkan argumen "<strong>namaMethod</strong>" setelah nama controllor pada alamat url.</p>
-	    <pre>http://www.mysite.com/home/namaMethod</pre>
-<pre>
-&lt;?php
-namespace Controllers;
-use Resources;
-
-class Home extends Resources\Controllers
-{
-    public function index()
-    {	
-	//Output Method index
-	echo 'Output dari method index untuk controller home.';
-    }
-    
-    public function user()
-    {	
-	//Output Method user
-	echo 'Output dari method user untuk controller home.';
-    }
-}
-</pre>
-	</div>
-	
-	<div id="methods_parameter" class="row-fluid">
-	    <div class="page-header"><h2>Method Parameter</h2></div>
-	    <p>Anda bisa mendapatkan nilai parameter untuk method dengan menambahkan argumen tambahan setelah nama method pada alamat url.</p>
-	    <pre>http://www.mysite.com/home/user/budi/jakarta</pre>
-	    <p>Maka untuk mendapatkan nilai <strong>budi</strong> dan <strong>jakarta</strong> di dalam method <strong>user</strong>, berikut adalah contohnya:</p>
-<pre>
-&lt;?php
-namespace Controllers;
-use Resources;
-
-class Home extends Resources\Controllers
-{
-    public function index()
-    {
-	
-    }
-    
-    public function user($name, $city)
-    {	
-	echo $name; //Output: budi
-	echo $city; //Output: Jakarta
-    }
-}
-</pre>
-	</div>
-	
-	<div id="load_components" class="row-fluid">
-	    <div class="page-header"><h2>Load Component</h2></div>
-	    <p>Untuk me-load library ataupun model di dalam controller, berikut adalah contohnya:</p>
-			
-<pre>
-&lt;?php
-namespace Controllers;
-use Resources, Models, Libraries;
-
-class Home extends Resources\Controllers
-{
-    public function __construct()
-    {    
-	parent::__construct();
-	
-	// Load model
-	$this->users = new Models\Users;
-	
-	// Load library
-	$this->test = new Libraries\Test;
-    }
-    
-    public function index()
-    {	
-	print_r( $this->users->name() );
-    }
-}
-</pre>
-	    </div>
-	
-	<div id="alias_controller" class="row-fluid">
-	    <div class="page-header"><h2>Alias Controller</h2></div>
-	    <p>Alias controller adalah sebuah controller di mana dalam mengakesnya tidak perlu disebutkan secara eksplisit pada alamat URL.</p>
-	    <p>Sebagai gambaran, sering kita jumpai sebuah website memberikan fasilitas dinamik/personal url bagi usernya, misalnya <strong>http://www.facebook.com/WordPress</strong> atau <strong>http://twitter.com/mongodb</strong>.
-	    Fasilitas ini akan memudahkan user untuk melakukan <em>sharing</em> halaman profilenya ke orang lain karena mudah untuk diingat.</p>
-	    <p>Feature yang sama juga digunakan pada aplikasi pemendek URL seperti <a href="http://bit.ly" target="_blank">bit.ly</a>.</p>
-	    <p>Untuk membuat fasilitas ini Panada menyediakan feature <strong>Alias Controller</strong> yang konfigurasinya terletak di dalam file <strong>app/config/main.php</strong>.</p>
-	    
-<pre>
-'alias' => array(
-    'controller' => array(
-	'class' => 'User',
-	'method' => 'index'
-    ),
-),
-</pre>
-	    <p>Key <strong>class</strong> menunjukan nama controller yang akan Anda gunakan, dan key <strong>method</strong> adalah nama method pada controller tersebut.</p>
-	    <p>Kini, jika url yang diakses adalah:</p>
-	    <pre>http://www.mysite.com/mandriva</pre>
-	    <p>Maka nilai <strong>mandriva</strong> akan dikirimkan ke method index yang ada di dalam controller user.</p>
-<pre>
-&lt;?php
-namespace Controllers;
-use Resources;
-
-class User extends Resources\Controller
-{
-    public function __construct()
-    {	
-	parent::__construct();
-    }
-    
-    public function index($user)
-    {	
-	echo $user; // Outputnya adalah mandriva
-    }
-}
-</pre>
-	    <p>Setelah mendapatkan nilai argumen, maka Anda bisa memanfaatkannya untuk melakukan pengecekan pada database misalnya.</p>
-	    <div class="alert alert-info alert-block">
-		<p>Yang perlu diperhatikan adalah, jika sebelumnya sudah ada controller dengan nama yang sama dengan argumen yang dikirimkan, maka yang akan dieksekusi adalah controller dan argumen tersebut akan diabaikan.</p>
-	    </div>
-	</div>
-	
-	<div id="alias_method" class="row-fluid">
-	    <div class="page-header"><h2>Alias Method</h2></div>
-	    <p>Cara kerja Alias Method mirip dengan Alias Controller bedanya, fasilitas ini berlaku pada level method controller.</p>
-	    <p>Sebagai contoh, jika Anda memiliki sebuah controller bernama <strong>news</strong> dan di dalamnya memiliki sebuah method
-	     bernama <strong>read</strong>, maka jika ingin mengakses artikel dengan id <strong>10</strong> maka urlnya menjadi:</p>
-	    <pre>http://www.mysite.com/news/read/10</pre>
-	    <p>Dengan Alias Method, url tersebut bisa dipersingkat menjadi:</p>
-	    <pre>http://www.mysite.com/news/10</pre>
-	    <p>Cara kerjanya adalah, semua argumen request yang ada setelah nama controller akan diteruskan ke method alias.</p>
-	    <p>Untuk menjalankan feature ini, yang perlu dilakukan adalah mendefinisikan nama method yang menjadi method alias di dalam file config/main.php.
-	     Secara default, nama dari method alias ini adalah <strong>alias</strong>:</p>
-	    
-<pre>
-'alias' => array
-    'method' => 'alias'
-),
-</pre>
-	    <p>Langkah selanjutnya adalah membuat sebuah method dengan nama <strong>alias</strong> maka controllernya menjadi:</p>
-<pre>
-&lt;?php
-namespace Controllers;
-use Resources;
-
-class News extends Resources\Controller
-{
-    public function __construct()
-    {	
-	parent::__construct();
-    }
-    
-    public function index()
-    {
-	
-    }
-    
-    public function alias($id = 0)
-    {	
-	echo 'This is the news with ID' . $id;
-    }
-}
-</pre>
-	    <p>Alias method bisa diimplementasikan pada controller utama, sub-controller ataupun controller yang ada di dalam sebuah module.</p>
-	    <div class="alert alert-info alert-block">
-		<p>Sama seperti alias controller, jika sebelumnya sudah ada method dengan nama yang sama dengan argumen yang dikirimkan, maka yang akan dieksekusi adalah method tersebut.</p>
-	    </div>
-	</div>
-	
-	<div id="sub_controller" class="row-fluid">
-                <div class="page-header"><h2>Sub Controller</h2></div>
-		<p>Anda bisa menambahkan sebuah folder di dalam folder controller <strong>app/Controllers/</strong> sesuai dengan kebutuhan. Sub-controller ini nantinya juga akan bisa diakses melalui alamat url seperti berikut:</p>
-		<pre>http://mysite.com/<strong>FolderName</strong>/<strong>ControllerName</strong>/<strong>MethodNmae</strong></pre>
-		<p>Yang perlu Anda perhatikan adalah nama namespace yang harus disesuaikan dengan nama folder. Misalnya Anda membuat folder dengan nama <strong>Blog</strong> dan class <strong>Posts</strong>, maka contoh kodenya adalah:</p>
-
-<pre>
-&lt;?php
-namespace Controllers\Blog;
-use Resources;
-
-class Post extends Resources\Controller
-{
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    
-    public function index()
-    {
-	
-    }
-}
-</pre>
-
-                <p>Anda juga bisa memanggil sebuah controller lain dari dalam sebuah controller dengan mengacu kepada namespace yang digunakan.</p>
-                <p>Berikut contoh cara penggunaannya. Pertama buat sebuah controller yang akan menjadi sub controller:</p>
-                    
-<pre>
-&lt;?php
-namespace Controllers;
-use Resources;
-
-class News extends Resources\Controller
-{    
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    
-    public function index()
-    {
-	echo 'This is method Index from class News';
-    }
-    
-    public function read($id = 0, $str = 'google')
-    {
-        echo 'First parameter is ' . $id;
-        echo '&lt;br /&gt;Second parameter is ' . $str;
-    }
-}
-</pre>     
-                <p>Berikutnya buat sebuah controller lainnya yang akan digunakan untuk memanggil controller di atas:</p>
-<pre>
-&lt;?php
-namespace Controllers;
-use Resources, Controllers\Blog;
-
-class Foo extends Resources\Controller
-{    
-    public function __construct()
-    {
-        parent::__construct();
-    }
-    
-    public function index()
-    {
-	echo 'This is method Index from class Foo';
-    }
-    
-    public function done()
-    {
-        $myController = new News;
-        $myController-&gt;index();
-    }
-    
-    public function myBlog()
-    {
-	$myBlog = new Blog\Post;
-	$myBlog-&gt;index();
-    }
-}
-</pre>
-            </div>
-	    
-      
-	<div class="row-fluid">
-            <div class="page-header" id="discussion">
-                <h2>Diskusi</h2>
-            </div>
-	    <div id="disqus_thread"></div>
-	</div>
-      </div>
     </div>
-    <hr>
-    <footer>
-      <p>Menemukan typo? atau ingin menambahkan informasi di halaman ini? silahkan <a href="https://github.com/panada/documentation/blob/master/id/references/controller.html">fork dan edit</a>.</p>
-    </footer>
 </div>
 <script>
 var disqus_url = 'references/controller.html';
-</script>
-<script src="../../jquery.js"></script>
-<script src="../../bootstrap/js/bootstrap.min.js"></script>
-<script src="../../panada.js"></script>
+</script
+<script src="../../js/panada.js"></script>
 </body>
 </html>
