@@ -146,7 +146,7 @@ dari class Resources\Controllers, berikut adalah contohnya:</p>
 namespace Controllers;
 use Resources;
 
-class Home extends Resources\Controllers {
+class Home extends Resources\Controller {
     
     public function index(){
         
@@ -184,7 +184,7 @@ ini dikases tanpa argumen apapun, maka method yang akan diakses adalah index.</p
 namespace Controllers;
 use Resources;
 
-class Home extends Resources\Controllers {
+class Home extends Resources\Controller {
     
     public function index(){
         
@@ -214,7 +214,7 @@ class Home extends Resources\Controllers {
 namespace Controllers;
 use Resources;
 
-class Home extends Resources\Controllers {
+class Home extends Resources\Controller {
     
     public function index(){
         
@@ -222,8 +222,7 @@ class Home extends Resources\Controllers {
     
     public function user($name, $city){
         
-        echo $name; //Output: budi
-        echo $city; //Output: Jakarta
+        echo 'Nama '.$name.' asal dari '.$city;
     }
 }
 </textarea>
@@ -238,7 +237,7 @@ class Home extends Resources\Controllers {
 namespace Controllers;
 use Resources, Models, Libraries;
 
-class Home extends Resources\Controllers {
+class Home extends Resources\Controller {
     
     public function __construct(){
     
